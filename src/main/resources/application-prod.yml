@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_wq?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false
+    username: root
+    password: lyb.9692
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#因为添加了mybatis-config.xml配置文件，所以此处就不用添加mybatis的配置了
+#如果取消mybatis-config.xml配置文件，此处就要放开mybatis的配置
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
