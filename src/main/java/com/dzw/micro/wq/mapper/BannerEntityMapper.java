@@ -1,17 +1,20 @@
 package com.dzw.micro.wq.mapper;
 
 import com.dzw.micro.wq.model.BannerEntity;
+import com.dzw.micro.wq.resp.BannerListResp;
+import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Param;
+import org.mapstruct.Mapper;
 
+@Mapper
 public interface BannerEntityMapper {
-    int deleteByPrimaryKey(Long id);
+	Page<BannerListResp> findList(@Param("status") int status, @Param("type") int type);
 
-    int insert(BannerEntity record);
+	BannerEntity findOneById(Long id);
 
-    int insertSelective(BannerEntity record);
+	int deleteByPrimaryKey(Long id);
 
-    BannerEntity selectByPrimaryKey(Long id);
+	int insert(BannerEntity record);
 
-    int updateByPrimaryKeySelective(BannerEntity record);
-
-    int updateByPrimaryKey(BannerEntity record);
+	int updateByPrimaryKey(BannerEntity record);
 }

@@ -1,5 +1,6 @@
 package com.dzw.micro.wq;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -17,6 +18,7 @@ import org.springframework.util.StringUtils;
 @EnableCaching
 @EnableScheduling
 @EnableAsync
+@MapperScan("com.dzw.micro.wq.mapper")
 @SpringBootApplication(scanBasePackages = {"com.dzw.micro.wq"})
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 public class Application {

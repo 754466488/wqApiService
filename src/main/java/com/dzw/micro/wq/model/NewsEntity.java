@@ -1,6 +1,7 @@
 package com.dzw.micro.wq.model;
 
 import lombok.Data;
+import org.joda.time.DateTime;
 
 @Data
 public class NewsEntity {
@@ -22,13 +23,13 @@ public class NewsEntity {
 
     private Integer status;
 
-    private Long publishTime;
+    private String publishTime;
 
-    private Long createTime;
+    private String createTime;
 
     private String createUser;
 
-    private Long updateTime;
+    private String updateTime;
 
     private String updateUser;
 }

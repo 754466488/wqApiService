@@ -1,6 +1,7 @@
 package com.dzw.micro.wq.model;
 
 import lombok.Data;
+import org.joda.time.DateTime;
 
 @Data
 public class SysStaffEntity {
@@ -18,11 +19,11 @@ public class SysStaffEntity {
 
     private Byte status;
 
-    private Long createTime;
+    private String createTime;
 
     private String createUser;
 
-    private Long updateTime;
+    private String updateTime;
 
     private String updateUser;
 }

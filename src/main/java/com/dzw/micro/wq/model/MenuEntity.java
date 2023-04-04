@@ -1,6 +1,7 @@
 package com.dzw.micro.wq.model;
 
 import lombok.Data;
+import org.joda.time.DateTime;
 
 @Data
 public class MenuEntity {
@@ -16,7 +17,7 @@ public class MenuEntity {
 
 	private Integer status;
 
-	private Long createTime;
+	private String createTime;
 
 	private String createUser;
 }

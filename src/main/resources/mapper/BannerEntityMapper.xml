@@ -15,10 +15,15 @@
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, title, url, req, status, link_url, type, create_time, create_user, update_time, 
-    update_user
+    id, title, url, req, status, link_url, type, create_time, create_user, update_time, update_user
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="findList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from t_banner
+    where status=#{status} and type=#{type}
+  </select>
+  <select id="findOneById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_banner
