@@ -1,7 +1,6 @@
 package com.dzw.micro.wq.service;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
-import com.dzw.micro.wq.model.BannerEntity;
 import com.dzw.micro.wq.req.SelectBannerReq;
 import com.dzw.micro.wq.resp.BannerListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;

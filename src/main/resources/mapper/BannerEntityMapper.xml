@@ -17,7 +17,7 @@
   <sql id="Base_Column_List">
     id, title, url, req, status, link_url, type, create_time, create_user, update_time, update_user
   </sql>
-  <select id="findList" resultMap="BaseResultMap">
+  <select id="findList" resultType="com.dzw.micro.wq.resp.BannerListResp" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from t_banner
