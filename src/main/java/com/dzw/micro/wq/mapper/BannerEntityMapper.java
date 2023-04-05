@@ -12,9 +12,9 @@ public interface BannerEntityMapper {
 
 	BannerEntity findOneById(Long id);
 
-	int deleteByPrimaryKey(Long id);
+	int deleteById(Long id);
 
 	int insert(BannerEntity record);
 
-	int updateByPrimaryKey(BannerEntity record);
+	int updateById(BannerEntity record);
 }

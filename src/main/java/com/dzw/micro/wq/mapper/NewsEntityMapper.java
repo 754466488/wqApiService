@@ -1,17 +1,17 @@
 package com.dzw.micro.wq.mapper;
 
 import com.dzw.micro.wq.model.NewsEntity;
+import com.dzw.micro.wq.req.SelectNewsReq;
+import com.dzw.micro.wq.resp.NewsListResp;
+import com.github.pagehelper.Page;
 
 public interface NewsEntityMapper {
-    int deleteByPrimaryKey(Long id);
+	Page<NewsListResp> findList(SelectNewsReq req);
 
-    int insert(NewsEntity record);
+	NewsEntity findOneById(Long id);
 
-    int insertSelective(NewsEntity record);
+	int insert(NewsEntity record);
 
-    NewsEntity selectByPrimaryKey(Long id);
+	int updateById(NewsEntity record);
 
-    int updateByPrimaryKeySelective(NewsEntity record);
-
-    int updateByPrimaryKey(NewsEntity record);
 }

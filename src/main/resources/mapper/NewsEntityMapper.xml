@@ -1,199 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dzw.micro.wq.mapper.NewsEntityMapper">
-  <resultMap id="BaseResultMap" type="com.dzw.micro.wq.model.NewsEntity">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="menu_id" jdbcType="BIGINT" property="menuId" />
-    <result column="click_num" jdbcType="INTEGER" property="clickNum" />
-    <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
-    <result column="cover_pic_url" jdbcType="VARCHAR" property="coverPicUrl" />
-    <result column="is_top" jdbcType="INTEGER" property="isTop" />
-    <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="publish_time" jdbcType="BIGINT" property="publishTime" />
-    <result column="create_time" jdbcType="BIGINT" property="createTime" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, title, menu_id, click_num, link_url, cover_pic_url, is_top, type, status, publish_time, 
+    <resultMap id="BaseResultMap" type="com.dzw.micro.wq.model.NewsEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="menu_id" jdbcType="BIGINT" property="menuId"/>
+        <result column="click_num" jdbcType="INTEGER" property="clickNum"/>
+        <result column="link_url" jdbcType="VARCHAR" property="linkUrl"/>
+        <result column="cover_pic_url" jdbcType="VARCHAR" property="coverPicUrl"/>
+        <result column="is_top" jdbcType="INTEGER" property="isTop"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="publish_time" jdbcType="BIGINT" property="publishTime"/>
+        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        , title, menu_id, click_num, link_url, cover_pic_url, is_top, type, status, publish_time,
     create_time, create_user, update_time, update_user
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_news
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_news
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.dzw.micro.wq.model.NewsEntity">
-    insert into t_news (id, title, menu_id, 
-      click_num, link_url, cover_pic_url, 
-      is_top, type, status, 
-      publish_time, create_time, create_user, 
-      update_time, update_user)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{menuId,jdbcType=BIGINT}, 
-      #{clickNum,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{coverPicUrl,jdbcType=VARCHAR}, 
-      #{isTop,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{publishTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=BIGINT}, #{updateUser,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.dzw.micro.wq.model.NewsEntity">
-    insert into t_news
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="menuId != null">
-        menu_id,
-      </if>
-      <if test="clickNum != null">
-        click_num,
-      </if>
-      <if test="linkUrl != null">
-        link_url,
-      </if>
-      <if test="coverPicUrl != null">
-        cover_pic_url,
-      </if>
-      <if test="isTop != null">
-        is_top,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="publishTime != null">
-        publish_time,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="createUser != null">
-        create_user,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="updateUser != null">
-        update_user,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="menuId != null">
-        #{menuId,jdbcType=BIGINT},
-      </if>
-      <if test="clickNum != null">
-        #{clickNum,jdbcType=INTEGER},
-      </if>
-      <if test="linkUrl != null">
-        #{linkUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="coverPicUrl != null">
-        #{coverPicUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="isTop != null">
-        #{isTop,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="publishTime != null">
-        #{publishTime,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=BIGINT},
-      </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=BIGINT},
-      </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dzw.micro.wq.model.NewsEntity">
-    update t_news
-    <set>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="menuId != null">
-        menu_id = #{menuId,jdbcType=BIGINT},
-      </if>
-      <if test="clickNum != null">
-        click_num = #{clickNum,jdbcType=INTEGER},
-      </if>
-      <if test="linkUrl != null">
-        link_url = #{linkUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="coverPicUrl != null">
-        cover_pic_url = #{coverPicUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="isTop != null">
-        is_top = #{isTop,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="publishTime != null">
-        publish_time = #{publishTime,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=BIGINT},
-      </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=BIGINT},
-      </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.dzw.micro.wq.model.NewsEntity">
-    update t_news
-    set title = #{title,jdbcType=VARCHAR},
-      menu_id = #{menuId,jdbcType=BIGINT},
-      click_num = #{clickNum,jdbcType=INTEGER},
-      link_url = #{linkUrl,jdbcType=VARCHAR},
-      cover_pic_url = #{coverPicUrl,jdbcType=VARCHAR},
-      is_top = #{isTop,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      publish_time = #{publishTime,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=BIGINT},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=BIGINT},
-      update_user = #{updateUser,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+    </sql>
+    <select id="findList" resultType="com.dzw.micro.wq.resp.NewsListResp" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_news
+        where 1=1
+        <if test="status != null">
+            and status=#{status}
+        </if>
+        <if test="beginTime != null">
+            and publish_time &gt;= {beginTime}
+        </if>
+        <if test="endTime != null">
+            and publish_time &lt;# {endTime}
+        </if>
+        <if test="menuId != null">
+            and menu_id=#{menuId}
+        </if>
+        <if test="isTop != null">
+            and is_top=#{isTop}
+        </if>
+    </select>
+    <select id="findOneById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_news
+        where id = #{id}
+    </select>
+    <insert id="insert" parameterType="com.dzw.micro.wq.model.NewsEntity">
+        insert into t_news (id, title, menu_id,
+                            click_num, link_url, cover_pic_url,
+                            is_top, type, status,
+                            publish_time, create_time, create_user,
+                            update_time, update_user)
+        values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{menuId,jdbcType=BIGINT},
+                #{clickNum,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{coverPicUrl,jdbcType=VARCHAR},
+                #{isTop,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+                #{publishTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=BIGINT}, #{updateUser,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateById" parameterType="com.dzw.micro.wq.model.NewsEntity">
+        update t_news
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="menuId != null">
+                menu_id = #{menuId,jdbcType=BIGINT},
+            </if>
+            <if test="clickNum != null">
+                click_num = #{clickNum,jdbcType=INTEGER},
+            </if>
+            <if test="linkUrl != null">
+                link_url = #{linkUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="coverPicUrl != null">
+                cover_pic_url = #{coverPicUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="isTop != null">
+                is_top = #{isTop,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="publishTime != null">
+                publish_time = #{publishTime,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

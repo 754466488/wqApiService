@@ -1,0 +1,98 @@
+package com.dzw.micro.wq.service.impl;
+
+import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.application.utils.BeanUtils;
+import com.dzw.micro.wq.application.utils.DateUtils;
+import com.dzw.micro.wq.enums.EnableStatusEnum;
+import com.dzw.micro.wq.mapper.NewsEntityMapper;
+import com.dzw.micro.wq.model.NewsEntity;
+import com.dzw.micro.wq.req.SaveNewsReq;
+import com.dzw.micro.wq.req.SelectNewsReq;
+import com.dzw.micro.wq.req.SetIsTopReq;
+import com.dzw.micro.wq.req.UpdateStatusReq;
+import com.dzw.micro.wq.resp.NewsListResp;
+import com.dzw.micro.wq.resp.PageableDataResp;
+import com.dzw.micro.wq.service.INewsAdminService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+
+/**
+ * description
+ *
+ * @author lyb
+ * @date created in 2023/4/5
+ */
+@Service
+public class NewsAdminServiceImpl implements INewsAdminService {
+	@Autowired
+	private NewsEntityMapper newsEntityMapper;
+
+	@Override
+	public Resp<PageableDataResp<NewsListResp>> findList(SelectNewsReq req) {
+		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();
+		PageHelper.startPage(req.getPageNo(), req.getPageSize());
+		Page<NewsListResp> respPage = newsEntityMapper.findList(req);
+		pageableDataResp.setTotalSize(respPage.getTotal());
+		pageableDataResp.setDtoList(respPage.getResult());
+		return Resp.success(pageableDataResp);
+	}
+
+	@Override
+	public Resp save(SaveNewsReq req) {
+		Long id = req.getId();
+		if (Objects.isNull(id)) {
+			NewsEntity entity = new NewsEntity();
+			BeanUtils.copyProperties(entity, req);
+			entity.setStatus(EnableStatusEnum.WAIT_PUBLISH.getCode());
+			entity.setCreateTime(DateUtils.currentTimeSecond());
+			entity.setCreateUser(req.getUserName());
+			newsEntityMapper.insert(entity);
+		} else {
+			NewsEntity entity = newsEntityMapper.findOneById(id);
+			if (Objects.isNull(entity)) {
+				return Resp.error("数据不存在");
+			}
+			BeanUtils.copyProperties(entity, req);
+			entity.setUpdateTime(DateUtils.currentTimeSecond());
+			entity.setUpdateUser(req.getUserName());
+			newsEntityMapper.updateById(entity);
+		}
+		return Resp.success();
+	}
+
+	/**
+	 * 变更状态
+	 *
+	 * @author: lyb
+	 * @date: 2023/4/5 23:39
+	 */
+	@Override
+	public Resp updateStatus(UpdateStatusReq req) {
+		NewsEntity entity = newsEntityMapper.findOneById(req.getId());
+		if (Objects.isNull(entity)) {
+			return Resp.error("数据不存在");
+		}
+		entity.setStatus(req.getStatus());
+		entity.setUpdateTime(DateUtils.currentTimeSecond());
+		entity.setUpdateUser(req.getUserName());
+		newsEntityMapper.updateById(entity);
+		return Resp.success();
+	}
+
+	@Override
+	public Resp updateSetTopStatus(SetIsTopReq req) {
+		NewsEntity entity = newsEntityMapper.findOneById(req.getId());
+		if (Objects.isNull(entity)) {
+			return Resp.error("数据不存在");
+		}
+		entity.setIsTop(req.getIsTop());
+		entity.setUpdateTime(DateUtils.currentTimeSecond());
+		entity.setUpdateUser(req.getUserName());
+		newsEntityMapper.updateById(entity);
+		return Resp.success();
+	}
+}

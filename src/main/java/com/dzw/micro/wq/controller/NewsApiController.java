@@ -1,13 +1,13 @@
 package com.dzw.micro.wq.controller;
 
-
 import com.dzw.micro.wq.application.domain.req.Resp;
-import com.dzw.micro.wq.req.SaveBannerReq;
-import com.dzw.micro.wq.req.SelectBannerReq;
+import com.dzw.micro.wq.req.SaveNewsReq;
+import com.dzw.micro.wq.req.SelectNewsReq;
+import com.dzw.micro.wq.req.SetIsTopReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
-import com.dzw.micro.wq.resp.BannerListResp;
+import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
-import com.dzw.micro.wq.service.IBannerAdminService;
+import com.dzw.micro.wq.service.INewsAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -24,33 +24,38 @@ import javax.validation.Valid;
 /**
  * description
  *
- * @author: lyb
- * @date: 2023/4/4 00:07
+ * @author lyb
+ * @date created in 2023/4/5
  */
-@Api(tags = {"后台-轮播图管理"})
+@Api(tags = {"后台-新闻文章管理"})
 @RestController
-@RequestMapping(value = "/admin/banner")
+@RequestMapping(value = "/admin/news")
 @Slf4j
-public class BannerApiController {
-
+public class NewsApiController {
 	@Autowired
-	private IBannerAdminService bannerAdminService;
+	private INewsAdminService newsAdminService;
 
 	@ApiOperation(value = "轮播图列表", notes = "")
 	@GetMapping(path = "/list")
-	public Resp<PageableDataResp<BannerListResp>> list(@Valid SelectBannerReq req, BindingResult bindingResult) {
-		return bannerAdminService.findList(req);
+	public Resp<PageableDataResp<NewsListResp>> list(@Valid SelectNewsReq req, BindingResult bindingResult) {
+		return newsAdminService.findList(req);
 	}
 
 	@ApiOperation(value = "保存轮播图", notes = "")
 	@PostMapping(path = "/insert")
-	public Resp save(@Valid SaveBannerReq req, BindingResult bindingResult) {
-		return bannerAdminService.save(req);
+	public Resp save(@Valid SaveNewsReq req, BindingResult bindingResult) {
+		return newsAdminService.save(req);
 	}
 
 	@ApiOperation(value = "变更状态", notes = "")
 	@PostMapping(path = "/updateStatus")
 	public Resp updateStatus(@Valid UpdateStatusReq req, BindingResult bindingResult) {
-		return bannerAdminService.updateStatus(req);
+		return newsAdminService.updateStatus(req);
+	}
+
+	@ApiOperation(value = "变更设置头条状态", notes = "")
+	@PostMapping(path = "/updateSetTopStatus")
+	public Resp updateSetTopStatus(@Valid SetIsTopReq req, BindingResult bindingResult) {
+		return newsAdminService.updateSetTopStatus(req);
 	}
 }
