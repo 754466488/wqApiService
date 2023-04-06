@@ -6,6 +6,12 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 import org.mapstruct.Mapper;
 
+/**
+ * description
+ *
+ * @author: lyb
+ * @date: 2023/4/6 23:35
+ */
 @Mapper
 public interface BannerEntityMapper {
 	Page<BannerListResp> findList(@Param("status") int status, @Param("type") int type);

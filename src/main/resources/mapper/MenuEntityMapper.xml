@@ -33,6 +33,7 @@
         select
         <include refid="Base_Column_List"/>
         from t_menu
+        where status=0
     </select>
 
     <insert id="insert" parameterType="com.dzw.micro.wq.model.MenuEntity">

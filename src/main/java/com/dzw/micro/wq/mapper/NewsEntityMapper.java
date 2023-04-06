@@ -5,6 +5,12 @@ import com.dzw.micro.wq.req.SelectNewsReq;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.github.pagehelper.Page;
 
+/**
+ * description
+ *
+ * @author: lyb
+ * @date: 2023/4/6 23:35
+ */
 public interface NewsEntityMapper {
 	Page<NewsListResp> findList(SelectNewsReq req);
 
