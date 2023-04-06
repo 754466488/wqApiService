@@ -12,7 +12,7 @@ import com.dzw.micro.wq.req.SetIsTopReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
-import com.dzw.micro.wq.service.INewsAdminService;
+import com.dzw.micro.wq.service.INewsService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import java.util.Objects;
  * @date created in 2023/4/5
  */
 @Service
-public class NewsAdminServiceImpl implements INewsAdminService {
+public class NewsServiceImpl implements INewsService {
 	@Autowired
 	private NewsEntityMapper newsEntityMapper;
 

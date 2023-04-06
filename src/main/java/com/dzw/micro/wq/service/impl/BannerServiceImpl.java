@@ -11,7 +11,7 @@ import com.dzw.micro.wq.req.SelectBannerReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.BannerListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
-import com.dzw.micro.wq.service.IBannerAdminService;
+import com.dzw.micro.wq.service.IBannerService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import java.util.Objects;
  * @date created in 2023/4/4
  */
 @Service
-public class BannerAdminServiceImpl implements IBannerAdminService {
+public class BannerServiceImpl implements IBannerService {
 	@Autowired
 	private BannerEntityMapper bannerEntityMapper;
 
@@ -59,7 +59,6 @@ public class BannerAdminServiceImpl implements IBannerAdminService {
 		if (Objects.isNull(id)) {
 			BannerEntity bannerEntity = new BannerEntity();
 			BeanUtils.copyProperties(bannerEntity, req);
-			bannerEntity.setReq(0);
 			bannerEntity.setStatus(EnableStatusEnum.ENABLE.getCode());
 			bannerEntity.setCreateTime(DateUtils.currentTimeSecond());
 			bannerEntity.setCreateUser(req.getUserName());
@@ -69,7 +68,10 @@ public class BannerAdminServiceImpl implements IBannerAdminService {
 			if (Objects.isNull(bannerEntity)) {
 				return Resp.error("数据不存在");
 			}
-			BeanUtils.copyProperties(bannerEntity, req);
+			bannerEntity.setTitle(req.getTitle());
+			bannerEntity.setType(req.getType());
+			bannerEntity.setUrl(req.getUrl());
+			bannerEntity.setLinkUrl(req.getLinkUrl());
 			bannerEntity.setUpdateTime(DateUtils.currentTimeSecond());
 			bannerEntity.setUpdateUser(req.getUserName());
 			bannerEntityMapper.updateById(bannerEntity);
@@ -91,7 +93,7 @@ public class BannerAdminServiceImpl implements IBannerAdminService {
 		}
 		bannerEntity.setStatus(req.getStatus());
 		bannerEntity.setUpdateTime(DateUtils.currentTimeSecond());
-		bannerEntity.setUpdateUser("系统管理员");
+		bannerEntity.setUpdateUser(req.getUserName());
 		bannerEntityMapper.updateById(bannerEntity);
 		return Resp.success();
 	}

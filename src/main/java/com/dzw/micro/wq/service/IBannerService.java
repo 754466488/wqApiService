@@ -13,7 +13,7 @@ import com.dzw.micro.wq.resp.PageableDataResp;
  * @author lyb
  * @date created in 2023/4/4
  */
-public interface IBannerAdminService {
+public interface IBannerService {
 	Resp<PageableDataResp<BannerListResp>> findList(SelectBannerReq req);
 
 	Resp save(SaveBannerReq req);

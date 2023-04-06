@@ -7,11 +7,10 @@ import com.dzw.micro.wq.req.SetIsTopReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
-import com.dzw.micro.wq.service.INewsAdminService;
+import com.dzw.micro.wq.service.INewsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +30,9 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/admin/news")
 @Slf4j
-public class NewsApiController {
+public class NewsAdminController {
 	@Autowired
-	private INewsAdminService newsAdminService;
+	private INewsService newsAdminService;
 
 	@ApiOperation(value = "轮播图列表", notes = "")
 	@GetMapping(path = "/list")

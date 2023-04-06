@@ -14,12 +14,13 @@ import com.dzw.micro.wq.resp.PageableDataResp;
  * @author lyb
  * @date created in 2023/4/5
  */
-public interface INewsAdminService {
+public interface INewsService {
 	Resp<PageableDataResp<NewsListResp>> findList(SelectNewsReq req);
 
 	Resp save(SaveNewsReq req);
 
 	Resp updateStatus(UpdateStatusReq req);
+
 	Resp updateSetTopStatus(SetIsTopReq req);
 
 }

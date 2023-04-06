@@ -1,10 +1,16 @@
-package com.dzw.micro.wq.model;
+package com.dzw.micro.wq.resp;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+/**
+ * description
+ *
+ * @author lyb
+ * @date created in 2023/4/6
+ */
 @Data
-public class MenuEntity {
+public class MenusListResp {
 	@ApiModelProperty(value = "id")
 	private Long id;
 	@ApiModelProperty(value = "名称")

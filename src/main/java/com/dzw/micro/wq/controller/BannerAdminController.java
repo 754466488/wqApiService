@@ -7,11 +7,10 @@ import com.dzw.micro.wq.req.SelectBannerReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.BannerListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
-import com.dzw.micro.wq.service.IBannerAdminService;
+import com.dzw.micro.wq.service.IBannerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +30,10 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/admin/banner")
 @Slf4j
-public class BannerApiController {
+public class BannerAdminController {
 
 	@Autowired
-	private IBannerAdminService bannerAdminService;
+	private IBannerService bannerAdminService;
 
 	@ApiOperation(value = "轮播图列表", notes = "")
 	@GetMapping(path = "/list")

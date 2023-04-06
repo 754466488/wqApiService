@@ -1,17 +1,20 @@
 package com.dzw.micro.wq.mapper;
 
 import com.dzw.micro.wq.model.MenuEntity;
+import com.dzw.micro.wq.resp.MenusListResp;
+import com.github.pagehelper.Page;
+
+import java.util.List;
+
 
 public interface MenuEntityMapper {
-    int deleteByPrimaryKey(Long id);
+	MenuEntity findOneById(Long id);
 
-    int insert(MenuEntity record);
+	Page<MenusListResp> findList(Long pid);
 
-    int insertSelective(MenuEntity record);
+	List<MenuEntity> findAll();
 
-    MenuEntity selectByPrimaryKey(Long id);
+	int insert(MenuEntity record);
 
-    int updateByPrimaryKeySelective(MenuEntity record);
-
-    int updateByPrimaryKey(MenuEntity record);
+	int updateById(MenuEntity record);
 }
