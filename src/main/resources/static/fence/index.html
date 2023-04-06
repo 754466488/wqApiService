@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+  <style type="text/css">
+    body,
+    html,
+    #allmap {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      margin: 0;
+      font-family: "微软雅黑";
+    }
+
+    .map-marker {
+      position: fixed;
+      top: 0;
+      left: 10px;
+    }
+
+    .map-marker span {
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-marker p {
+      width: 30px;
+      height: 16px;
+    }
+
+    .area {
+      background-color: rgb(0, 102, 255, .3);
+      /* opacity:.3; */
+      border: 1px solid rgba(0, 102, 255, .8);
+    }
+  </style>
+  <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=tYsonVwI79179q0zW89ZqvRp"></script>
+  <script src="//unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- <script src="./js/GPS.js"></script> -->
+  <title>违停区域</title>
+</head>
+
+<body>
+<div id="allmap"></div>
+<div class="map-marker">
+    <span>
+      <p class="area"></p> 违停区域
+    </span>
+    
+    <span>
+      <p>
+        <svg t="1628240850561" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+             p-id="1182" width="16" height="16">
+          <path d="M806.058667 742.798222A423.537778 423.537778 0 0 0 932.977778 440.547556C933.091556 203.662222 736.881778 11.377778 494.933333 11.377778S56.888889 203.605333 56.888889 440.661333c0 122.709333 52.565333 233.244444 136.647111 311.580445l249.912889 239.502222c13.141333 12.913778 31.288889 20.878222 51.484444 20.878222 20.138667 0 38.343111-7.964444 51.484445-20.878222L796.444444 752.128c3.185778-3.072 6.371556-6.087111 9.614223-9.329778z"
+                p-id="1183" fill="#d81e06"></path>
+        </svg>
+      </p> 您的位置
+    </span>
+</div>
+</body>
+
+</html>
+<script type="text/javascript">
+  //存储位置信息
+  var pos = {
+    lat: '39.93956184831489',
+    lon: '116.44774653729876'
+  }
+  //存储接口返回数据
+  var result = {}
+  var baseUrl = location.href.includes('172.16.138.18') || location.href.includes('127.0.0.1') ? 'http://119.3.171.9:8843' : ''
+  // 初始化地图
+  function initMap() {
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(pos.lon, pos.lat);
+    //省个图片 直接扔个html放后端
+    // var iconMarker = new BMap.Icon("./image/mark.png", new BMap.Size(20, 20));
+    // var marker = new BMap.Marker(new BMap.Point(pos.lon, pos.lat),{icon:iconMarker})
+    map.centerAndZoom(point, 15);
+    var marker = new BMap.Marker(new BMap.Point(pos.lon, pos.lat))
+    var fenceData = this.result.data ? JSON.parse(this.result.data.fence) : []
+    var fenceArray = []
+    fenceData.map(function (item) {
+      fenceArray.push(new BMap.Point(item.lng, item.lat));
+    });
+    this.fence = new BMap.Polygon(fenceArray, {
+      strokeColor: "#0066FF", //边线颜色。
+      fillColor: "#0066FF", //填充颜色。当参数为空时，圆形将没有填充效果。
+      strokeWeight: 2, //边线的宽度，以像素为单位。
+      strokeOpacity: 0.8, //边线透明度，取值范围0 - 1。
+      fillOpacity: 0.3, //填充的透明度，取值范围0 - 1。
+      strokeStyle: "solid", //边线的样式，solid或dashed。
+      enableEditing: false,
+    });
+    map.addOverlay(this.fence);
+    map.setViewport(fenceArray, {
+      margins: [50, 20, 0, 0],
+    });
+
+    map.addOverlay(marker)
+    map.enableScrollWheelZoom(true)
+  }
+  function showPosition(position) {
+    //用定位数据
+    // console.log(position.coords);
+    // pos.lat = position.coords.latitude
+    // pos.lon = position.coords.longitude
+    // pos = GPS.gcj_encrypt(position.coords.latitude, position.coords.longitude),
+    // pos = GPS.bd_encrypt(pos.lat, pos.lon)
+    this.pos.lat = result.data.lat
+    this.pos.lon = result.data.lng
+    console.log(pos)
+    this.initMap()
+  }
+  function getPos() {
+    var urlParams = this.urlGet()
+    axios({
+      url: baseUrl + '/api/driver/fence/detail',
+      method: 'post',
+      params: {
+        version: '2.0.0',
+        driverNo: urlParams.driverNo,
+        fenceNo: urlParams.fenceNo
+      }
+    }).then(function (res) {
+      this.result = res.data
+      this.pos.lat = result.data.lat
+      this.pos.lon = result.data.lng
+      this.initMap()
+      // if (navigator.geolocation) {
+      //   navigator.geolocation.getCurrentPosition(showPosition, failGetPos);
+      // }
+      // else { alert('此浏览器不支持定位授权！') }
+
+    }).catch(function (err) {
+      alert('接口请求失败')
+      this.initMap()
+    })
+
+
+  }
+  function failGetPos(err) {
+    //用接口数据
+    console.log(err)  //GeolocationPositionError {code: 1, message: "User denied Geolocation"}
+    this.pos.lat = result.data.lat
+    this.pos.lon = result.data.lng
+    this.initMap()
+  }
+  function urlGet() {
+    var args = {};
+    var query = location.search.substring(1);
+    var pairs = query.split("&");
+    for (var i = 0; i < pairs.length; i++) {
+      var pos = pairs[i].indexOf('=');
+      if (pos == -1) continue;
+      var argname = pairs[i].substring(0, pos);
+      var value = pairs[i].substring(pos + 1);
+      value = decodeURIComponent(value);
+      args[argname] = value;
+    }
+    return args;
+  }
+  window.onload = function () {
+    this.getPos()
+
+  }
+</script>

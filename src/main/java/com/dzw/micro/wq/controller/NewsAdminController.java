@@ -34,13 +34,13 @@ public class NewsAdminController {
 	@Autowired
 	private INewsService newsAdminService;
 
-	@ApiOperation(value = "轮播图列表", notes = "")
+	@ApiOperation(value = "新闻文章列表", notes = "")
 	@GetMapping(path = "/list")
 	public Resp<PageableDataResp<NewsListResp>> list(@Valid SelectNewsReq req, BindingResult bindingResult) {
 		return newsAdminService.findList(req);
 	}
 
-	@ApiOperation(value = "保存轮播图", notes = "")
+	@ApiOperation(value = "保存新闻文章", notes = "")
 	@PostMapping(path = "/insert")
 	public Resp save(@Valid SaveNewsReq req, BindingResult bindingResult) {
 		return newsAdminService.save(req);
@@ -52,7 +52,7 @@ public class NewsAdminController {
 		return newsAdminService.updateStatus(req);
 	}
 
-	@ApiOperation(value = "变更设置头条状态", notes = "")
+	@ApiOperation(value = "设置头条状态", notes = "")
 	@PostMapping(path = "/updateSetTopStatus")
 	public Resp updateSetTopStatus(@Valid SetIsTopReq req, BindingResult bindingResult) {
 		return newsAdminService.updateSetTopStatus(req);

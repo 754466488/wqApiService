@@ -24,7 +24,7 @@ public class BaseAdminApi {
 	@Autowired
 	private UploadImageService uploadImageService;
 
-	@ApiOperation(value = "通用后台图片上传", notes = "")
+	@ApiOperation(value = "后台图片上传", notes = "")
 	@PostMapping("/file/uploadImage")
 	public Resp<UploadImgResp> uploadImg(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
 		return uploadImageService.uploadImage(req);
