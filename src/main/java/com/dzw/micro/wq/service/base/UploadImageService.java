@@ -1,4 +1,4 @@
-package com.dzw.micro.wq.service;
+package com.dzw.micro.wq.service.base;
 
 import com.dzw.micro.wq.application.domain.constant.MixedConstant;
 import com.dzw.micro.wq.application.domain.id.DistributedId;
@@ -6,6 +6,7 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.application.log.Log;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
+import com.dzw.micro.wq.service.base.OBSService;
 import com.google.common.collect.Lists;
 import com.vip.vjtools.vjkit.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.dzw.micro.wq.service;
+package com.dzw.micro.wq.service.base;
 
 import com.dzw.micro.wq.Application;
 import com.dzw.micro.wq.application.log.Log;
@@ -40,8 +40,6 @@ public class OBSService {
 	 */
 	public String upload(String module, String fileName, MultipartFile file) throws IOException {
 		StringBuilder key = new StringBuilder();
-
-		//顶级目录用环境标识避免覆盖
 		key.append(Application.ENV);
 		key.append("/");
 		key.append(module);
@@ -67,7 +65,6 @@ public class OBSService {
 	 */
 	public String upload(String module, File file) throws IOException {
 		StringBuilder key = new StringBuilder();
-
 		//顶级目录用环境标识避免覆盖
 		key.append(Application.ENV);
 		key.append("/");
