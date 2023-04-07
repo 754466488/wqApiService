@@ -42,6 +42,7 @@
         <if test="isTop != null">
             and is_top=#{isTop}
         </if>
+        order by publish_time desc
     </select>
     <select id="findOneById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select

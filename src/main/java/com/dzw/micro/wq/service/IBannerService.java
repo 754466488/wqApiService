@@ -14,7 +14,7 @@ import com.dzw.micro.wq.resp.PageableDataResp;
  * @date created in 2023/4/4
  */
 public interface IBannerService {
-	Resp<PageableDataResp<BannerListResp>> findList(SelectBannerReq req);
+	Resp<PageableDataResp<BannerListResp>> findPageList(SelectBannerReq req);
 
 	Resp save(SaveBannerReq req);
 

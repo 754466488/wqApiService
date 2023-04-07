@@ -1,4 +1,4 @@
-package com.dzw.micro.wq.controller;
+package com.dzw.micro.wq.controller.api;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
@@ -16,12 +16,12 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 
-@Api(tags = {"后台-基础服务API"})
+@Api(tags = {"基础服务API"})
 @RestController
-@RequestMapping(value = "/admin/base/")
+@RequestMapping(value = "/api/base/")
 @Slf4j
-public class BaseAdminApi {
-	@Autowired 
+public class BaseApi {
+	@Autowired
 	private UploadImageService uploadImageService;
 
 	@ApiOperation(value = "后台图片上传", notes = "")

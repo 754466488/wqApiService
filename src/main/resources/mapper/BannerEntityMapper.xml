@@ -18,11 +18,18 @@
         id
         , title, url, req, status, link_url, type, create_time, create_user, update_time, update_user
     </sql>
-    <select id="findList" resultType="com.dzw.micro.wq.resp.BannerListResp" resultMap="BaseResultMap">
+    <select id="findPageList" resultType="com.dzw.micro.wq.resp.BannerListResp" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_banner
-        where status=#{status} and type=#{type}
+        where 1=1
+        <if test="status != null">
+            status=#{status}
+        </if>
+        <if test="type != null">
+            and type=#{type}
+        </if>
+        order by update_time asc
     </select>
     <select id="findOneById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select

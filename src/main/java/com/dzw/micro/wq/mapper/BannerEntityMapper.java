@@ -14,7 +14,7 @@ import org.mapstruct.Mapper;
  */
 @Mapper
 public interface BannerEntityMapper {
-	Page<BannerListResp> findList(@Param("status") int status, @Param("type") int type);
+	Page<BannerListResp> findPageList(@Param("status") Integer status, @Param("type") Integer type);
 
 	BannerEntity findOneById(Long id);
 

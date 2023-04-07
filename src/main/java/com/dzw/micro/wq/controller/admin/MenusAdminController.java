@@ -1,4 +1,4 @@
-package com.dzw.micro.wq.controller;
+package com.dzw.micro.wq.controller.admin;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.*;

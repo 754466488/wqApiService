@@ -38,10 +38,10 @@ public class BannerServiceImpl implements IBannerService {
 	 * @date: 2023/4/4 22:36
 	 */
 	@Override
-	public Resp<PageableDataResp<BannerListResp>> findList(SelectBannerReq req) {
+	public Resp<PageableDataResp<BannerListResp>> findPageList(SelectBannerReq req) {
 		PageableDataResp<BannerListResp> pageableDataResp = new PageableDataResp<>();
 		PageHelper.startPage(req.getPageNo(), req.getPageSize());
-		Page<BannerListResp> respPage = bannerEntityMapper.findList(req.getStatus(), req.getType());
+		Page<BannerListResp> respPage = bannerEntityMapper.findPageList(req.getStatus(), req.getType());
 		pageableDataResp.setTotalSize(respPage.getTotal());
 		pageableDataResp.setDtoList(respPage.getResult());
 		return Resp.success(pageableDataResp);

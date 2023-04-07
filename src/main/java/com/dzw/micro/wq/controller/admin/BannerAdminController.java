@@ -1,4 +1,4 @@
-package com.dzw.micro.wq.controller;
+package com.dzw.micro.wq.controller.admin;
 
 
 import com.dzw.micro.wq.application.domain.req.Resp;
@@ -38,7 +38,7 @@ public class BannerAdminController {
 	@ApiOperation(value = "轮播图列表", notes = "")
 	@GetMapping(path = "/list")
 	public Resp<PageableDataResp<BannerListResp>> list(@Valid SelectBannerReq req, BindingResult bindingResult) {
-		return bannerAdminService.findList(req);
+		return bannerAdminService.findPageList(req);
 	}
 
 	@ApiOperation(value = "保存轮播图", notes = "")

@@ -1,4 +1,4 @@
-package com.dzw.micro.wq.controller;
+package com.dzw.micro.wq.controller.api;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.SaveNewsReq;
@@ -26,11 +26,11 @@ import javax.validation.Valid;
  * @author lyb
  * @date created in 2023/4/5
  */
-@Api(tags = {"后台-新闻文章管理"})
+@Api(tags = {"官网-新闻文章管理"})
 @RestController
-@RequestMapping(value = "/admin/news")
+@RequestMapping(value = "/api/news")
 @Slf4j
-public class NewsAdminController {
+public class NewsApiController {
 	@Autowired
 	private INewsService newsAdminService;
 
@@ -38,23 +38,5 @@ public class NewsAdminController {
 	@GetMapping(path = "/list")
 	public Resp<PageableDataResp<NewsListResp>> list(@Valid SelectNewsReq req, BindingResult bindingResult) {
 		return newsAdminService.findList(req);
-	}
-
-	@ApiOperation(value = "保存新闻文章", notes = "")
-	@PostMapping(path = "/insert")
-	public Resp save(@Valid SaveNewsReq req, BindingResult bindingResult) {
-		return newsAdminService.save(req);
-	}
-
-	@ApiOperation(value = "变更状态", notes = "")
-	@PostMapping(path = "/updateStatus")
-	public Resp updateStatus(@Valid UpdateStatusReq req, BindingResult bindingResult) {
-		return newsAdminService.updateStatus(req);
-	}
-
-	@ApiOperation(value = "设置头条状态", notes = "")
-	@PostMapping(path = "/updateSetTopStatus")
-	public Resp updateSetTopStatus(@Valid SetIsTopReq req, BindingResult bindingResult) {
-		return newsAdminService.updateSetTopStatus(req);
 	}
 }
