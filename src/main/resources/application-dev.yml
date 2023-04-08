@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/db_wq?characterEncoding=utf8&serverTimezone=UTC
     username: root
-    password: Qwe!0akjBt0bKk1
+    password: lyb.9692
     druid:
       initial-size: 10 # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       min-idle: 10 # 最小连接池数量
