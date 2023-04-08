@@ -1,10 +1,10 @@
 package com.dzw.micro.wq.controller.api;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
-import com.dzw.micro.wq.req.SaveNewsReq;
+import com.dzw.micro.wq.req.SelectNewsApiReq;
 import com.dzw.micro.wq.req.SelectNewsReq;
-import com.dzw.micro.wq.req.SetIsTopReq;
-import com.dzw.micro.wq.req.UpdateStatusReq;
+import com.dzw.micro.wq.resp.IdReq;
+import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.INewsService;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * description
@@ -32,11 +33,27 @@ import javax.validation.Valid;
 @Slf4j
 public class NewsApiController {
 	@Autowired
-	private INewsService newsAdminService;
+	private INewsService newsService;
+
+	@ApiOperation(value = "首页新闻文章列表", notes = "")
+	@GetMapping(path = "/pageHomeList")
+	public Resp<List<NewsApiListResp>> findPageHomeNewsList() {
+		return newsService.findPageHomeNewsList();
+	}
 
 	@ApiOperation(value = "新闻文章列表", notes = "")
 	@GetMapping(path = "/list")
-	public Resp<PageableDataResp<NewsListResp>> list(@Valid SelectNewsReq req, BindingResult bindingResult) {
-		return newsAdminService.findList(req);
+	public Resp<PageableDataResp<NewsListResp>> list(@Valid SelectNewsApiReq req, BindingResult bindingResult) {
+		SelectNewsReq newsReq = new SelectNewsReq();
+		newsReq.setMenuId(req.getMenuId());
+		newsReq.setPageNo(req.getPageNo());
+		newsReq.setPageSize(req.getPageSize());
+		return newsService.findPageList(newsReq);
+	}
+
+	@ApiOperation(value = "获取文章详情", notes = "")
+	@PostMapping(path = "/detail")
+	public Resp detail(@Valid IdReq req, BindingResult bindingResult) {
+		return newsService.detail(req.getId());
 	}
 }

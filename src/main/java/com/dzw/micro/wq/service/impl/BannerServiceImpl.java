@@ -9,7 +9,9 @@ import com.dzw.micro.wq.model.BannerEntity;
 import com.dzw.micro.wq.req.SaveBannerReq;
 import com.dzw.micro.wq.req.SelectBannerReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
+import com.dzw.micro.wq.resp.BannerApiListResp;
 import com.dzw.micro.wq.resp.BannerListResp;
+import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.IBannerService;
 import com.github.pagehelper.Page;
@@ -17,6 +19,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -30,6 +33,17 @@ public class BannerServiceImpl implements IBannerService {
 	@Autowired
 	private BannerEntityMapper bannerEntityMapper;
 
+	/**
+	 * 获取首页轮播图列表
+	 *
+	 * @author: lyb
+	 * @date: 2023/4/9 00:36
+	 */
+	@Override
+	public Resp<List<BannerApiListResp>> findPageHomeList() {
+		List<NewsApiListResp> pageHomeList = bannerEntityMapper.findPageHomeList();
+		return Resp.success(pageHomeList);
+	}
 
 	/**
 	 * 获取轮播图列表

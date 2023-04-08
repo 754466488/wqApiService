@@ -2,8 +2,11 @@ package com.dzw.micro.wq.mapper;
 
 import com.dzw.micro.wq.model.NewsEntity;
 import com.dzw.micro.wq.req.SelectNewsReq;
+import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.github.pagehelper.Page;
+
+import java.util.List;
 
 /**
  * description
@@ -19,5 +22,9 @@ public interface NewsEntityMapper {
 	int insert(NewsEntity record);
 
 	int updateById(NewsEntity record);
+
+	int addClickNumById(long id);
+
+	List<NewsApiListResp> findPageHomeNewsList();
 
 }

@@ -6,10 +6,8 @@ import com.dzw.micro.wq.application.utils.DateUtils;
 import com.dzw.micro.wq.enums.EnableStatusEnum;
 import com.dzw.micro.wq.mapper.NewsEntityMapper;
 import com.dzw.micro.wq.model.NewsEntity;
-import com.dzw.micro.wq.req.SaveNewsReq;
-import com.dzw.micro.wq.req.SelectNewsReq;
-import com.dzw.micro.wq.req.SetIsTopReq;
-import com.dzw.micro.wq.req.UpdateStatusReq;
+import com.dzw.micro.wq.req.*;
+import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.INewsService;
@@ -18,6 +16,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -32,13 +31,24 @@ public class NewsServiceImpl implements INewsService {
 	private NewsEntityMapper newsEntityMapper;
 
 	@Override
-	public Resp<PageableDataResp<NewsListResp>> findList(SelectNewsReq req) {
+	public Resp<List<NewsApiListResp>> findPageHomeNewsList() {
+		List<NewsApiListResp> newsList = newsEntityMapper.findPageHomeNewsList();
+		return Resp.success(newsList);
+	}
+
+	@Override
+	public Resp<PageableDataResp<NewsListResp>> findPageList(SelectNewsReq req) {
 		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();
 		PageHelper.startPage(req.getPageNo(), req.getPageSize());
 		Page<NewsListResp> respPage = newsEntityMapper.findList(req);
 		pageableDataResp.setTotalSize(respPage.getTotal());
 		pageableDataResp.setDtoList(respPage.getResult());
 		return Resp.success(pageableDataResp);
+	}
+
+	@Override
+	public Resp<List<NewsListResp>> findList(SelectNewsReq req) {
+		return Resp.success();
 	}
 
 	@Override
@@ -94,5 +104,16 @@ public class NewsServiceImpl implements INewsService {
 		entity.setUpdateUser(req.getUserName());
 		newsEntityMapper.updateById(entity);
 		return Resp.success();
+	}
+
+	@Override
+	public Resp<NewsListResp> detail(long id) {
+		NewsEntity newsEntity = newsEntityMapper.findOneById(id);
+		if (Objects.isNull(newsEntity)) {
+			return Resp.success();
+		}
+		//记录点击次数
+		newsEntityMapper.addClickNumById(id);
+		return Resp.success(newsEntity);
 	}
 }

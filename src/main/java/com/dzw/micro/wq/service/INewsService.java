@@ -1,12 +1,12 @@
 package com.dzw.micro.wq.service;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
-import com.dzw.micro.wq.req.SaveNewsReq;
-import com.dzw.micro.wq.req.SelectNewsReq;
-import com.dzw.micro.wq.req.SetIsTopReq;
-import com.dzw.micro.wq.req.UpdateStatusReq;
+import com.dzw.micro.wq.req.*;
+import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
+
+import java.util.List;
 
 /**
  * description
@@ -15,7 +15,11 @@ import com.dzw.micro.wq.resp.PageableDataResp;
  * @date created in 2023/4/5
  */
 public interface INewsService {
-	Resp<PageableDataResp<NewsListResp>> findList(SelectNewsReq req);
+	Resp<List<NewsApiListResp>> findPageHomeNewsList();
+
+	Resp<PageableDataResp<NewsListResp>> findPageList(SelectNewsReq req);
+
+	Resp<List<NewsListResp>> findList(SelectNewsReq req);
 
 	Resp save(SaveNewsReq req);
 
@@ -23,4 +27,5 @@ public interface INewsService {
 
 	Resp updateSetTopStatus(SetIsTopReq req);
 
+	Resp<NewsListResp> detail(long id);
 }
