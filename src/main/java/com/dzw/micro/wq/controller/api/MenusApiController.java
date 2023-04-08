@@ -1,24 +1,16 @@
 package com.dzw.micro.wq.controller.api;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
-import com.dzw.micro.wq.req.SaveMenusReq;
-import com.dzw.micro.wq.req.SelectMenuReq;
-import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.MenuTreeResp;
-import com.dzw.micro.wq.resp.MenusListResp;
-import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.IMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
