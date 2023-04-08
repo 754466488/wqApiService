@@ -17,8 +17,6 @@ public class MenuTreeResp {
 	private Long id;
 	@ApiModelProperty(value = "名称")
 	private String name;
-	@ApiModelProperty(value = "层级")
-	private Integer level;
 	@ApiModelProperty(value = "子菜单集合")
 	List<MenuTreeResp> childMenuList;
 }

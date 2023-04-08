@@ -101,7 +101,7 @@ public class MenuServiceImpl implements IMenuService {
 				) {
 					MenuTreeResp threeResp = new MenuTreeResp();
 					BeanUtils.copyProperties(threeResp, three);
-					threeRespList.add(twoResp);
+					threeRespList.add(threeResp);
 				}
 				twoResp.setChildMenuList(threeRespList);
 				twoRespList.add(twoResp);
@@ -109,6 +109,6 @@ public class MenuServiceImpl implements IMenuService {
 			resp.setChildMenuList(twoRespList);
 			respList.add(resp);
 		}
-		return Resp.success();
+		return Resp.success(respList);
 	}
 }
