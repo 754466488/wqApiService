@@ -31,7 +31,6 @@ public class SysStaffServiceImpl implements ISysStaffService {
 		if (!Objects.equals(req.getPassword(), sysStaffEntity.getPass())) {
 			return Resp.error("密码错误");
 		}
-
 		UserInfoResp resp = new UserInfoResp();
 		resp.setStaffId(sysStaffEntity.getStaffId());
 		resp.setName(sysStaffEntity.getName());
