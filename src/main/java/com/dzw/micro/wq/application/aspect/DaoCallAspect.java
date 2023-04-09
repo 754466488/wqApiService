@@ -25,8 +25,8 @@ public class DaoCallAspect {
 		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.DAO_CALL, aspectHandlerChain);
 	}
 
-//	@Around("execution(public * com.zhouyutong.zorm.dao.AbstractBaseDao.*(..))")
-//	private Object baseDaoAround(ProceedingJoinPoint pjp) throws Throwable {
-//		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.DAO_CALL, aspectHandlerChain);
-//	}
+	@Around("execution(public * com.dzw.micro.wq.mapper.*(..))")
+	private Object baseDaoAround(ProceedingJoinPoint pjp) throws Throwable {
+		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.DAO_CALL, aspectHandlerChain);
+	}
 }
