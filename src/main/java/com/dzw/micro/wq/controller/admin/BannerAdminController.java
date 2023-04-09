@@ -2,11 +2,13 @@ package com.dzw.micro.wq.controller.admin;
 
 
 import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.enums.BannerPositionEnum;
 import com.dzw.micro.wq.req.SaveBannerReq;
 import com.dzw.micro.wq.req.SelectBannerReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.BannerListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
+import com.dzw.micro.wq.resp.SelectedResp;
 import com.dzw.micro.wq.service.IBannerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * description
@@ -34,6 +37,8 @@ public class BannerAdminController {
 
 	@Autowired
 	private IBannerService bannerAdminService;
+	@Autowired
+	private BannerPositionEnum bannerPositionEnum;
 
 	@ApiOperation(value = "轮播图列表", notes = "")
 	@GetMapping(path = "/list")
@@ -51,5 +56,11 @@ public class BannerAdminController {
 	@PostMapping(path = "/updateStatus")
 	public Resp updateStatus(@Valid UpdateStatusReq req, BindingResult bindingResult) {
 		return bannerAdminService.updateStatus(req);
+	}
+
+	@ApiOperation(value = "轮播图位置列表", notes = "")
+	@GetMapping(path = "/bannerPositionList")
+	public Resp<List<SelectedResp>> bannerPositionList() {
+		return BannerPositionEnum.bannerPositionList();
 	}
 }
