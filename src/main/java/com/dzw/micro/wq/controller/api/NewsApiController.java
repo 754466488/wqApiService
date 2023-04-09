@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.controller.api;
 
+import com.dzw.micro.wq.application.domain.req.BaseReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.SelectNewsApiReq;
 import com.dzw.micro.wq.req.SelectNewsReq;
@@ -37,7 +38,7 @@ public class NewsApiController {
 
 	@ApiOperation(value = "首页新闻文章列表", notes = "")
 	@GetMapping(path = "/pageHomeList")
-	public Resp<List<NewsApiListResp>> findPageHomeNewsList() {
+	public Resp<List<NewsApiListResp>> findPageHomeNewsList(@Valid BaseReq req, BindingResult bindingResult) {
 		return newsService.findPageHomeNewsList();
 	}
 

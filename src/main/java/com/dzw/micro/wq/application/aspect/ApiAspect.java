@@ -26,7 +26,7 @@ public class ApiAspect {
 	@Autowired
 	private AspectHandlerChain aspectHandlerChain;
 
-	@Around("@within(org.springframework.web.bind.annotation.RestController) && within(com.dzw.micro.*)")
+	@Around("@within(org.springframework.web.bind.annotation.RestController) && within(com.dzw.micro..*)")
 	public Object around(ProceedingJoinPoint pjp) throws Throwable {
 		MDC.put(MixedConstant.TRACE_ID, DistributedId.get().toString());
 
