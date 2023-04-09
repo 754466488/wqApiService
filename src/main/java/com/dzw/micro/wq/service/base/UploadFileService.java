@@ -6,7 +6,6 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.application.log.Log;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
-import com.dzw.micro.wq.service.base.OBSService;
 import com.google.common.collect.Lists;
 import com.vip.vjtools.vjkit.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -25,32 +24,37 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class UploadImageService {
+public class UploadFileService {
 	@Autowired
 	private OBSService obsService;
-	private static final List<String> fileTypeList = Lists.newArrayList("jpg", "jpeg", "gif", "png");
+	private static final List<String> imgTypeList = Lists.newArrayList("jpg", "jpeg", "gif", "png");
+	private static final List<String> videoTypeList = Lists.newArrayList("mp4");
 
-	public Resp uploadImage(UploadReq req) {
+	public Resp uploadFile(UploadReq req) {
 		MultipartFile file = req.getFile();
-		return uploadImage(file);
-	}
-
-	public Resp uploadImage(MultipartFile file) {
+		int fileType = req.getFileType();
 		if (file == null || file.isEmpty()) {
 			return Resp.error("请先选择图片");
 		}
-		if (file.getSize() > MixedConstant.FILE_MAX_SIZE) {
+		if (fileType == 1 && file.getSize() > MixedConstant.IMG_FILE_MAX_SIZE) {
 			return Resp.error("上传的图片不能大于5MB");
+		}
+		if (fileType == 2 && file.getSize() > MixedConstant.VIDEO_FILE_MAX_SIZE) {
+			return Resp.error("上传的视频不能大于200MB");
 		}
 		final String filename = file.getOriginalFilename();
 		final String fileExtension = FileUtil.getFileExtension(filename);
-		if (!fileTypeList.contains(fileExtension.toLowerCase())) {
+		if (fileType == 1 && !imgTypeList.contains(fileExtension.toLowerCase())) {
 			return Resp.error("图片格式只支持jpg/jpeg/gif/png");
 		}
-
-		UploadImgResp uploadImgResp = new UploadImgResp();
-
+		if (fileType == 2 && !videoTypeList.contains(fileExtension.toLowerCase())) {
+			return Resp.error("视频格式只支持mp4");
+		}
 		String module = "base/image";
+		if (fileType == 2) {
+			module = "base/video";
+		}
+		UploadImgResp uploadImgResp = new UploadImgResp();
 		String imgName = DistributedId.get().toString();
 		String imgUrl;
 		try {
@@ -58,7 +62,7 @@ public class UploadImageService {
 			uploadImgResp.setImgUrl(imgUrl);
 		} catch (Throwable e) {
 			Log.error("uploadImage error", e);
-			return Resp.error("上传图片失败");
+			return Resp.error("上传文件失败");
 		}
 		return Resp.success(uploadImgResp);
 	}

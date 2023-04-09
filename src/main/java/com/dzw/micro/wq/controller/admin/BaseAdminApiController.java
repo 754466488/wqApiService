@@ -1,4 +1,4 @@
-package com.dzw.micro.wq.controller.api;
+package com.dzw.micro.wq.controller.admin;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
@@ -20,13 +20,13 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/api/base/")
 @Slf4j
-public class BaseApi {
+public class BaseAdminApiController {
 	@Autowired
 	private UploadImageService uploadImageService;
 
 	@ApiOperation(value = "后台图片上传", notes = "")
 	@PostMapping("/file/uploadImage")
 	public Resp<UploadImgResp> uploadImg(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
-		return uploadImageService.uploadImage(req);
+		return uploadImageService.uploadFile(req);
 	}
 }

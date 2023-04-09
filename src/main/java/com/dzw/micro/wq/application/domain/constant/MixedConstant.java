@@ -6,8 +6,11 @@ package com.dzw.micro.wq.application.domain.constant;
 public interface MixedConstant {
 	String TRACE_ID = "traceId";
 	/**
-	 * 上传附件最大文件大小
+	 * 上传附件最大文件大小 5M
 	 */
-	long FILE_MAX_SIZE = 5242880L;
-	int MAX_EXPORT_COUNT = 10000;
+	long IMG_FILE_MAX_SIZE = 5242880L;
+	/**
+	 * 上传附件最大文件大小 200M
+	 */
+	long VIDEO_FILE_MAX_SIZE = 209715200L;
 }
