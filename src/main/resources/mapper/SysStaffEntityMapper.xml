@@ -17,7 +17,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         staff_id
-        , name, user_name_pass, phone, id_card, positions, status, create_time, create_user,
+        , name, user_name,pass, phone, id_card, positions, status, create_time, create_user,
     update_time, update_user
     </sql>
     <select id="findOneByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
