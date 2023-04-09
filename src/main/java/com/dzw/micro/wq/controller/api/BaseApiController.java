@@ -4,7 +4,7 @@ import com.dzw.micro.wq.application.domain.req.BaseReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
-import com.dzw.micro.wq.service.base.UploadImageService;
+import com.dzw.micro.wq.service.base.UploadFileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
@@ -26,15 +26,15 @@ import javax.validation.Valid;
 @Slf4j
 public class BaseApiController {
 	@Autowired
-	private UploadImageService uploadImageService;
+	private UploadFileService uploadFileService;
 
-	@ApiOperation(value = "后台图片上传", notes = "")
-	@PostMapping("/file/uploadImage")
-	public Resp<UploadImgResp> uploadImg(@Valid UploadApiReq req, @ApiIgnore BindingResult bindingResult) {
+	@ApiOperation(value = "文件上传", notes = "")
+	@PostMapping("/file/uploadFile")
+	public Resp<UploadImgResp> uploadFile(@Valid UploadApiReq req, @ApiIgnore BindingResult bindingResult) {
 		UploadReq req2 = new UploadReq();
 		req2.setFile(req.getFile());
 		req2.setFileType(req.getFileType());
-		return uploadImageService.uploadFile(req2);
+		return uploadFileService.uploadFile(req2);
 	}
 
 	@Data

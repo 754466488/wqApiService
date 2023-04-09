@@ -37,8 +37,6 @@ public class BannerAdminController {
 
 	@Autowired
 	private IBannerService bannerAdminService;
-	@Autowired
-	private BannerPositionEnum bannerPositionEnum;
 
 	@ApiOperation(value = "轮播图列表", notes = "")
 	@GetMapping(path = "/list")
@@ -56,11 +54,5 @@ public class BannerAdminController {
 	@PostMapping(path = "/updateStatus")
 	public Resp updateStatus(@Valid UpdateStatusReq req, BindingResult bindingResult) {
 		return bannerAdminService.updateStatus(req);
-	}
-
-	@ApiOperation(value = "轮播图位置列表", notes = "")
-	@GetMapping(path = "/bannerPositionList")
-	public Resp<List<SelectedResp>> bannerPositionList() {
-		return BannerPositionEnum.bannerPositionList();
 	}
 }

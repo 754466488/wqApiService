@@ -3,7 +3,7 @@ package com.dzw.micro.wq.controller.admin;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
-import com.dzw.micro.wq.service.base.UploadImageService;
+import com.dzw.micro.wq.service.base.UploadFileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -18,15 +18,15 @@ import javax.validation.Valid;
 
 @Api(tags = {"基础服务API"})
 @RestController
-@RequestMapping(value = "/api/base/")
+@RequestMapping(value = "/admin/base/")
 @Slf4j
 public class BaseAdminApiController {
 	@Autowired
-	private UploadImageService uploadImageService;
+	private UploadFileService uploadFileService;
 
 	@ApiOperation(value = "后台图片上传", notes = "")
-	@PostMapping("/file/uploadImage")
-	public Resp<UploadImgResp> uploadImg(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
-		return uploadImageService.uploadFile(req);
+	@PostMapping("/file/uploadFile")
+	public Resp<UploadImgResp> uploadFile(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
+		return uploadFileService.uploadFile(req);
 	}
 }
