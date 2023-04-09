@@ -16,6 +16,5 @@ public class UserInfoResp {
 	private long staffId;
 	@ApiModelProperty(value = "用户姓名")
 	private String name;
-	@ApiModelProperty(value = "用户名")
 	private String userName;
 }
