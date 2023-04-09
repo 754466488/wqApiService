@@ -34,4 +34,10 @@ public class HttpClientConfig {
 		HttpClientUtils httpClientUtils = new HttpClientUtils();
 		return httpClientUtils;
 	}
+
+	@Bean(name = "alarmHttpClient")
+	HttpClientUtils alarmHttpClient() {
+		HttpClientUtils httpClientUtils = new HttpClientUtils();
+		return httpClientUtils;
+	}
 }

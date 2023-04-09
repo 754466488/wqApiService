@@ -20,8 +20,8 @@ public class DaoCallAspect {
 	@Autowired
 	private AspectHandlerChain aspectHandlerChain;
 
-//	@Around("execution(public * com.dzw.micro.wq.mapper.*(..))")
-//	private Object daoAround(ProceedingJoinPoint pjp) throws Throwable {
-//		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.HTTP_CALL, aspectHandlerChain);
-//	}
+	@Around("execution(public * com.dzw.micro.wq.mapper.*.*())")
+	private Object daoAround(ProceedingJoinPoint pjp) throws Throwable {
+		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.HTTP_CALL, aspectHandlerChain);
+	}
 }
