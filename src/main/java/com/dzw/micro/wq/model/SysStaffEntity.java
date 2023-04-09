@@ -1,29 +1,29 @@
 package com.dzw.micro.wq.model;
 
 import lombok.Data;
-import org.joda.time.DateTime;
 
 @Data
 public class SysStaffEntity {
-    private String staffId;
+	private Long staffId;
 
-    private String name;
+	private String name;
+	private String userName;
 
-    private String pass;
+	private String pass;
 
-    private String phone;
+	private String phone;
 
-    private String idCard;
+	private String idCard;
 
-    private String positions;
+	private String positions;
 
-    private Byte status;
+	private Byte status;
 
-    private String createTime;
+	private String createTime;
 
-    private String createUser;
+	private String createUser;
 
-    private String updateTime;
+	private String updateTime;
 
-    private String updateUser;
+	private String updateUser;
 }

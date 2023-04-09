@@ -1,164 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dzw.micro.wq.mapper.SysStaffEntityMapper">
-  <resultMap id="BaseResultMap" type="com.dzw.micro.wq.model.SysStaffEntity">
-    <id column="staff_id" jdbcType="VARCHAR" property="staffId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="pass" jdbcType="VARCHAR" property="pass" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
-    <result column="positions" jdbcType="VARCHAR" property="positions" />
-    <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="create_time" jdbcType="BIGINT" property="createTime" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    staff_id, name, pass, phone, id_card, positions, status, create_time, create_user, 
+    <resultMap id="BaseResultMap" type="com.dzw.micro.wq.model.SysStaffEntity">
+        <id column="staff_id" jdbcType="BIGINT" property="staffId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="pass" jdbcType="VARCHAR" property="pass"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="id_card" jdbcType="VARCHAR" property="idCard"/>
+        <result column="positions" jdbcType="VARCHAR" property="positions"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        staff_id
+        , name, user_name_pass, phone, id_card, positions, status, create_time, create_user,
     update_time, update_user
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_sys_staff
-    where staff_id = #{staffId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from t_sys_staff
-    where staff_id = #{staffId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.dzw.micro.wq.model.SysStaffEntity">
-    insert into t_sys_staff (staff_id, name, pass, 
-      phone, id_card, positions, 
-      status, create_time, create_user, 
-      update_time, update_user)
-    values (#{staffId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pass,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{positions,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=BIGINT}, #{updateUser,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.dzw.micro.wq.model.SysStaffEntity">
-    insert into t_sys_staff
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="staffId != null">
-        staff_id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="pass != null">
-        pass,
-      </if>
-      <if test="phone != null">
-        phone,
-      </if>
-      <if test="idCard != null">
-        id_card,
-      </if>
-      <if test="positions != null">
-        positions,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="createUser != null">
-        create_user,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="updateUser != null">
-        update_user,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="staffId != null">
-        #{staffId,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="pass != null">
-        #{pass,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="idCard != null">
-        #{idCard,jdbcType=VARCHAR},
-      </if>
-      <if test="positions != null">
-        #{positions,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=BIGINT},
-      </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=BIGINT},
-      </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dzw.micro.wq.model.SysStaffEntity">
-    update t_sys_staff
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="pass != null">
-        pass = #{pass,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="idCard != null">
-        id_card = #{idCard,jdbcType=VARCHAR},
-      </if>
-      <if test="positions != null">
-        positions = #{positions,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=BIGINT},
-      </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=BIGINT},
-      </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where staff_id = #{staffId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.dzw.micro.wq.model.SysStaffEntity">
-    update t_sys_staff
-    set name = #{name,jdbcType=VARCHAR},
-      pass = #{pass,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      id_card = #{idCard,jdbcType=VARCHAR},
-      positions = #{positions,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT},
-      create_time = #{createTime,jdbcType=BIGINT},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=BIGINT},
-      update_user = #{updateUser,jdbcType=VARCHAR}
-    where staff_id = #{staffId,jdbcType=VARCHAR}
-  </update>
+    </sql>
+    <select id="findOneByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_staff
+        where name = #{userName}
+    </select>
 </mapper>
