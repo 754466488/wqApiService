@@ -61,7 +61,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 基于HttpCliet-4.5.3封装对远程HTTP接口的访问<br>
  *
- * @author zhoutao
+ * @author lyb
  * @suggest 如果项目中的客户端连接的目标主机只有一个<br>
  * 配置一个目标主机对应一个HttpClientUtils实例是最高效稳定的做法(maxPerRoute和maxTotal可配置相同)<br>
  * HttpClient有默认的失败重试策略,最大3次

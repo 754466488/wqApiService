@@ -11,7 +11,7 @@ import java.util.Date;
  * 数字可视化日期时间类型包装类
  * 提供基于数字可视化时间的基本运算如比较大小、转换等操作
  *
- * @Author zhoutao
+ * @Author lyb
  * @Date 2016/10/14
  */
 public class NumberDate {

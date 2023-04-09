@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Runnable包装类
  *
- * @author zhoutao
+ * @author lyb
  * @date 2021/9/2
  */
 public class RunnableWrapper implements Runnable {

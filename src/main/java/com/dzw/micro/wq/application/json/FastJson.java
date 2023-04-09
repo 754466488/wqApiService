@@ -9,7 +9,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 /**
  * <b>json解析库fastjson的简单封装</b><br>
  *
- * @author zhoutao
+ * @author lyb
  * @thread-safe
  * @since 2015-11-2
  */

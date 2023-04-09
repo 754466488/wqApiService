@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 接口jsr注解校验拦截器
  *
- * @author zhoutao
+ * @author lyb
  * @date 2020/11/26
  */
 @Component

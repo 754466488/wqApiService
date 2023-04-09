@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * 文件类型获取工具类<br>
  *
- * @author zhoutao
+ * @author lyb
  * @thread-safe
  */
 public class FileTypeUtils {

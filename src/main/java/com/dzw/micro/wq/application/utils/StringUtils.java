@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * 字符串utils
  *
- * @author zhoutao
+ * @author lyb
  */
 public class StringUtils {
 
