@@ -34,6 +34,7 @@ public class SysStaffServiceImpl implements ISysStaffService {
 		UserInfoResp resp = new UserInfoResp();
 		resp.setStaffId(sysStaffEntity.getStaffId());
 		resp.setName(sysStaffEntity.getName());
+		resp.setUserName(sysStaffEntity.getUserName());
 		return Resp.success(resp);
 	}
 }
