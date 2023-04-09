@@ -32,7 +32,7 @@ public class SwaggerConfig {
 				.apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
 				.paths(PathSelectors.ant("/api/**"))
 				.build()
-				.groupName("mobileApi");
+				.groupName("miniApi");
 	}
 
 	@Bean
