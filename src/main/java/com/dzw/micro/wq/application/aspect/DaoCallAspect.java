@@ -20,13 +20,8 @@ public class DaoCallAspect {
 	@Autowired
 	private AspectHandlerChain aspectHandlerChain;
 
-	@Around("@within(org.springframework.stereotype.Repository) && within(com.dzw..*)")
-	private Object daoAround(ProceedingJoinPoint pjp) throws Throwable {
-		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.DAO_CALL, aspectHandlerChain);
-	}
-
-	@Around("execution(public * com.dzw.micro.wq.mapper.*(..))")
-	private Object baseDaoAround(ProceedingJoinPoint pjp) throws Throwable {
-		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.DAO_CALL, aspectHandlerChain);
-	}
+//	@Around("execution(public * com.dzw.micro.wq.mapper.*(..))")
+//	private Object aroundHttpClientUtils(ProceedingJoinPoint pjp) throws Throwable {
+//		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.HTTP_CALL, aspectHandlerChain);
+//	}
 }
