@@ -57,6 +57,9 @@ public class NewsServiceImpl implements INewsService {
 		if (Objects.isNull(id)) {
 			NewsEntity entity = new NewsEntity();
 			BeanUtils.copyProperties(entity, req);
+			entity.setClickNum(0);
+			entity.setIsTop(0);
+			entity.setType(0);
 			entity.setStatus(EnableStatusEnum.WAIT_PUBLISH.getCode());
 			entity.setCreateTime(DateUtils.currentTimeSecond());
 			entity.setCreateUser(req.getUserName());

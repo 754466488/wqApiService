@@ -51,6 +51,7 @@ public class MenuServiceImpl implements IMenuService {
 		if (Objects.isNull(id)) {
 			MenuEntity menuEntity = new MenuEntity();
 			BeanUtils.copyProperties(menuEntity, req);
+			menuEntity.setReq(0);
 			menuEntity.setStatus(EnableStatusEnum.ENABLE.getCode());
 			menuEntity.setCreateTime(DateUtils.currentTimeSecond());
 			menuEntity.setCreateUser(req.getUserName());
