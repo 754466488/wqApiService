@@ -59,12 +59,12 @@
     </select>
     <insert id="insert" parameterType="com.dzw.micro.wq.model.NewsEntity">
         insert into t_news (id, title, menu_id,
-                            click_num, link_url, cover_pic_url,
+                            click_num, link_url, content, cover_pic_url,
                             is_top, type, status,
                             publish_time, create_time, create_user,
                             update_time, update_user)
         values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{menuId,jdbcType=BIGINT},
-                #{clickNum,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{coverPicUrl,jdbcType=VARCHAR},
+                #{clickNum,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR}, #{coverPicUrl,jdbcType=VARCHAR},
                 #{isTop,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
                 #{publishTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR},
                 #{updateTime,jdbcType=BIGINT}, #{updateUser,jdbcType=VARCHAR})
@@ -83,6 +83,9 @@
             </if>
             <if test="linkUrl != null">
                 link_url = #{linkUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
             </if>
             <if test="coverPicUrl != null">
                 cover_pic_url = #{coverPicUrl,jdbcType=VARCHAR},
