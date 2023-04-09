@@ -60,6 +60,7 @@ public class NewsServiceImpl implements INewsService {
 			entity.setClickNum(0);
 			entity.setIsTop(0);
 			entity.setType(0);
+			entity.setLinkUrl("");
 			entity.setStatus(EnableStatusEnum.WAIT_PUBLISH.getCode());
 			entity.setCreateTime(DateUtils.currentTimeSecond());
 			entity.setCreateUser(req.getUserName());
