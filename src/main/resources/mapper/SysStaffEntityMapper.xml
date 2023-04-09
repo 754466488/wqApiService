@@ -24,6 +24,6 @@
         select
         <include refid="Base_Column_List"/>
         from t_sys_staff
-        where name = #{userName}
+        where user_name = #{userName}
     </select>
 </mapper>
