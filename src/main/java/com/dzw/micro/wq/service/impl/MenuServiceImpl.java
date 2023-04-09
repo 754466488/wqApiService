@@ -19,6 +19,7 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -101,6 +102,7 @@ public class MenuServiceImpl implements IMenuService {
 				) {
 					MenuTreeResp threeResp = new MenuTreeResp();
 					BeanUtils.copyProperties(threeResp, three);
+					threeResp.setChildMenuList(new ArrayList<>());
 					threeRespList.add(threeResp);
 				}
 				twoResp.setChildMenuList(threeRespList);

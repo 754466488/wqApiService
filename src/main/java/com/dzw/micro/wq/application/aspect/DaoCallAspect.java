@@ -21,7 +21,7 @@ public class DaoCallAspect {
 	private AspectHandlerChain aspectHandlerChain;
 
 //	@Around("execution(public * com.dzw.micro.wq.mapper.*(..))")
-//	private Object aroundHttpClientUtils(ProceedingJoinPoint pjp) throws Throwable {
+//	private Object daoAround(ProceedingJoinPoint pjp) throws Throwable {
 //		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.HTTP_CALL, aspectHandlerChain);
 //	}
 }
