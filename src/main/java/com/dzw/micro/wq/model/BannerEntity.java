@@ -2,7 +2,6 @@ package com.dzw.micro.wq.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.joda.time.DateTime;
 
 @Data
 public class BannerEntity {

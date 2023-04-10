@@ -4,7 +4,6 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.resp.SelectedResp;
 import com.google.common.collect.Lists;
 import lombok.Getter;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -42,7 +41,7 @@ public enum BannerPositionEnum {
 				return enableStatusEnum.getName();
 			}
 		}
-		return StringUtils.EMPTY;
+		return "";
 	}
 
 	public static Resp<List<SelectedResp>> bannerPositionList() {
