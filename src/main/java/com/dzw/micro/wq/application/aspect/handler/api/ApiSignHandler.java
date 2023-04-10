@@ -33,9 +33,9 @@ public class ApiSignHandler implements AspectHandler {
 
 	@Override
 	public Resp preHandle(AspectInfo aspectInfo) throws Throwable {
-//		if (Application.isDev()) {
-//			return Resp.success();
-//		}
+		if (Application.isDev()) {
+			return Resp.success();
+		}
 		String requestURI = WebUtils.getRequestURI();
 		Object[] methodParam = aspectInfo.getMethodParam();
 
@@ -44,6 +44,9 @@ public class ApiSignHandler implements AspectHandler {
 		 */
 		if (StringUtils.startsWithAny(requestURI, "/api/")) {
 			BaseReq baseReq = getBaseReqFromApiParams(methodParam);
+			if (Objects.isNull(baseReq)) {
+				return Resp.error(ErrorCode.SIGN);
+			}
 			String timestamp = baseReq.getTimestamp();
 			String sign = baseReq.getSign().toLowerCase();
 			String signNew = MD5Utils.md5(APP_ID + timestamp).toLowerCase();

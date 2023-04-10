@@ -2,6 +2,7 @@ package com.dzw.micro.wq.application.config.concurrent;
 
 import com.dzw.micro.wq.application.log.Log;
 import com.dzw.micro.wq.application.thread.NamedThreadFactory;
+import com.dzw.micro.wq.application.thread.RunnableWrapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

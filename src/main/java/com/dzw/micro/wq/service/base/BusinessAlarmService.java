@@ -2,7 +2,6 @@ package com.dzw.micro.wq.service.base;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dzw.micro.wq.Application;
-import com.dzw.micro.wq.application.config.concurrent.RunnableWrapper;
 import com.dzw.micro.wq.application.httpclient.HttpClientUtils;
 import com.dzw.micro.wq.application.utils.ThrowableUtils;
 import com.google.common.collect.Maps;
@@ -50,9 +49,9 @@ public class BusinessAlarmService {
 			sb.append("异常栈：").append(ThrowableUtils.getStackTraceAsSimpleString(throwable));
 		}
 
-		commonExecutor.execute(RunnableWrapper.of(() -> {
+		commonExecutor.execute(() -> {
 			alarmHttpClient.httpCallPostJson(FEISHU_URL, buildJsonParams(sb.toString()), TIMEOUT);
-		}));
+		});
 
 	}
 
@@ -69,9 +68,9 @@ public class BusinessAlarmService {
 		}
 		sb.append("报警内容：").append(message).append("\r\n");
 
-		commonExecutor.execute(RunnableWrapper.of(() -> {
+		commonExecutor.execute(() -> {
 			alarmHttpClient.httpCallPostJson(FEISHU_URL, buildJsonParams(sb.toString()), TIMEOUT);
-		}));
+		});
 	}
 
 	private String buildJsonParams(String msgStr) {
