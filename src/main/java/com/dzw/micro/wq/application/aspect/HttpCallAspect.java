@@ -20,13 +20,13 @@ public class HttpCallAspect {
 	@Autowired
 	private AspectHandlerChain aspectHandlerChain;
 
-	@Around("execution(public * com.dzw.micro.wq.application.httpclient.HttpClientUtils.httpCall*(..))")
-	private Object aroundHttpClientUtils(ProceedingJoinPoint pjp) throws Throwable {
-		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.HTTP_CALL, aspectHandlerChain);
-	}
-
-	@Around("execution(public * org.springframework.web.client.RestTemplate.*(..))")
-	private Object aroundRestTemplate(ProceedingJoinPoint pjp) throws Throwable {
-		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.HTTP_CALL, aspectHandlerChain);
-	}
+//	@Around("execution(public * com.dzw.micro.wq.application.httpclient.HttpClientUtils.httpCall*(..))")
+//	private Object aroundHttpClientUtils(ProceedingJoinPoint pjp) throws Throwable {
+//		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.HTTP_CALL, aspectHandlerChain);
+//	}
+//
+//	@Around("execution(public * org.springframework.web.client.RestTemplate.*(..))")
+//	private Object aroundRestTemplate(ProceedingJoinPoint pjp) throws Throwable {
+//		return AspectHelper.nonEntranceMethodAspectAround(pjp, AspectTypeEnum.HTTP_CALL, aspectHandlerChain);
+//	}
 }

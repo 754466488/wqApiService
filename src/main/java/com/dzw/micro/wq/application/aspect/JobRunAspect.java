@@ -25,15 +25,15 @@ public class JobRunAspect {
 	@Autowired
 	private AspectHandlerChain aspectHandlerChain;
 
-	@Around("execution(public * com.dzw.micro.wq..*Job.execute(..))")
-	public void aroundElasticSimpleJob(ProceedingJoinPoint pjp) throws Throwable {
-		around(pjp);
-	}
-
-	@Around("@annotation(org.springframework.scheduling.annotation.Scheduled) && within(com.dzw..*)")
-	public void aroundSpringAnnotationJob(ProceedingJoinPoint pjp) throws Throwable {
-		around(pjp);
-	}
+//	@Around("execution(public * com.dzw.micro.wq..*Job.execute(..))")
+//	public void aroundElasticSimpleJob(ProceedingJoinPoint pjp) throws Throwable {
+//		around(pjp);
+//	}
+//
+//	@Around("@annotation(org.springframework.scheduling.annotation.Scheduled) && within(com.dzw..*)")
+//	public void aroundSpringAnnotationJob(ProceedingJoinPoint pjp) throws Throwable {
+//		around(pjp);
+//	}
 
 	private void around(ProceedingJoinPoint pjp) throws Throwable {
 		MDC.put(MixedConstant.TRACE_ID, DistributedId.get().toString());
