@@ -6,5 +6,5 @@ spring:
     active: ${spring.profiles.active}
   servlet:
     multipart:
-      maxFileSize: "30MB"
-      maxRequestSize: "30MB"
+      maxFileSize: "100MB"
+      maxRequestSize: "100MB"
