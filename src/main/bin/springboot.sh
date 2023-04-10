@@ -22,7 +22,7 @@ RUN_JAR_FILE=${RUN_DIR}/${APP_NAME}.jar
 LOG_DIR=/data/logs/${APP_NAME}
 
 #jvm参数-堆
-JAVA_OPTS="-server -Xms2g -Xmx2g -XX:NewRatio=2 -XX:SurvivorRatio=6 -Xss256k -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m"
+JAVA_OPTS="-server -Xms2g -Xmx2g -XX:NewRatio=2 -XX:SurvivorRatio=6 -Xss256k -XX:MetaspaceSize=256m"
 #jvm参数-GC
 JAVA_OPTS=" ${JAVA_OPTS} -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly"
 #jvm参数-优化

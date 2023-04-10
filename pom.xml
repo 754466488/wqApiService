@@ -162,7 +162,7 @@
         <dependency>
             <groupId>com.huaweicloud</groupId>
             <artifactId>esdk-obs-java-bundle</artifactId>
-            <version>[3.21.11,)</version>
+            <version>3.21.11</version>
         </dependency>
         <dependency>
             <groupId>com.vip.vjtools</groupId>
