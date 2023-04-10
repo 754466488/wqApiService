@@ -29,3 +29,6 @@ spring:
 #如果取消mybatis-config.xml配置文件，此处就要放开mybatis的配置
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
+
+logging:
+  config: classpath:log4j2-dev.xml
