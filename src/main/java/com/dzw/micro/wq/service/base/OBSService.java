@@ -54,6 +54,8 @@ public class OBSService {
 		//上传到华为云obs
 		PutObjectResult putObjectResult = obsClient.putObject(bucketName, key.toString(), file.getInputStream());
 		return putObjectResult.getObjectUrl();
+//		String publicAccessUrl = publicAccessDomain + "/" + key.toString();
+//		return publicAccessUrl;
 	}
 
 	/**
