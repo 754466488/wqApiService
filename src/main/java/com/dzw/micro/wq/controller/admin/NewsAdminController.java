@@ -63,6 +63,6 @@ public class NewsAdminController {
 	@ApiOperation(value = "获取文章详情", notes = "")
 	@GetMapping(path = "/detail")
 	public Resp<NewsListResp> list(@Param("id") Long id) {
-		return newsAdminService.detail(id);
+		return newsAdminService.detail(id, false);
 	}
 }

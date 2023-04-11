@@ -7,7 +7,7 @@
         <result column="menu_id" jdbcType="BIGINT" property="menuId"/>
         <result column="click_num" jdbcType="INTEGER" property="clickNum"/>
         <result column="link_url" jdbcType="VARCHAR" property="linkUrl"/>
-        <result column="content" jdbcType="VARCHAR" property="linkUrl"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="cover_pic_url" jdbcType="VARCHAR" property="coverPicUrl"/>
         <result column="is_top" jdbcType="INTEGER" property="isTop"/>
         <result column="type" jdbcType="INTEGER" property="type"/>

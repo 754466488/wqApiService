@@ -55,6 +55,6 @@ public class NewsApiController {
 	@ApiOperation(value = "获取文章详情", notes = "")
 	@PostMapping(path = "/detail")
 	public Resp detail(@Valid IdReq req, BindingResult bindingResult) {
-		return newsService.detail(req.getId());
+		return newsService.detail(req.getId(), true);
 	}
 }

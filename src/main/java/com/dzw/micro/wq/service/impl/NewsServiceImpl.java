@@ -111,13 +111,15 @@ public class NewsServiceImpl implements INewsService {
 	}
 
 	@Override
-	public Resp<NewsListResp> detail(long id) {
+	public Resp<NewsListResp> detail(long id, boolean addClick) {
 		NewsEntity newsEntity = newsEntityMapper.findOneById(id);
 		if (Objects.isNull(newsEntity)) {
 			return Resp.success();
 		}
-		//记录点击次数
-		newsEntityMapper.addClickNumById(id);
+		if (addClick) {
+			//记录点击次数
+			newsEntityMapper.addClickNumById(id);
+		}
 		return Resp.success(newsEntity);
 	}
 }
