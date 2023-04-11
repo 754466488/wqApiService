@@ -5,12 +5,14 @@ import com.dzw.micro.wq.req.SaveNewsReq;
 import com.dzw.micro.wq.req.SelectNewsReq;
 import com.dzw.micro.wq.req.SetIsTopReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
+import com.dzw.micro.wq.resp.IdReq;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.INewsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,5 +58,11 @@ public class NewsAdminController {
 	@PostMapping(path = "/updateSetTopStatus")
 	public Resp updateSetTopStatus(@Valid SetIsTopReq req, BindingResult bindingResult) {
 		return newsAdminService.updateSetTopStatus(req);
+	}
+
+	@ApiOperation(value = "获取文章详情", notes = "")
+	@GetMapping(path = "/detail")
+	public Resp<NewsListResp> list(@Param("id") Long id) {
+		return newsAdminService.detail(id);
 	}
 }
