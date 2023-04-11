@@ -27,6 +27,8 @@ public class NewsListResp {
 	private Integer clickNum;
 	@ApiModelProperty(value = "外链文章地址")
 	private String linkUrl;
+	@ApiModelProperty(value = "文章内容")
+	private String content;
 	@ApiModelProperty(value = "文章封面图片地址")
 	private String coverPicUrl;
 	@ApiModelProperty(value = "创建时间")

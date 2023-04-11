@@ -51,6 +51,29 @@
         </if>
         order by publish_time desc
     </select>
+
+    <select id="findContentList" resultType="com.dzw.micro.wq.resp.NewsListResp" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_news
+        where 1=1
+        <if test="status != null">
+            and status=#{status}
+        </if>
+        <if test="beginTime != null">
+            and publish_time &gt;= {beginTime}
+        </if>
+        <if test="endTime != null">
+            and publish_time &lt;# {endTime}
+        </if>
+        <if test="menuId != null">
+            and menu_id=#{menuId}
+        </if>
+        <if test="isTop != null">
+            and is_top=#{isTop}
+        </if>
+        order by publish_time desc
+    </select>
     <select id="findOneById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
