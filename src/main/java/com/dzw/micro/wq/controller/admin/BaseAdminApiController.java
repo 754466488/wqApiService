@@ -38,7 +38,7 @@ public class BaseAdminApiController {
 		Resp resp = uploadFileService.uploadFile(req);
 		UploadImgResp data = (UploadImgResp) resp.getData();
 		HashMap<Object, Object> map = Maps.newHashMap();
-		map.put("error", 0);
+		map.put("errno", 0);
 		map.put("data", data);
 		return map;
 	}
