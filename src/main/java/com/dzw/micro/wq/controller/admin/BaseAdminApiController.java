@@ -4,6 +4,7 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
 import com.dzw.micro.wq.service.base.UploadFileService;
+import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 
 @Api(tags = {"基础服务API"})
 @RestController
@@ -24,9 +26,20 @@ public class BaseAdminApiController {
 	@Autowired
 	private UploadFileService uploadFileService;
 
-	@ApiOperation(value = "后台图片上传", notes = "")
+	@ApiOperation(value = "后台文件上传", notes = "")
 	@PostMapping("/file/uploadFile")
 	public Resp<UploadImgResp> uploadFile(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
 		return uploadFileService.uploadFile(req);
+	}
+
+	@ApiOperation(value = "后台富文本编辑器上传", notes = "")
+	@PostMapping("/file/textUploadFile")
+	public String textUploadFile(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
+		Resp resp = uploadFileService.uploadFile(req);
+		UploadImgResp data = (UploadImgResp) resp.getData();
+		HashMap<Object, Object> map = Maps.newHashMap();
+		map.put("error", 0);
+		map.put("data", data);
+		return "";
 	}
 }

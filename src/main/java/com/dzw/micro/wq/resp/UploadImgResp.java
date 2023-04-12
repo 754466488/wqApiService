@@ -14,5 +14,5 @@ import lombok.Data;
 @ApiModel
 public class UploadImgResp {
 	@ApiModelProperty(value = "图片链接")
-	private String imgUrl;
+	private String url;
 }

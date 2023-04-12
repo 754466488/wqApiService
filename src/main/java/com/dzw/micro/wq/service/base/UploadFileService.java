@@ -59,7 +59,7 @@ public class UploadFileService {
 		String imgUrl;
 		try {
 			imgUrl = obsService.upload(module, imgName, file);
-			uploadImgResp.setImgUrl(imgUrl);
+			uploadImgResp.setUrl(imgUrl);
 		} catch (Throwable e) {
 			Log.error("uploadImage error", e);
 			return Resp.error("上传文件失败");
