@@ -8,3 +8,6 @@ spring:
     multipart:
       maxFileSize: "100MB"
       maxRequestSize: "100MB"
+  mvc:
+    async:
+      request-timeout: 300000
