@@ -29,4 +29,5 @@ public interface NewsEntityMapper {
 
 	List<NewsApiListResp> findPageHomeNewsList();
 
+	boolean existsTop(Integer isTop);
 }

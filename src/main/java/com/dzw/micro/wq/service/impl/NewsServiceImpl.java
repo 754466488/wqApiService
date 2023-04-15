@@ -118,6 +118,9 @@ public class NewsServiceImpl implements INewsService {
 
 	@Override
 	public Resp updateSetTopStatus(SetIsTopReq req) {
+		if (newsEntityMapper.existsTop(req.getIsTop())) {
+			return Resp.error("当前已存在头条文章，请先停用！");
+		}
 		NewsEntity entity = newsEntityMapper.findOneById(req.getId());
 		if (Objects.isNull(entity)) {
 			return Resp.error("数据不存在");

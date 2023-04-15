@@ -82,13 +82,15 @@
         where id = #{id}
     </select>
     <insert id="insert" parameterType="com.dzw.micro.wq.model.NewsEntity">
-        insert into t_news (id, title, menu_id,menu_name,
+        insert into t_news (id, title, menu_id, menu_name,
                             click_num, link_url, content, cover_pic_url,
                             is_top, type, status,
                             publish_time, create_time, create_user,
                             update_time, update_user)
-        values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{menuId,jdbcType=BIGINT},#{menuName,jdbcType=VARCHAR},
-                #{clickNum,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR}, #{coverPicUrl,jdbcType=VARCHAR},
+        values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{menuId,jdbcType=BIGINT},
+                #{menuName,jdbcType=VARCHAR},
+                #{clickNum,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+                #{coverPicUrl,jdbcType=VARCHAR},
                 #{isTop,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
                 #{publishTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR},
                 #{updateTime,jdbcType=BIGINT}, #{updateUser,jdbcType=VARCHAR})
@@ -160,6 +162,12 @@
         WHERE b.`status`=0 and b.menu_id = a.menu_id AND b.publish_time>a.publish_time
         ) and a.status=0
         ORDER BY a.menu_id,a.publish_time DESC
+    </select>
+
+    <select id="existsTop" parameterType="java.lang.Integer" resultType="boolean">
+        SELECT count(1)
+        FROM t_news
+        where is_top = #{isTop}
     </select>
 
 </mapper>
