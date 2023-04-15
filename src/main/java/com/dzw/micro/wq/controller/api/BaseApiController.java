@@ -42,7 +42,7 @@ public class BaseApiController {
 
 	@ApiOperation(value = "文件上传", notes = "")
 	@PostMapping("/file/uploadFileV2")
-	public Resp<UploadImgResp> uploadFileV2(@Valid UploadApiReq req, @ApiIgnore BindingResult bindingResult) {
+	public Resp<UploadImgResp> uploadFileV2(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
 		UploadReq req2 = new UploadReq();
 		req2.setFile(req.getFile());
 		req2.setFileType(req.getFileType());
