@@ -19,6 +19,8 @@ public class NewsListResp {
 	private Integer status;
 	@ApiModelProperty(value = "所属菜单id")
 	private Long menuId;
+	@ApiModelProperty(value = "所属菜单名称")
+	private String menuName;
 	@ApiModelProperty(value = "发布时间")
 	private String publishTime;
 	@ApiModelProperty(value = "是否设置为头条 0:否 1:是")

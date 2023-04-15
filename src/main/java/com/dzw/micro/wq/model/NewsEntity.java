@@ -11,6 +11,8 @@ public class NewsEntity {
 	private String title;
 	@ApiModelProperty(value = "所属菜单")
 	private Long menuId;
+	@ApiModelProperty(value = "所属菜单名称")
+	private String menuName;
 	@ApiModelProperty(value = "点击量")
 	private Integer clickNum;
 	@ApiModelProperty(value = "外链文章地址")

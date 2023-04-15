@@ -5,6 +5,7 @@
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="menu_id" jdbcType="BIGINT" property="menuId"/>
+        <result column="menu_name" jdbcType="VARCHAR" property="menuName"/>
         <result column="click_num" jdbcType="INTEGER" property="clickNum"/>
         <result column="link_url" jdbcType="VARCHAR" property="linkUrl"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>
@@ -20,13 +21,13 @@
     </resultMap>
     <sql id="Base_Column_List">
         id
-        , title, menu_id, click_num, link_url, content,cover_pic_url, is_top, type, status, publish_time,
+        , title, menu_id, menu_name,click_num, link_url, content,cover_pic_url, is_top, type, status, publish_time,
     create_time, create_user, update_time, update_user
     </sql>
 
     <sql id="Base_Column_List2">
         id
-        , title, menu_id, click_num, link_url, cover_pic_url, is_top, type, status, publish_time,
+        , title, menu_id,menu_name, click_num, link_url, cover_pic_url, is_top, type, status, publish_time,
     create_time, create_user, update_time, update_user
     </sql>
     <select id="findList" resultType="com.dzw.micro.wq.resp.NewsListResp" resultMap="BaseResultMap">
@@ -81,12 +82,12 @@
         where id = #{id}
     </select>
     <insert id="insert" parameterType="com.dzw.micro.wq.model.NewsEntity">
-        insert into t_news (id, title, menu_id,
+        insert into t_news (id, title, menu_id,menu_name,
                             click_num, link_url, content, cover_pic_url,
                             is_top, type, status,
                             publish_time, create_time, create_user,
                             update_time, update_user)
-        values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{menuId,jdbcType=BIGINT},
+        values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{menuId,jdbcType=BIGINT},#{menuName,jdbcType=VARCHAR},
                 #{clickNum,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR}, #{coverPicUrl,jdbcType=VARCHAR},
                 #{isTop,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
                 #{publishTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR},
@@ -100,6 +101,9 @@
             </if>
             <if test="menuId != null">
                 menu_id = #{menuId,jdbcType=BIGINT},
+            </if>
+            <if test="menuName != null">
+                menu_id = #{menuName,jdbcType=VARCHAR},
             </if>
             <if test="clickNum != null">
                 click_num = #{clickNum,jdbcType=INTEGER},
