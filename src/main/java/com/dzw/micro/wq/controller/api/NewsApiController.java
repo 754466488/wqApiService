@@ -1,6 +1,8 @@
 package com.dzw.micro.wq.controller.api;
 
+import com.dzw.micro.wq.application.domain.req.BaseReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.enums.EnableStatusEnum;
 import com.dzw.micro.wq.req.SelectNewsApiReq;
 import com.dzw.micro.wq.req.SelectNewsReq;
 import com.dzw.micro.wq.resp.IdReq;
@@ -37,23 +39,35 @@ public class NewsApiController {
 
 	@ApiOperation(value = "首页新闻文章列表", notes = "")
 	@GetMapping(path = "/pageHomeList")
-	public Resp<List<NewsApiListResp>> findPageHomeNewsList() {
+	public Resp<List<NewsApiListResp>> findPageHomeNewsList(@Valid BaseReq req, BindingResult bindingResult) {
 		return newsService.findPageHomeNewsList();
 	}
 
-	@ApiOperation(value = "新闻文章列表", notes = "")
+	@ApiOperation(value = "新闻文章列表-无文章内容", notes = "")
 	@GetMapping(path = "/list")
 	public Resp<PageableDataResp<NewsListResp>> list(@Valid SelectNewsApiReq req, BindingResult bindingResult) {
 		SelectNewsReq newsReq = new SelectNewsReq();
+		newsReq.setStatus(EnableStatusEnum.ENABLE.getCode());
 		newsReq.setMenuId(req.getMenuId());
 		newsReq.setPageNo(req.getPageNo());
 		newsReq.setPageSize(req.getPageSize());
 		return newsService.findPageList(newsReq);
 	}
 
+	@ApiOperation(value = "新闻文章列表-有文章内容", notes = "")
+	@GetMapping(path = "/listContent")
+	public Resp<PageableDataResp<NewsListResp>> listContent(@Valid SelectNewsApiReq req, BindingResult bindingResult) {
+		SelectNewsReq newsReq = new SelectNewsReq();
+		newsReq.setStatus(EnableStatusEnum.ENABLE.getCode());
+		newsReq.setMenuId(req.getMenuId());
+		newsReq.setPageNo(req.getPageNo());
+		newsReq.setPageSize(req.getPageSize());
+		return newsService.findPageContentList(newsReq);
+	}
+
 	@ApiOperation(value = "获取文章详情", notes = "")
 	@PostMapping(path = "/detail")
 	public Resp detail(@Valid IdReq req, BindingResult bindingResult) {
-		return newsService.detail(req.getId());
+		return newsService.detail(req.getId(), true);
 	}
 }

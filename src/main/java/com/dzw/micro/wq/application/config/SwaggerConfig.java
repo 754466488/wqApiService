@@ -27,19 +27,19 @@ public class SwaggerConfig {
 	Docket createMiniApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo("Mobile移动端"))
-				.enable(Application.isDev() || Application.isTest())
+				.enable(Application.isDev() || Application.isProd())
 				.select()
 				.apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
 				.paths(PathSelectors.ant("/api/**"))
 				.build()
-				.groupName("mobileApi");
+				.groupName("miniApi");
 	}
 
 	@Bean
 	Docket createAdminApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo("Web管理后台"))
-				.enable(Application.isDev() || Application.isTest())
+				.enable(Application.isDev() || Application.isProd())
 				.select()
 				.apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
 				.paths(PathSelectors.ant("/admin/**"))

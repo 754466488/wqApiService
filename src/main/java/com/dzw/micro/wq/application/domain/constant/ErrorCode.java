@@ -19,7 +19,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 public class ErrorCode implements Serializable {
-
     public static final ErrorCode PARAM_REQUIRED = new ErrorCode("4001", "参数：%s不能为空");
     public static final ErrorCode PARAM_INVALID = new ErrorCode("4002", "参数：%s格式无效");
     public static final ErrorCode SIGN = new ErrorCode("4003", "参数签名验证失败");

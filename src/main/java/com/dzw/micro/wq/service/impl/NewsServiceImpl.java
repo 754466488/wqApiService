@@ -4,7 +4,9 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.application.utils.BeanUtils;
 import com.dzw.micro.wq.application.utils.DateUtils;
 import com.dzw.micro.wq.enums.EnableStatusEnum;
+import com.dzw.micro.wq.mapper.MenuEntityMapper;
 import com.dzw.micro.wq.mapper.NewsEntityMapper;
+import com.dzw.micro.wq.model.MenuEntity;
 import com.dzw.micro.wq.model.NewsEntity;
 import com.dzw.micro.wq.req.*;
 import com.dzw.micro.wq.resp.NewsApiListResp;
@@ -29,6 +31,8 @@ import java.util.Objects;
 public class NewsServiceImpl implements INewsService {
 	@Autowired
 	private NewsEntityMapper newsEntityMapper;
+	@Autowired
+	private MenuEntityMapper menuEntityMapper;
 
 	@Override
 	public Resp<List<NewsApiListResp>> findPageHomeNewsList() {
@@ -47,6 +51,16 @@ public class NewsServiceImpl implements INewsService {
 	}
 
 	@Override
+	public Resp<PageableDataResp<NewsListResp>> findPageContentList(SelectNewsReq req) {
+		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();
+		PageHelper.startPage(req.getPageNo(), req.getPageSize());
+		Page<NewsListResp> respPage = newsEntityMapper.findContentList(req);
+		pageableDataResp.setTotalSize(respPage.getTotal());
+		pageableDataResp.setDtoList(respPage.getResult());
+		return Resp.success(pageableDataResp);
+	}
+
+	@Override
 	public Resp<List<NewsListResp>> findList(SelectNewsReq req) {
 		return Resp.success();
 	}
@@ -55,8 +69,17 @@ public class NewsServiceImpl implements INewsService {
 	public Resp save(SaveNewsReq req) {
 		Long id = req.getId();
 		if (Objects.isNull(id)) {
+			MenuEntity menuEntity = menuEntityMapper.findOneById(req.getMenuId());
 			NewsEntity entity = new NewsEntity();
 			BeanUtils.copyProperties(entity, req);
+			entity.setClickNum(0);
+			entity.setIsTop(0);
+			entity.setType(0);
+			entity.setLinkUrl("");
+			entity.setMenuName("");
+			if (Objects.nonNull(menuEntity)) {
+				entity.setMenuName(menuEntity.getName());
+			}
 			entity.setStatus(EnableStatusEnum.WAIT_PUBLISH.getCode());
 			entity.setCreateTime(DateUtils.currentTimeSecond());
 			entity.setCreateUser(req.getUserName());
@@ -107,13 +130,15 @@ public class NewsServiceImpl implements INewsService {
 	}
 
 	@Override
-	public Resp<NewsListResp> detail(long id) {
+	public Resp<NewsListResp> detail(long id, boolean addClick) {
 		NewsEntity newsEntity = newsEntityMapper.findOneById(id);
 		if (Objects.isNull(newsEntity)) {
 			return Resp.success();
 		}
-		//记录点击次数
-		newsEntityMapper.addClickNumById(id);
+		if (addClick) {
+			//记录点击次数
+			newsEntityMapper.addClickNumById(id);
+		}
 		return Resp.success(newsEntity);
 	}
 }

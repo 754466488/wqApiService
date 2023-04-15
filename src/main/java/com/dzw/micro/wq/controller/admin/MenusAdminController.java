@@ -40,7 +40,7 @@ public class MenusAdminController {
 	}
 
 	@ApiOperation(value = "保存", notes = "")
-	@PostMapping(path = "/list")
+	@PostMapping(path = "/save")
 	public Resp list(@Valid SaveMenusReq req, BindingResult bindingResult) {
 		return menuService.save(req);
 	}

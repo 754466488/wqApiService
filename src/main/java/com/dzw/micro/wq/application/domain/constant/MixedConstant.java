@@ -2,12 +2,18 @@ package com.dzw.micro.wq.application.domain.constant;
 
 /**
  * 应用中的常量定义
+ *
+ * @author: lyb
+ * @date: 2023/4/10 22:08
  */
 public interface MixedConstant {
 	String TRACE_ID = "traceId";
 	/**
-	 * 上传附件最大文件大小
+	 * 上传附件最大文件大小 5M
 	 */
-	long FILE_MAX_SIZE = 5242880L;
-	int MAX_EXPORT_COUNT = 10000;
+	long IMG_FILE_MAX_SIZE = 5242880L;
+	/**
+	 * 上传附件最大文件大小 50M
+	 */
+	long VIDEO_FILE_MAX_SIZE = 52428800L;
 }

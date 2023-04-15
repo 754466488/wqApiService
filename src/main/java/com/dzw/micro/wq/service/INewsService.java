@@ -19,6 +19,8 @@ public interface INewsService {
 
 	Resp<PageableDataResp<NewsListResp>> findPageList(SelectNewsReq req);
 
+	Resp<PageableDataResp<NewsListResp>> findPageContentList(SelectNewsReq req);
+
 	Resp<List<NewsListResp>> findList(SelectNewsReq req);
 
 	Resp save(SaveNewsReq req);
@@ -27,5 +29,5 @@ public interface INewsService {
 
 	Resp updateSetTopStatus(SetIsTopReq req);
 
-	Resp<NewsListResp> detail(long id);
+	Resp<NewsListResp> detail(long id, boolean addClick);
 }

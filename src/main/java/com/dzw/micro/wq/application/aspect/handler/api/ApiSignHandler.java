@@ -44,8 +44,11 @@ public class ApiSignHandler implements AspectHandler {
 		 */
 		if (StringUtils.startsWithAny(requestURI, "/api/")) {
 			BaseReq baseReq = getBaseReqFromApiParams(methodParam);
+			if (Objects.isNull(baseReq)) {
+				return Resp.error(ErrorCode.SIGN);
+			}
 			String timestamp = baseReq.getTimestamp();
-			String sign = baseReq.getSign();
+			String sign = baseReq.getSign().toLowerCase();
 			String signNew = MD5Utils.md5(APP_ID + timestamp).toLowerCase();
 			if (!Objects.equals(sign, signNew)) {
 				return Resp.error(ErrorCode.SIGN);

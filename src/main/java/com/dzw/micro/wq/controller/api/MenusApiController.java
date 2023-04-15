@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.controller.api;
 
+import com.dzw.micro.wq.application.domain.req.BaseReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.resp.MenuTreeResp;
 import com.dzw.micro.wq.service.IMenuService;
@@ -7,10 +8,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -29,7 +32,7 @@ public class MenusApiController {
 
 	@ApiOperation(value = "获取菜单tree结构", notes = "")
 	@GetMapping(path = "/treeList")
-	public Resp<List<MenuTreeResp>> treeList() {
+	public Resp<List<MenuTreeResp>> treeList(@Valid BaseReq req, BindingResult bindingResult) {
 		return menuService.treeList();
 	}
 

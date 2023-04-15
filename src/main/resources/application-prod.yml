@@ -25,9 +25,10 @@ spring:
       remove-abandoned-timeout: 1800 # 超时时间(以秒数为单位)
       transaction-query-timeout: 6000 # 事务超时时间
 
-
-
 #因为添加了mybatis-config.xml配置文件，所以此处就不用添加mybatis的配置了
 #如果取消mybatis-config.xml配置文件，此处就要放开mybatis的配置
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
+
+logging:
+  config: classpath:log4j2-prod.xml

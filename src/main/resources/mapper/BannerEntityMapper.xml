@@ -24,7 +24,7 @@
         from t_banner
         where 1=1
         <if test="status != null">
-            status=#{status}
+            and status=#{status}
         </if>
         <if test="type != null">
             and type=#{type}

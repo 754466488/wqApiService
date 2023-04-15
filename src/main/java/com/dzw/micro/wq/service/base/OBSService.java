@@ -4,6 +4,7 @@ import com.dzw.micro.wq.Application;
 import com.dzw.micro.wq.application.log.Log;
 import com.dzw.micro.wq.application.utils.NumberDate;
 import com.obs.services.ObsClient;
+import com.obs.services.model.PutObjectResult;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,9 +52,10 @@ public class OBSService {
 		key.append(getExtensionName(file.getOriginalFilename()));
 
 		//上传到华为云obs
-		obsClient.putObject(bucketName, key.toString(), file.getInputStream());
-		String publicAccessUrl = publicAccessDomain + "/" + key.toString();
-		return publicAccessUrl;
+		PutObjectResult putObjectResult = obsClient.putObject(bucketName, key.toString(), file.getInputStream());
+		return putObjectResult.getObjectUrl();
+//		String publicAccessUrl = publicAccessDomain + "/" + key.toString();
+//		return publicAccessUrl;
 	}
 
 	/**

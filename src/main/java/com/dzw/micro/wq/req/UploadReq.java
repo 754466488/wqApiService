@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadReq {
 	@ApiModelProperty(value = "文件")
 	private MultipartFile file;
-	@ApiModelProperty(value = "图片类型(1:身份证，2：驾驶证，3：行驶证，4道路运输证，99 其它)", required = true)
-	private int imgType;
+	@ApiModelProperty(value = "1:图片 2：视频", required = true)
+	private int fileType;
 }
 
