@@ -4,6 +4,7 @@ import com.dzw.micro.wq.application.domain.req.BaseReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
+import com.dzw.micro.wq.service.IFileService;
 import com.dzw.micro.wq.service.base.UploadFileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
@@ -27,6 +28,8 @@ import javax.validation.Valid;
 public class BaseApiController {
 	@Autowired
 	private UploadFileService uploadFileService;
+	@Autowired
+	private IFileService fileService;
 
 	@ApiOperation(value = "文件上传", notes = "")
 	@PostMapping("/file/uploadFile")
@@ -35,6 +38,15 @@ public class BaseApiController {
 		req2.setFile(req.getFile());
 		req2.setFileType(req.getFileType());
 		return uploadFileService.uploadFile(req2);
+	}
+
+	@ApiOperation(value = "文件上传", notes = "")
+	@PostMapping("/file/uploadFileV2")
+	public Resp<UploadImgResp> uploadFileV2(@Valid UploadApiReq req, @ApiIgnore BindingResult bindingResult) {
+		UploadReq req2 = new UploadReq();
+		req2.setFile(req.getFile());
+		req2.setFileType(req.getFileType());
+		return fileService.upload(req2);
 	}
 
 	@Data

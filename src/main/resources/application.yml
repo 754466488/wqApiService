@@ -11,3 +11,6 @@ spring:
   mvc:
     async:
       request-timeout: 300000
+
+file:
+  resourceLocation: /fileService

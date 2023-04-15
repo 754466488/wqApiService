@@ -13,7 +13,7 @@ public interface MixedConstant {
 	 */
 	long IMG_FILE_MAX_SIZE = 5242880L;
 	/**
-	 * 上传附件最大文件大小 50M
+	 * 上传附件最大文件大小 100M
 	 */
-	long VIDEO_FILE_MAX_SIZE = 52428800L;
+	long VIDEO_FILE_MAX_SIZE = 104857600L;
 }
