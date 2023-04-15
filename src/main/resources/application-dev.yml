@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_wq?characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://123.249.119.246:3306/db_wq?characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: lyb.9692
     druid:

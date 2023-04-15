@@ -103,7 +103,7 @@
                 menu_id = #{menuId,jdbcType=BIGINT},
             </if>
             <if test="menuName != null">
-                menu_id = #{menuName,jdbcType=VARCHAR},
+                menu_name = #{menuName,jdbcType=VARCHAR},
             </if>
             <if test="clickNum != null">
                 click_num = #{clickNum,jdbcType=INTEGER},
