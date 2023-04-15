@@ -3,6 +3,7 @@ package com.dzw.micro.wq.controller.admin;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
+import com.dzw.micro.wq.service.IFileService;
 import com.dzw.micro.wq.service.base.UploadFileService;
 import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
@@ -24,18 +25,18 @@ import java.util.HashMap;
 @Slf4j
 public class BaseAdminApiController {
 	@Autowired
-	private UploadFileService uploadFileService;
+	private IFileService fileService;
 
 	@ApiOperation(value = "后台文件上传", notes = "")
 	@PostMapping("/file/uploadFile")
 	public Resp<UploadImgResp> uploadFile(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
-		return uploadFileService.uploadFile(req);
+		return fileService.upload(req);
 	}
 
 	@ApiOperation(value = "后台富文本编辑器上传", notes = "")
 	@PostMapping("/file/textUploadFile")
 	public HashMap textUploadFile(@Valid UploadReq req, @ApiIgnore BindingResult bindingResult) {
-		Resp resp = uploadFileService.uploadFile(req);
+		Resp resp = fileService.upload(req);
 		UploadImgResp data = (UploadImgResp) resp.getData();
 		HashMap<Object, Object> map = Maps.newHashMap();
 		map.put("errno", 0);

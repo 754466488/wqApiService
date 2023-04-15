@@ -14,3 +14,4 @@ spring:
 
 file:
   resourceLocation: /fileService
+

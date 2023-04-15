@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.service.impl;
 
+import com.dzw.micro.wq.Application;
 import com.dzw.micro.wq.application.domain.constant.MixedConstant;
 import com.dzw.micro.wq.application.domain.id.DistributedId;
 import com.dzw.micro.wq.application.domain.req.Resp;
@@ -58,7 +59,7 @@ public class FileService implements IFileService {
 			}
 			String newFile = DistributedId.get().toString();
 			String newFileName = newFile + "." + fileExtension;
-			String pathName = fileHome + pathBody + newFileName;
+			String pathName = fileHome + Application.ENV + pathBody + newFileName;
 			File newfile = new File(pathName);
 			if (!newfile.getParentFile().exists()) {
 				newfile.getParentFile().mkdirs();
