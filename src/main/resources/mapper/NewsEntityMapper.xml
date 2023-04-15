@@ -154,7 +154,7 @@
         WHERE 9 > (
         SELECT COUNT(*) FROM t_news AS b
         WHERE b.`status`=0 and b.menu_id = a.menu_id AND b.publish_time>a.publish_time
-        )
+        ) and a.status=0
         ORDER BY a.menu_id,a.publish_time DESC
     </select>
 
