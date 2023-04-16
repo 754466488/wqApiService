@@ -89,7 +89,11 @@ public class NewsServiceImpl implements INewsService {
 			if (Objects.isNull(entity)) {
 				return Resp.error("数据不存在");
 			}
+			MenuEntity menuEntity = menuEntityMapper.findOneById(req.getMenuId());
 			BeanUtils.copyProperties(entity, req);
+			if (Objects.nonNull(menuEntity)) {
+				entity.setMenuName(menuEntity.getName());
+			}
 			entity.setUpdateTime(DateUtils.currentTimeSecond());
 			entity.setUpdateUser(req.getUserName());
 			newsEntityMapper.updateById(entity);
