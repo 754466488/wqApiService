@@ -126,8 +126,7 @@ public class MenuServiceImpl implements IMenuService {
 		List<LeftMenuTreeResp> respList = Lists.newArrayList();
 		List<MenuEntity> list = menuEntityMapper.findAll();
 
-		List<MenuEntity> entityList = Lists.newArrayList();
-		entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid()) || x.getId().equals(menuEntity.getPid())).collect(Collectors.toList());
+		List<MenuEntity> entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid()) || x.getId().equals(menuEntity.getPid())).collect(Collectors.toList());
 		entityList = entityList.stream().sorted(Comparator.comparing(MenuEntity::getLevel).thenComparing(MenuEntity::getId)).collect(Collectors.toList());
 		for (MenuEntity entity : entityList
 		) {
