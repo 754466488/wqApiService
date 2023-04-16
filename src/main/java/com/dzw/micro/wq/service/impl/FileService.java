@@ -59,7 +59,7 @@ public class FileService implements IFileService {
 			}
 			String newFile = DistributedId.get().toString();
 			String newFileName = newFile + "." + fileExtension;
-			String pathName = fileHome + Application.ENV + pathBody + newFileName;
+			String pathName = fileHome + pathBody + newFileName;
 			File newfile = new File(pathName);
 			if (!newfile.getParentFile().exists()) {
 				newfile.getParentFile().mkdirs();
