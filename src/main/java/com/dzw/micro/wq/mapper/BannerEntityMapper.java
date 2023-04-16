@@ -1,6 +1,7 @@
 package com.dzw.micro.wq.mapper;
 
 import com.dzw.micro.wq.model.BannerEntity;
+import com.dzw.micro.wq.resp.BannerApiListResp;
 import com.dzw.micro.wq.resp.BannerListResp;
 import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.github.pagehelper.Page;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 @Mapper
 public interface BannerEntityMapper {
-	List<NewsApiListResp> findPageHomeList();
+	List<BannerApiListResp> findPageHomeList();
 
 	Page<BannerListResp> findPageList(@Param("status") Integer status, @Param("type") Integer type);
 

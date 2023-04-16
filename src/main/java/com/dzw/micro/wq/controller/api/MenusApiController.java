@@ -2,6 +2,7 @@ package com.dzw.micro.wq.controller.api;
 
 import com.dzw.micro.wq.application.domain.req.BaseReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.resp.LeftMenuTreeResp;
 import com.dzw.micro.wq.resp.MenuTreeResp;
 import com.dzw.micro.wq.service.IMenuService;
 import io.swagger.annotations.Api;
@@ -36,4 +37,9 @@ public class MenusApiController {
 		return menuService.treeList();
 	}
 
+	@ApiOperation(value = "获取左侧菜单tree结构", notes = "")
+	@GetMapping(path = "/leftTreeList")
+	public Resp<List<LeftMenuTreeResp>> leftTreeList(@Valid BaseReq req, BindingResult bindingResult) {
+		return menuService.leftTreeList();
+	}
 }

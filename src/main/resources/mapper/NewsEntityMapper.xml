@@ -25,6 +25,11 @@
     create_time, create_user, update_time, update_user
     </sql>
 
+    <sql id="Base_Column_List1">
+        id
+        , title, menu_id, menu_name,click_num, link_url,cover_pic_url, publish_time
+    </sql>
+
     <sql id="Base_Column_List2">
         id
         , title, menu_id,menu_name, click_num, link_url, cover_pic_url, is_top, type, status, publish_time,
@@ -160,7 +165,7 @@
 
     <select id="findPageHomeNewsList" resultType="com.dzw.micro.wq.resp.NewsApiListResp" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List2"/>
+        <include refid="Base_Column_List1"/>
         FROM t_news AS a
         WHERE 11 > (
         SELECT COUNT(*) FROM t_news AS b

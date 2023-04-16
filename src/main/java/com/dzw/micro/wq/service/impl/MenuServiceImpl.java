@@ -9,6 +9,7 @@ import com.dzw.micro.wq.model.MenuEntity;
 import com.dzw.micro.wq.req.SaveMenusReq;
 import com.dzw.micro.wq.req.SelectMenuReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
+import com.dzw.micro.wq.resp.LeftMenuTreeResp;
 import com.dzw.micro.wq.resp.MenuTreeResp;
 import com.dzw.micro.wq.resp.MenusListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
@@ -113,5 +114,10 @@ public class MenuServiceImpl implements IMenuService {
 			respList.add(resp);
 		}
 		return Resp.success(respList);
+	}
+
+	@Override
+	public Resp<List<LeftMenuTreeResp>> leftTreeList() {
+		return Resp.success();
 	}
 }

@@ -18,6 +18,11 @@
         id
         , title, url, req, status, link_url, type, create_time, create_user, update_time, update_user
     </sql>
+
+    <sql id="Base_Column_List1">
+        url
+        , link_url
+    </sql>
     <select id="findPageList" resultType="com.dzw.micro.wq.resp.BannerListResp" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -89,14 +94,14 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
-    <select id="findPageHomeList" resultType="com.dzw.micro.wq.resp.BannerListResp" resultMap="BaseResultMap">
+    <select id="findPageHomeList" resultType="com.dzw.micro.wq.resp.BannerApiListResp" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List1"/>
         FROM t_banner AS a
         WHERE 5 > (
         SELECT COUNT(*) FROM t_banner AS b
         WHERE b.`status`=0 and b.type = a.type AND b.update_time>a.update_time
-        )
+        ) and status=0
         ORDER BY a.type,a.update_time DESC
     </select>
 </mapper>

@@ -12,13 +12,11 @@ import java.util.List;
  * @date created in 2023/4/6
  */
 @Data
-public class MenuTreeResp {
+public class LeftMenuTreeResp {
 	@ApiModelProperty(value = "id")
 	private Long id;
 	@ApiModelProperty(value = "名称")
 	private String name;
 	@ApiModelProperty(value = "层级")
 	private Integer level;
-	@ApiModelProperty(value = "子菜单集合")
-	List<MenuTreeResp> childMenuList;
 }

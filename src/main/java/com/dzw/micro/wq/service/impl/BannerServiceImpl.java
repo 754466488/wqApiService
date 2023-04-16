@@ -16,6 +16,7 @@ import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.IBannerService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class BannerServiceImpl implements IBannerService {
 	 */
 	@Override
 	public Resp<List<BannerApiListResp>> findPageHomeList() {
-		List<NewsApiListResp> pageHomeList = bannerEntityMapper.findPageHomeList();
+		List<BannerApiListResp> pageHomeList = bannerEntityMapper.findPageHomeList();
 		return Resp.success(pageHomeList);
 	}
 
