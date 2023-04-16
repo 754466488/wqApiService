@@ -63,9 +63,10 @@
         </if>
     </select>
 
-    <select id="findContentList" resultType="com.dzw.micro.wq.resp.NewsListResp" resultMap="BaseResultMap">
+    <select id="findContentList" resultType="com.dzw.micro.wq.resp.NewsApiListResp" >
         select
-        <include refid="Base_Column_List"/>
+        id,title,menu_id as menuId,menu_name as menuName,publish_time as publishTime,is_top as isTop,type as
+        type,link_url as linkUrl,cover_picUrl as coverPicUrl
         from t_news
         where 1=1
         <if test="status != null">
@@ -163,7 +164,7 @@
         where id = #{id}
     </update>
 
-    <select id="findPageHomeNewsList" resultType="com.dzw.micro.wq.resp.NewsApiListResp" resultMap="BaseResultMap">
+    <select id="findPageHomeNewsList" resultType="com.dzw.micro.wq.resp.NewsApiListResp">
         SELECT
         <include refid="Base_Column_List1"/>
         FROM t_news AS a

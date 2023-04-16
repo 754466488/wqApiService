@@ -17,7 +17,7 @@ import java.util.List;
 public interface NewsEntityMapper {
 	Page<NewsListResp> findList(SelectNewsReq req);
 
-	Page<NewsListResp> findContentList(SelectNewsReq req);
+	Page<NewsApiListResp> findContentList(SelectNewsReq req);
 
 	NewsEntity findOneById(Long id);
 

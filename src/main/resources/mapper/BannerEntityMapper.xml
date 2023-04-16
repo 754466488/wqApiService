@@ -94,14 +94,17 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
-    <select id="findPageHomeList" resultType="com.dzw.micro.wq.resp.BannerApiListResp" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List1"/>
+    <select id="findPageHomeList" resultType="com.dzw.micro.wq.resp.BannerApiListResp">
+        SELECT url,
+               link_url as linkUrl,
+               type
         FROM t_banner AS a
-        WHERE 5 > (
-        SELECT COUNT(*) FROM t_banner AS b
-        WHERE b.`status`=0 and b.type = a.type AND b.update_time>a.update_time
-        ) and status=0
-        ORDER BY a.type,a.update_time DESC
+        WHERE 5 > (SELECT COUNT(*)
+                   FROM t_banner AS b
+                   WHERE b.`status` = 0
+                     and b.type = a.type
+                     AND b.update_time > a.update_time)
+          and status = 0
+        ORDER BY a.type, a.update_time DESC
     </select>
 </mapper>
