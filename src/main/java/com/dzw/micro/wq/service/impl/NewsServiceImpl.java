@@ -109,6 +109,9 @@ public class NewsServiceImpl implements INewsService {
 		if (Objects.isNull(entity)) {
 			return Resp.error("数据不存在");
 		}
+		if (req.getStatus() == 2) {
+			entity.setPublishTime(DateUtils.currentTimeSecond());
+		}
 		entity.setStatus(req.getStatus());
 		entity.setUpdateTime(DateUtils.currentTimeSecond());
 		entity.setUpdateUser(req.getUserName());

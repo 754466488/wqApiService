@@ -18,7 +18,7 @@ public class UpdateStatusReq {
 	@ApiModelProperty(value = "id")
 	private Long id;
 	@NotNull(message = "状态不能为空")
-	@ApiModelProperty(value = "状态 0：启用 1：停用")
+	@ApiModelProperty(value = "状态 0：启用 1：停用 2:发布")
 	private Integer status;
 	@NotBlank(message = "用户名不能为空")
 	@ApiModelProperty(value = "用户名")
