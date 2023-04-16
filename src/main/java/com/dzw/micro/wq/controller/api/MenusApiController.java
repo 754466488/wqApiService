@@ -7,6 +7,7 @@ import com.dzw.micro.wq.resp.MenuTreeResp;
 import com.dzw.micro.wq.service.IMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -39,7 +40,12 @@ public class MenusApiController {
 
 	@ApiOperation(value = "获取左侧菜单tree结构", notes = "")
 	@GetMapping(path = "/leftTreeList")
-	public Resp<List<LeftMenuTreeResp>> leftTreeList(@Valid BaseReq req, BindingResult bindingResult) {
-		return menuService.leftTreeList();
+	public Resp<List<LeftMenuTreeResp>> leftTreeList(@Valid MenuIdReq req, BindingResult bindingResult) {
+		return menuService.leftTreeList(req.getMenuId());
+	}
+
+	@Data
+	public class MenuIdReq extends BaseReq {
+		private Long menuId;
 	}
 }

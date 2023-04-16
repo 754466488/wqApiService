@@ -137,7 +137,7 @@ public class NewsServiceImpl implements INewsService {
 	}
 
 	@Override
-	public Resp<NewsListResp> detail(long id, boolean addClick) {
+	public Resp<NewsApiListResp> detail(long id, boolean addClick) {
 		NewsEntity newsEntity = newsEntityMapper.findOneById(id);
 		if (Objects.isNull(newsEntity)) {
 			return Resp.success();
@@ -146,6 +146,8 @@ public class NewsServiceImpl implements INewsService {
 			//记录点击次数
 			newsEntityMapper.addClickNumById(id);
 		}
-		return Resp.success(newsEntity);
+		NewsApiListResp resp = new NewsApiListResp();
+		BeanUtils.copyProperties(resp, newsEntity);
+		return Resp.success(resp);
 	}
 }

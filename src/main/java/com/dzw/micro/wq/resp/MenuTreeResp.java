@@ -15,6 +15,8 @@ import java.util.List;
 public class MenuTreeResp {
 	@ApiModelProperty(value = "id")
 	private Long id;
+	@ApiModelProperty(value = "父id")
+	private Long pid;
 	@ApiModelProperty(value = "名称")
 	private String name;
 	@ApiModelProperty(value = "层级")

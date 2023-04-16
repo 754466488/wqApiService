@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -117,7 +118,27 @@ public class MenuServiceImpl implements IMenuService {
 	}
 
 	@Override
-	public Resp<List<LeftMenuTreeResp>> leftTreeList() {
-		return Resp.success();
+	public Resp<List<LeftMenuTreeResp>> leftTreeList(Long menuId) {
+		MenuEntity menuEntity = menuEntityMapper.findOneById(menuId);
+		if (Objects.isNull(menuEntity)) {
+			return Resp.success();
+		}
+		List<LeftMenuTreeResp> respList = Lists.newArrayList();
+		List<MenuEntity> list = menuEntityMapper.findAll();
+
+		List<MenuEntity> entityList = Lists.newArrayList();
+		entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid()) || x.getId().equals(menuEntity.getPid())).collect(Collectors.toList());
+		entityList = entityList.stream().sorted(Comparator.comparing(MenuEntity::getLevel).thenComparing(MenuEntity::getId)).collect(Collectors.toList());
+		for (MenuEntity entity : entityList
+		) {
+			LeftMenuTreeResp resp = new LeftMenuTreeResp();
+			resp.setId(entity.getId());
+			resp.setPid(entity.getPid());
+			resp.setLevel(entity.getLevel());
+			resp.setName(entity.getName());
+			respList.add(resp);
+		}
+
+		return Resp.success(respList);
 	}
 }

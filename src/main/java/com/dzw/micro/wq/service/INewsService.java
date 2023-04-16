@@ -29,5 +29,5 @@ public interface INewsService {
 
 	Resp updateSetTopStatus(SetIsTopReq req);
 
-	Resp<NewsListResp> detail(long id, boolean addClick);
+	Resp<NewsApiListResp> detail(long id, boolean addClick);
 }

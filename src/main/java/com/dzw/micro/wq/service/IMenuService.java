@@ -24,5 +24,5 @@ public interface IMenuService {
 
 	Resp<List<MenuTreeResp>> treeList();
 
-	Resp<List<LeftMenuTreeResp>> leftTreeList();
+	Resp<List<LeftMenuTreeResp>> leftTreeList(Long menuId);
 }

@@ -39,6 +39,10 @@ public class ApiSignHandler implements AspectHandler {
 		String requestURI = WebUtils.getRequestURI();
 		Object[] methodParam = aspectInfo.getMethodParam();
 
+		if (Application.isDev()) {
+			return Resp.success();
+		}
+
 		/**
 		 * 校验api下接口
 		 */

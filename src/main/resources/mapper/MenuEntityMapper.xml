@@ -33,7 +33,8 @@
         select
         <include refid="Base_Column_List"/>
         from t_menu
-        where status=0
+        where status = 0
+        order by create_time asc
     </select>
 
     <insert id="insert" parameterType="com.dzw.micro.wq.model.MenuEntity">

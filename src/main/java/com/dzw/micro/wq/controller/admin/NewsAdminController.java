@@ -6,6 +6,7 @@ import com.dzw.micro.wq.req.SelectNewsReq;
 import com.dzw.micro.wq.req.SetIsTopReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.IdReq;
+import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.INewsService;
@@ -62,7 +63,7 @@ public class NewsAdminController {
 
 	@ApiOperation(value = "获取文章详情", notes = "")
 	@GetMapping(path = "/detail")
-	public Resp<NewsListResp> list(@Param("id") Long id) {
+	public Resp<NewsApiListResp> list(@Param("id") Long id) {
 		return newsAdminService.detail(id, false);
 	}
 }
