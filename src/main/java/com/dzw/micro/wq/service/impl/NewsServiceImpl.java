@@ -51,10 +51,10 @@ public class NewsServiceImpl implements INewsService {
 	}
 
 	@Override
-	public Resp<PageableDataResp<NewsListResp>> findPageContentList(SelectNewsReq req) {
-		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();
+	public Resp<PageableDataResp<NewsApiListResp>> findPageContentList(SelectNewsReq req) {
+		PageableDataResp<NewsApiListResp> pageableDataResp = new PageableDataResp<>();
 		PageHelper.startPage(req.getPageNo(), req.getPageSize());
-		Page<NewsListResp> respPage = newsEntityMapper.findContentList(req);
+		Page<NewsApiListResp> respPage = newsEntityMapper.findContentList(req);
 		pageableDataResp.setTotalSize(respPage.getTotal());
 		pageableDataResp.setDtoList(respPage.getResult());
 		return Resp.success(pageableDataResp);

@@ -57,7 +57,7 @@ public class NewsApiController {
 
 	@ApiOperation(value = "新闻文章列表-有文章内容", notes = "")
 	@GetMapping(path = "/listContent")
-	public Resp<PageableDataResp<NewsListResp>> listContent(@Valid SelectNewsApiReq req, BindingResult bindingResult) {
+	public Resp<PageableDataResp<NewsApiListResp>> listContent(@Valid SelectNewsApiReq req, BindingResult bindingResult) {
 		SelectNewsReq newsReq = new SelectNewsReq();
 		newsReq.setStatus(EnableStatusEnum.ENABLE.getCode());
 		newsReq.setMenuId(req.getMenuId());

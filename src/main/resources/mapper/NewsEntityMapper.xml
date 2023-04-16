@@ -25,10 +25,6 @@
     create_time, create_user, update_time, update_user
     </sql>
 
-    <sql id="Base_Column_List1">
-        id
-        , title, menu_id, menu_name,click_num, link_url,cover_pic_url, publish_time
-    </sql>
 
     <sql id="Base_Column_List2">
         id
@@ -63,10 +59,18 @@
         </if>
     </select>
 
-    <select id="findContentList" resultType="com.dzw.micro.wq.resp.NewsApiListResp" >
-        select
-        id,title,menu_id as menuId,menu_name as menuName,publish_time as publishTime,is_top as isTop,type as
-        type,link_url as linkUrl,cover_picUrl as coverPicUrl
+    <select id="findContentList" resultType="com.dzw.micro.wq.resp.NewsApiListResp">
+        SELECT id
+        , title
+        , menu_id as menuId
+        , menu_name as menuName
+        , click_num as clickNum
+        , link_url as linkUrl
+        , cover_pic_url as coverPicUrl
+        , publish_time as publishTime
+        , is_top as isTop
+        , type
+        ,content
         from t_news
         where 1=1
         <if test="status != null">
@@ -165,14 +169,24 @@
     </update>
 
     <select id="findPageHomeNewsList" resultType="com.dzw.micro.wq.resp.NewsApiListResp">
-        SELECT
-        <include refid="Base_Column_List1"/>
+        SELECT id
+             , title
+             , menu_id       as menuId
+             , menu_name     as menuName
+             , click_num     as clickNum
+             , link_url      as linkUrl
+             , cover_pic_url as coverPicUrl
+             , publish_time  as publishTime
+             , is_top        as isTop
+             , type
         FROM t_news AS a
-        WHERE 11 > (
-        SELECT COUNT(*) FROM t_news AS b
-        WHERE b.`status`=0 and b.menu_id = a.menu_id AND b.publish_time>a.publish_time
-        ) and a.status=0
-        ORDER BY a.menu_id,a.publish_time DESC
+        WHERE 11 > (SELECT COUNT(*)
+                    FROM t_news AS b
+                    WHERE b.`status` = 0
+                      and b.menu_id = a.menu_id
+                      AND b.publish_time > a.publish_time)
+          and a.status = 0
+        ORDER BY a.menu_id, a.publish_time DESC
     </select>
 
     <select id="existsTop" parameterType="java.lang.Integer" resultType="boolean">

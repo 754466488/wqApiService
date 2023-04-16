@@ -11,8 +11,6 @@ import lombok.Data;
  */
 @Data
 public class BannerApiListResp {
-	@ApiModelProperty(value = "标题")
-	private String title;
 	@ApiModelProperty(value = "图片地址")
 	private String url;
 	@ApiModelProperty(value = "链接地址")
