@@ -111,6 +111,7 @@ public class NewsServiceImpl implements INewsService {
 		}
 		if (req.getStatus() == 2) {
 			entity.setPublishTime(DateUtils.currentTimeSecond());
+			req.setStatus(0);
 		}
 		entity.setStatus(req.getStatus());
 		entity.setUpdateTime(DateUtils.currentTimeSecond());
