@@ -50,7 +50,12 @@
         <if test="isTop != null">
             and is_top=#{isTop}
         </if>
-        order by publish_time desc
+        <if test="isGw != null">
+            order by publish_time desc
+        </if>
+        <if test="isGw == null">
+            order by create_time desc
+        </if>
     </select>
 
     <select id="findContentList" resultType="com.dzw.micro.wq.resp.NewsListResp" resultMap="BaseResultMap">
@@ -73,7 +78,7 @@
         <if test="isTop != null">
             and is_top=#{isTop}
         </if>
-        order by publish_time desc
+        order by create_time desc
     </select>
     <select id="findOneById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
@@ -157,7 +162,7 @@
         SELECT
         <include refid="Base_Column_List2"/>
         FROM t_news AS a
-        WHERE 9 > (
+        WHERE 11 > (
         SELECT COUNT(*) FROM t_news AS b
         WHERE b.`status`=0 and b.menu_id = a.menu_id AND b.publish_time>a.publish_time
         ) and a.status=0

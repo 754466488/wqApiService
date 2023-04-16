@@ -51,6 +51,7 @@ public class NewsApiController {
 		newsReq.setMenuId(req.getMenuId());
 		newsReq.setPageNo(req.getPageNo());
 		newsReq.setPageSize(req.getPageSize());
+		newsReq.setIsGw(0);
 		return newsService.findPageList(newsReq);
 	}
 

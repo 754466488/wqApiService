@@ -21,4 +21,5 @@ public class SelectNewsReq extends PageReq {
 	private Integer menuId;
 	@ApiModelProperty(value = "是否设置为头条 0:否 1:是")
 	private Integer isTop;
+	private Integer isGw;
 }
