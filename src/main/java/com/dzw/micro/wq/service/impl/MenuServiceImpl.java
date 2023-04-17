@@ -17,6 +17,7 @@ import com.dzw.micro.wq.service.IMenuService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -127,22 +128,40 @@ public class MenuServiceImpl implements IMenuService {
 		if (level == 1) {
 			entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getId())).collect(Collectors.toList());
 		} else if (level == 2) {
-			entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid())).collect(Collectors.toList());
-		} else if (level == 3) {
-			Long pid = 0L;
-			Optional<MenuEntity> first = list.stream().filter(x -> x.getId().equals(menuEntity.getPid())).findFirst();
-			if (first.isPresent()) {
-				MenuEntity menu = first.get();
-				if (Objects.nonNull(menu)) {
-					pid = menu.getPid();
+			List<MenuEntity> entityList1 = list.stream().filter(x -> x.getId().equals(menuEntity.getPid())).collect(Collectors.toList());
+			if (CollectionUtils.isNotEmpty(entityList1)) {
+				entityList.add(entityList1.get(0));
+			}
+			List<MenuEntity> entityList2 = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid())).collect(Collectors.toList());
+			if (CollectionUtils.isNotEmpty(entityList1)) {
+				entityList.addAll(entityList2);
+			}
+			List<MenuEntity> entityList3 = list.stream().filter(x -> x.getPid().equals(menuEntity.getId())).collect(Collectors.toList());
+			for (int i = 0; i < entityList2.size(); i++) {
+				if (entityList2.get(i).getId().equals(menuEntity.getPid())) {
+					entityList.addAll(i + 2, entityList3);
 				}
 			}
-			long a = pid;
-			entityList = list.stream().filter(x -> x.getPid().equals(a)).collect(Collectors.toList());
-			List<MenuEntity> entityList2 = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid())).collect(Collectors.toList());
-			for (int i = 0; i < entityList.size(); i++) {
-				if (entityList.get(i).getId().equals(menuEntity.getPid())) {
-					entityList.addAll(i + 1, entityList2);
+		} else if (level == 3) {
+			List<MenuEntity> entityList1 = list.stream().filter(x -> x.getId().equals(menuEntity.getPid())).collect(Collectors.toList());
+			if (CollectionUtils.isNotEmpty(entityList1)) {
+				long ppid = entityList1.get(0).getPid();
+				//一级
+				List<MenuEntity> entityList2 = list.stream().filter(x -> x.getId().equals(ppid)).collect(Collectors.toList());
+				if (CollectionUtils.isNotEmpty(entityList2)) {
+					entityList.add(entityList2.get(0));
+				}
+				//二级
+				List<MenuEntity> entityList3 = list.stream().filter(x -> x.getPid().equals(ppid)).collect(Collectors.toList());
+				if (CollectionUtils.isNotEmpty(entityList3)) {
+					entityList.addAll(entityList3);
+				}
+				//三级
+				List<MenuEntity> entityList4 = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid())).collect(Collectors.toList());
+				for (int i = 0; i < entityList3.size(); i++) {
+					if (entityList3.get(i).getId().equals(menuEntity.getPid())) {
+						entityList.addAll(i + 2, entityList4);
+					}
 				}
 			}
 		}
