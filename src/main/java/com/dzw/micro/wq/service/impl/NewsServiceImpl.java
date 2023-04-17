@@ -72,7 +72,7 @@ public class NewsServiceImpl implements INewsService {
 			MenuEntity menuEntity = menuEntityMapper.findOneById(req.getMenuId());
 			NewsEntity entity = new NewsEntity();
 			BeanUtils.copyProperties(entity, req);
-			entity.setClickNum(0);
+			entity.setClickNum(1);
 			entity.setIsTop(0);
 			entity.setType(0);
 			entity.setLinkUrl("");
