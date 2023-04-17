@@ -15,6 +15,8 @@ public class NewsApiListResp {
 	private Long id;
 	@ApiModelProperty(value = "标题")
 	private String title;
+	@ApiModelProperty(value = "点击量")
+	private Integer clickNum;
 	@ApiModelProperty(value = "所属菜单id")
 	private Long menuId;
 	@ApiModelProperty(value = "所属菜单名称")
