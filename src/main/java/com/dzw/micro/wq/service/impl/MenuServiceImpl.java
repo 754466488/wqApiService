@@ -20,10 +20,7 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -125,9 +122,30 @@ public class MenuServiceImpl implements IMenuService {
 		}
 		List<LeftMenuTreeResp> respList = Lists.newArrayList();
 		List<MenuEntity> list = menuEntityMapper.findAll();
-
-		List<MenuEntity> entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid()) || x.getId().equals(menuEntity.getPid())).collect(Collectors.toList());
-		entityList = entityList.stream().sorted(Comparator.comparing(MenuEntity::getLevel).thenComparing(MenuEntity::getId)).collect(Collectors.toList());
+		List<MenuEntity> entityList = Lists.newArrayList();
+		int level = menuEntity.getLevel();
+		if (level == 1) {
+			entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getId())).collect(Collectors.toList());
+		} else if (level == 2) {
+			entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid())).collect(Collectors.toList());
+		} else if (level == 3) {
+			Long pid = 0L;
+			Optional<MenuEntity> first = list.stream().filter(x -> x.getId().equals(menuEntity.getPid())).findFirst();
+			if (first.isPresent()) {
+				MenuEntity menu = first.get();
+				if (Objects.nonNull(menu)) {
+					pid = menu.getPid();
+				}
+			}
+			long a = pid;
+			entityList = list.stream().filter(x -> x.getPid().equals(a)).collect(Collectors.toList());
+			List<MenuEntity> entityList2 = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid())).collect(Collectors.toList());
+			for (int i = 0; i < entityList.size(); i++) {
+				if (entityList.get(i).getId().equals(menuEntity.getPid())) {
+					entityList.addAll(i + 1, entityList2);
+				}
+			}
+		}
 		for (MenuEntity entity : entityList
 		) {
 			LeftMenuTreeResp resp = new LeftMenuTreeResp();
