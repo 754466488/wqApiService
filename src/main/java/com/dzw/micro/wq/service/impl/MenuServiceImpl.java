@@ -128,17 +128,20 @@ public class MenuServiceImpl implements IMenuService {
 		if (level == 1) {
 			entityList = list.stream().filter(x -> x.getPid().equals(menuEntity.getId())).collect(Collectors.toList());
 		} else if (level == 2) {
+			//一级
 			List<MenuEntity> entityList1 = list.stream().filter(x -> x.getId().equals(menuEntity.getPid())).collect(Collectors.toList());
 			if (CollectionUtils.isNotEmpty(entityList1)) {
 				entityList.add(entityList1.get(0));
 			}
+			//二级
 			List<MenuEntity> entityList2 = list.stream().filter(x -> x.getPid().equals(menuEntity.getPid())).collect(Collectors.toList());
-			if (CollectionUtils.isNotEmpty(entityList1)) {
+			if (CollectionUtils.isNotEmpty(entityList2)) {
 				entityList.addAll(entityList2);
 			}
+			//三级
 			List<MenuEntity> entityList3 = list.stream().filter(x -> x.getPid().equals(menuEntity.getId())).collect(Collectors.toList());
 			for (int i = 0; i < entityList2.size(); i++) {
-				if (entityList2.get(i).getId().equals(menuEntity.getPid())) {
+				if (entityList2.get(i).getId().equals(menuEntity.getId())) {
 					entityList.addAll(i + 2, entityList3);
 				}
 			}
