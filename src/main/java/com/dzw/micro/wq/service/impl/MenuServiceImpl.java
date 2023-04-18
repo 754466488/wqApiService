@@ -61,6 +61,7 @@ public class MenuServiceImpl implements IMenuService {
 			if (Objects.isNull(menuEntity)) {
 				return Resp.error("数据不存在");
 			}
+			menuEntity.setPicUrl(req.getPicUrl());
 			menuEntity.setName(req.getName());
 			menuEntity.setUpdateTime(DateUtils.currentTimeSecond());
 			menuEntity.setUpdateUser(req.getUserName());

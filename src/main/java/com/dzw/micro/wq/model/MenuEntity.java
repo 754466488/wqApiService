@@ -15,6 +15,8 @@ public class MenuEntity {
 	private Integer level;
 	@ApiModelProperty(value = "顺序")
 	private Integer req;
+	@ApiModelProperty(value = "图片地址")
+	private String picUrl;
 	@ApiModelProperty(value = "状态 0：启用 1：停用")
 	private Integer status;
 	@ApiModelProperty(value = "创建时间")

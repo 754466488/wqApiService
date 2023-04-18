@@ -3,7 +3,6 @@ package com.dzw.micro.wq.resp;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.util.List;
 
 /**
  * description
@@ -21,4 +20,6 @@ public class LeftMenuTreeResp {
 	private String name;
 	@ApiModelProperty(value = "层级")
 	private Integer level;
+	@ApiModelProperty(value = "图片地址")
+	private String picUrl;
 }

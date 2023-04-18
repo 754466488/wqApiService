@@ -29,4 +29,6 @@ public class SaveMenusReq {
 	@NotBlank(message = "用户名不能为空")
 	@ApiModelProperty(value = "用户名")
 	private String userName;
+	@ApiModelProperty(value = "图片地址")
+	private String picUrl;
 }
