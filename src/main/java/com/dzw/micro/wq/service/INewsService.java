@@ -3,6 +3,7 @@ package com.dzw.micro.wq.service;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.*;
 import com.dzw.micro.wq.resp.NewsApiListResp;
+import com.dzw.micro.wq.resp.NewsDetailResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
 
@@ -29,5 +30,5 @@ public interface INewsService {
 
 	Resp updateSetTopStatus(SetIsTopReq req);
 
-	Resp<NewsApiListResp> detail(long id, boolean addClick);
+	Resp<NewsDetailResp> detail(long id, boolean addClick);
 }

@@ -96,6 +96,18 @@
         from t_news
         where id = #{id}
     </select>
+    <select id="findUpOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_news
+        where id = #{id}
+    </select>
+    <select id="findDownOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_news
+        where id = #{id}
+    </select>
     <insert id="insert" parameterType="com.dzw.micro.wq.model.NewsEntity">
         insert into t_news (id, title, menu_id, menu_name,
                             click_num, link_url, content, cover_pic_url,

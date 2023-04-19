@@ -10,6 +10,7 @@ import com.dzw.micro.wq.model.MenuEntity;
 import com.dzw.micro.wq.model.NewsEntity;
 import com.dzw.micro.wq.req.*;
 import com.dzw.micro.wq.resp.NewsApiListResp;
+import com.dzw.micro.wq.resp.NewsDetailResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.INewsService;
@@ -141,7 +142,7 @@ public class NewsServiceImpl implements INewsService {
 	}
 
 	@Override
-	public Resp<NewsApiListResp> detail(long id, boolean addClick) {
+	public Resp<NewsDetailResp> detail(long id, boolean addClick) {
 		NewsEntity newsEntity = newsEntityMapper.findOneById(id);
 		if (Objects.isNull(newsEntity)) {
 			return Resp.success();

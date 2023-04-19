@@ -5,10 +5,7 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.enums.EnableStatusEnum;
 import com.dzw.micro.wq.req.SelectNewsApiReq;
 import com.dzw.micro.wq.req.SelectNewsReq;
-import com.dzw.micro.wq.resp.IdReq;
-import com.dzw.micro.wq.resp.NewsApiListResp;
-import com.dzw.micro.wq.resp.NewsListResp;
-import com.dzw.micro.wq.resp.PageableDataResp;
+import com.dzw.micro.wq.resp.*;
 import com.dzw.micro.wq.service.INewsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -68,7 +65,7 @@ public class NewsApiController {
 
 	@ApiOperation(value = "获取文章详情", notes = "")
 	@PostMapping(path = "/detail")
-	public Resp detail(@Valid IdReq req, BindingResult bindingResult) {
+	public Resp<NewsDetailResp> detail(@Valid IdReq req, BindingResult bindingResult) {
 		return newsService.detail(req.getId(), true);
 	}
 }
