@@ -177,6 +177,7 @@ public class MenuServiceImpl implements IMenuService {
 			resp.setPid(entity.getPid());
 			resp.setLevel(entity.getLevel());
 			resp.setName(entity.getName());
+			resp.setPicUrl(entity.getPicUrl());
 			respList.add(resp);
 		}
 
