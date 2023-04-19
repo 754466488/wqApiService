@@ -37,7 +37,7 @@ public class UploadFileService {
 			return Resp.error("请先选择图片");
 		}
 		if (fileType == 1 && file.getSize() > MixedConstant.IMG_FILE_MAX_SIZE) {
-			return Resp.error("上传的图片不能大于5MB");
+			return Resp.error("上传的图片不能大于10MB");
 		}
 		if (fileType == 2 && file.getSize() > MixedConstant.VIDEO_FILE_MAX_SIZE) {
 			return Resp.error("上传的视频不能大于200MB");

@@ -11,7 +11,7 @@ public interface MixedConstant {
 	/**
 	 * 上传附件最大文件大小 5M
 	 */
-	long IMG_FILE_MAX_SIZE = 5242880L;
+	long IMG_FILE_MAX_SIZE = 10485760L;
 	/**
 	 * 上传附件最大文件大小 100M
 	 */
