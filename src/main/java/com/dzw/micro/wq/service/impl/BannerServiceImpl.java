@@ -75,7 +75,7 @@ public class BannerServiceImpl implements IBannerService {
 			BannerEntity bannerEntity = new BannerEntity();
 			BeanUtils.copyProperties(bannerEntity, req);
 			bannerEntity.setReq(0);
-			bannerEntity.setStatus(EnableStatusEnum.ENABLE.getCode());
+			bannerEntity.setStatus(EnableStatusEnum.DISABLE.getCode());
 			bannerEntity.setCreateTime(DateUtils.currentTimeSecond());
 			bannerEntity.setCreateUser(req.getUserName());
 			bannerEntityMapper.insert(bannerEntity);
