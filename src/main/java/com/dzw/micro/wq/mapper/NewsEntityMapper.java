@@ -5,6 +5,7 @@ import com.dzw.micro.wq.req.SelectNewsReq;
 import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,9 +22,9 @@ public interface NewsEntityMapper {
 
 	NewsEntity findOneById(Long id);
 
-	NewsEntity findUpOne(Long id, Long menuId);
+	NewsEntity findUpOne(@Param("id") Long id, @Param("menuId") Long menuId);
 
-	NewsEntity findDownOne(Long id, Long menuId);
+	NewsEntity findDownOne(@Param("id") Long id, @Param("menuId") Long menuId);
 
 	int insert(NewsEntity record);
 
