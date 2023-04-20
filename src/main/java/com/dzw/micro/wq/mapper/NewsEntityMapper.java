@@ -21,6 +21,10 @@ public interface NewsEntityMapper {
 
 	NewsEntity findOneById(Long id);
 
+	NewsEntity findUpOne(Long id, Long menuId);
+
+	NewsEntity findDownOne(Long id, Long menuId);
+
 	int insert(NewsEntity record);
 
 	int updateById(NewsEntity record);

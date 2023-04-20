@@ -96,17 +96,17 @@
         from t_news
         where id = #{id}
     </select>
-    <select id="findUpOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="findUpOne" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_news
-        where id = #{id}
+        where menu_id=#{menuId} and status=0 and id &lt;#{id} order by id desc limit 1
     </select>
-    <select id="findDownOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="findDownOne" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_news
-        where id = #{id}
+        where menu_id=#{menuId} and status=0 and id &gt;#{id} order by id limit 1
     </select>
     <insert id="insert" parameterType="com.dzw.micro.wq.model.NewsEntity">
         insert into t_news (id, title, menu_id, menu_name,
