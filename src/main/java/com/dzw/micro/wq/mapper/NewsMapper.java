@@ -15,7 +15,7 @@ import java.util.List;
  * @author: lyb
  * @date: 2023/4/6 23:35
  */
-public interface NewsEntityMapper {
+public interface NewsMapper {
 	Page<NewsListResp> findList(SelectNewsReq req);
 
 	Page<NewsApiListResp> findContentList(SelectNewsReq req);

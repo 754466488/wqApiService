@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dzw.micro.wq.mapper.FuncPermissionMapper">
+    <resultMap id="BaseResultMap" type="com.dzw.micro.wq.model.FuncPermissionEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="role_id" jdbcType="BIGINT" property="roleId"/>
+        <result column="resource_id" jdbcType="BIGINT" property="resourceId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        ,role_id,resource_id
+    </sql>
+    <select id="findOneById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_func_permission
+        where id = #{id}
+    </select>
+
+    <select id="findAllList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_func_permission
+    </select>
+
+    <select id="findListByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_func_permission
+        where role_id = #{roleId}
+    </select>
+
+    <insert id="insert" parameterType="com.dzw.micro.wq.model.FuncPermissionEntity">
+        insert into t_sys_func_permission (id, role_id, resource_id)
+        values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT})
+    </insert>
+
+    <delete id="deleteByRoleId" parameterType="java.lang.Long">
+        delete
+        from t_sys_func_permission
+        where role_id = #{roleId}
+    </delete>
+</mapper>

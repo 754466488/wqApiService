@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dzw.micro.wq.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.dzw.micro.wq.model.RoleEntity">
+        <id column="role_id" jdbcType="BIGINT" property="roleId"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="role_desc" jdbcType="VARCHAR" property="roleDesc"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="update_time" jdbcType="VARCHAR" property="updateTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        , staff_id, role_id
+    </sql>
+    <select id="findOneByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_role
+        where role_id = #{roleId}
+    </select>
+
+    <select id="findAllList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_role
+    </select>
+
+    <insert id="insert" parameterType="com.dzw.micro.wq.model.RoleEntity">
+        insert into t_sys_role (role_id, role_name, role_desc, create_time, create_user,
+                                update_time, update_user)
+        values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR},
+                #{createTime,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateByRoleId" parameterType="com.dzw.micro.wq.model.RoleEntity">
+        update t_sys_role
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDesc != null">
+                role_desc = #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByRoleId" parameterType="java.lang.Long">
+        delete
+        from t_sys_role
+        where role_id = #{roleId}
+    </delete>
+</mapper>

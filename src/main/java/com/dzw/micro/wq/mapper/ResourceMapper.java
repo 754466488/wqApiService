@@ -1,5 +1,9 @@
 package com.dzw.micro.wq.mapper;
 
+import com.dzw.micro.wq.model.ResourceEntity;
+
+import java.util.List;
+
 /**
  * description
  *
@@ -7,4 +11,5 @@ package com.dzw.micro.wq.mapper;
  * @date created in 2023/4/27
  */
 public interface ResourceMapper {
+	List<ResourceEntity> findAllList();
 }

@@ -1,7 +1,7 @@
 package com.dzw.micro.wq.service.impl;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
-import com.dzw.micro.wq.mapper.SysStaffEntityMapper;
+import com.dzw.micro.wq.mapper.SysStaffMapper;
 import com.dzw.micro.wq.model.SysStaffEntity;
 import com.dzw.micro.wq.req.LoginReq;
 import com.dzw.micro.wq.resp.UserInfoResp;
@@ -20,11 +20,11 @@ import java.util.Objects;
 @Service
 public class SysStaffServiceImpl implements ISysStaffService {
 	@Autowired
-	private SysStaffEntityMapper sysStaffEntityMapper;
+	private SysStaffMapper sysStaffMapper;
 
 	@Override
 	public Resp<UserInfoResp> login(LoginReq req) {
-		SysStaffEntity sysStaffEntity = sysStaffEntityMapper.findOneByUserName(req.getUserName());
+		SysStaffEntity sysStaffEntity = sysStaffMapper.findOneByUserName(req.getUserName());
 		if (Objects.isNull(sysStaffEntity)) {
 			return Resp.error("该用户不存在");
 		}

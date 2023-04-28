@@ -4,19 +4,17 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.application.utils.BeanUtils;
 import com.dzw.micro.wq.application.utils.DateUtils;
 import com.dzw.micro.wq.enums.EnableStatusEnum;
-import com.dzw.micro.wq.mapper.BannerEntityMapper;
+import com.dzw.micro.wq.mapper.BannerMapper;
 import com.dzw.micro.wq.model.BannerEntity;
 import com.dzw.micro.wq.req.SaveBannerReq;
 import com.dzw.micro.wq.req.SelectBannerReq;
 import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.BannerApiListResp;
 import com.dzw.micro.wq.resp.BannerListResp;
-import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.IBannerService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +30,7 @@ import java.util.Objects;
 @Service
 public class BannerServiceImpl implements IBannerService {
 	@Autowired
-	private BannerEntityMapper bannerEntityMapper;
+	private BannerMapper bannerMapper;
 
 	/**
 	 * 获取首页轮播图列表
@@ -42,7 +40,7 @@ public class BannerServiceImpl implements IBannerService {
 	 */
 	@Override
 	public Resp<List<BannerApiListResp>> findPageHomeList() {
-		List<BannerApiListResp> pageHomeList = bannerEntityMapper.findPageHomeList();
+		List<BannerApiListResp> pageHomeList = bannerMapper.findPageHomeList();
 		return Resp.success(pageHomeList);
 	}
 
@@ -56,7 +54,7 @@ public class BannerServiceImpl implements IBannerService {
 	public Resp<PageableDataResp<BannerListResp>> findPageList(SelectBannerReq req) {
 		PageableDataResp<BannerListResp> pageableDataResp = new PageableDataResp<>();
 		PageHelper.startPage(req.getPageNo(), req.getPageSize());
-		Page<BannerListResp> respPage = bannerEntityMapper.findPageList(req.getStatus(), req.getType());
+		Page<BannerListResp> respPage = bannerMapper.findPageList(req.getStatus(), req.getType());
 		pageableDataResp.setTotalSize(respPage.getTotal());
 		pageableDataResp.setDtoList(respPage.getResult());
 		return Resp.success(pageableDataResp);
@@ -78,9 +76,9 @@ public class BannerServiceImpl implements IBannerService {
 			bannerEntity.setStatus(EnableStatusEnum.DISABLE.getCode());
 			bannerEntity.setCreateTime(DateUtils.currentTimeSecond());
 			bannerEntity.setCreateUser(req.getUserName());
-			bannerEntityMapper.insert(bannerEntity);
+			bannerMapper.insert(bannerEntity);
 		} else {
-			BannerEntity bannerEntity = bannerEntityMapper.findOneById(id);
+			BannerEntity bannerEntity = bannerMapper.findOneById(id);
 			if (Objects.isNull(bannerEntity)) {
 				return Resp.error("数据不存在");
 			}
@@ -90,7 +88,7 @@ public class BannerServiceImpl implements IBannerService {
 			bannerEntity.setLinkUrl(req.getLinkUrl());
 			bannerEntity.setUpdateTime(DateUtils.currentTimeSecond());
 			bannerEntity.setUpdateUser(req.getUserName());
-			bannerEntityMapper.updateById(bannerEntity);
+			bannerMapper.updateById(bannerEntity);
 		}
 		return Resp.success();
 	}
@@ -103,14 +101,14 @@ public class BannerServiceImpl implements IBannerService {
 	 */
 	@Override
 	public Resp updateStatus(UpdateStatusReq req) {
-		BannerEntity bannerEntity = bannerEntityMapper.findOneById(req.getId());
+		BannerEntity bannerEntity = bannerMapper.findOneById(req.getId());
 		if (Objects.isNull(bannerEntity)) {
 			return Resp.error("数据不存在");
 		}
 		bannerEntity.setStatus(req.getStatus());
 		bannerEntity.setUpdateTime(DateUtils.currentTimeSecond());
 		bannerEntity.setUpdateUser(req.getUserName());
-		bannerEntityMapper.updateById(bannerEntity);
+		bannerMapper.updateById(bannerEntity);
 		return Resp.success();
 	}
 

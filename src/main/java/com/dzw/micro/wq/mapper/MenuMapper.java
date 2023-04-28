@@ -12,7 +12,7 @@ import java.util.List;
  * @author: lyb
  * @date: 2023/4/6 23:35
  */
-public interface MenuEntityMapper {
+public interface MenuMapper {
 	/**
 	 * 根据id获取对象
 	 *

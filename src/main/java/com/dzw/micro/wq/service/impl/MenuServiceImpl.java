@@ -4,7 +4,7 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.application.utils.BeanUtils;
 import com.dzw.micro.wq.application.utils.DateUtils;
 import com.dzw.micro.wq.enums.EnableStatusEnum;
-import com.dzw.micro.wq.mapper.MenuEntityMapper;
+import com.dzw.micro.wq.mapper.MenuMapper;
 import com.dzw.micro.wq.model.MenuEntity;
 import com.dzw.micro.wq.req.SaveMenusReq;
 import com.dzw.micro.wq.req.SelectMenuReq;
@@ -33,13 +33,13 @@ import java.util.stream.Collectors;
 @Service
 public class MenuServiceImpl implements IMenuService {
 	@Autowired
-	private MenuEntityMapper menuEntityMapper;
+	private MenuMapper menuMapper;
 
 	@Override
 	public Resp<PageableDataResp<MenusListResp>> findList(SelectMenuReq req) {
 		PageableDataResp<MenusListResp> pageableDataResp = new PageableDataResp<>();
 		PageHelper.startPage(req.getPageNo(), req.getPageSize());
-		Page<MenusListResp> respPage = menuEntityMapper.findList(req.getPid());
+		Page<MenusListResp> respPage = menuMapper.findList(req.getPid());
 		pageableDataResp.setTotalSize(respPage.getTotal());
 		pageableDataResp.setDtoList(respPage.getResult());
 		return Resp.success(pageableDataResp);
@@ -56,9 +56,9 @@ public class MenuServiceImpl implements IMenuService {
 			menuEntity.setStatus(EnableStatusEnum.ENABLE.getCode());
 			menuEntity.setCreateTime(DateUtils.currentTimeSecond());
 			menuEntity.setCreateUser(req.getUserName());
-			menuEntityMapper.insert(menuEntity);
+			menuMapper.insert(menuEntity);
 		} else {
-			MenuEntity menuEntity = menuEntityMapper.findOneById(id);
+			MenuEntity menuEntity = menuMapper.findOneById(id);
 			if (Objects.isNull(menuEntity)) {
 				return Resp.error("数据不存在");
 			}
@@ -66,27 +66,27 @@ public class MenuServiceImpl implements IMenuService {
 			menuEntity.setName(req.getName());
 			menuEntity.setUpdateTime(DateUtils.currentTimeSecond());
 			menuEntity.setUpdateUser(req.getUserName());
-			menuEntityMapper.updateById(menuEntity);
+			menuMapper.updateById(menuEntity);
 		}
 		return Resp.success();
 	}
 
 	@Override
 	public Resp updateStatus(UpdateStatusReq req) {
-		MenuEntity menuEntity = menuEntityMapper.findOneById(req.getId());
+		MenuEntity menuEntity = menuMapper.findOneById(req.getId());
 		if (Objects.isNull(menuEntity)) {
 			return Resp.error("数据不存在");
 		}
 		menuEntity.setStatus(req.getStatus());
 		menuEntity.setUpdateTime(DateUtils.currentTimeSecond());
 		menuEntity.setUpdateUser(req.getUserName());
-		menuEntityMapper.updateById(menuEntity);
+		menuMapper.updateById(menuEntity);
 		return Resp.success();
 	}
 
 	@Override
 	public Resp<List<MenuTreeResp>> treeList() {
-		List<MenuEntity> list = menuEntityMapper.findAll();
+		List<MenuEntity> list = menuMapper.findAll();
 		List<MenuEntity> oneList = list.stream().filter(x -> x.getPid() == 0).collect(Collectors.toList());
 		List<MenuTreeResp> respList = Lists.newArrayList();
 		for (MenuEntity entity : oneList
@@ -119,12 +119,12 @@ public class MenuServiceImpl implements IMenuService {
 
 	@Override
 	public Resp<List<LeftMenuTreeResp>> leftTreeList(Long menuId) {
-		MenuEntity menuEntity = menuEntityMapper.findOneById(menuId);
+		MenuEntity menuEntity = menuMapper.findOneById(menuId);
 		if (Objects.isNull(menuEntity)) {
 			return Resp.success();
 		}
 		List<LeftMenuTreeResp> respList = Lists.newArrayList();
-		List<MenuEntity> list = menuEntityMapper.findAll();
+		List<MenuEntity> list = menuMapper.findAll();
 		List<MenuEntity> entityList = Lists.newArrayList();
 		int level = menuEntity.getLevel();
 		if (level == 1) {

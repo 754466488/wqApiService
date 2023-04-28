@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dzw.micro.wq.mapper.MenuEntityMapper">
+<mapper namespace="com.dzw.micro.wq.mapper.MenuMapper">
     <resultMap id="BaseResultMap" type="com.dzw.micro.wq.model.MenuEntity">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
