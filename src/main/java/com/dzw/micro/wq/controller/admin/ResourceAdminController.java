@@ -24,7 +24,7 @@ public class ResourceAdminController {
 	@Autowired
 	private IResourceService resourceService;
 
-	@ApiOperation(value = "获取角色绑定菜单列表", notes = "")
+	@ApiOperation(value = "获取菜单列表", notes = "")
 	@GetMapping(path = "/list")
 	public Resp list() {
 		return resourceService.list();
