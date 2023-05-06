@@ -11,5 +11,5 @@ import lombok.Data;
 public class StaffRoleEntity {
 	private long id;
 	private long roleId;
-	private String staffId;
+	private long staffId;
 }
