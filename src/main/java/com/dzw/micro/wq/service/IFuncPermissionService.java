@@ -4,7 +4,7 @@ package com.dzw.micro.wq.service;
  * description
  *
  * @author lyb
- * @date created in 2023/4/28
+ * @date created in 2023/5/6
  */
-public class IFuncPermissionService {
+public interface IFuncPermissionService {
 }
