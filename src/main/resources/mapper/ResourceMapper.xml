@@ -16,7 +16,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         resource_id
-        , pid, name,url, icon, req, type, create_user,
+        , pid, name,url, icon, req, type, create_user,create_time,
     update_time, update_user
     </sql>
     <select id="findAllList" parameterType="java.lang.String" resultMap="BaseResultMap">
