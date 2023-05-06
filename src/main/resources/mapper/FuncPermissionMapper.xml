@@ -23,6 +23,16 @@
         from t_sys_func_permission
     </select>
 
+    <select id="findListByRoleIds"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_func_permission
+        where role_id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
     <select id="findListByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

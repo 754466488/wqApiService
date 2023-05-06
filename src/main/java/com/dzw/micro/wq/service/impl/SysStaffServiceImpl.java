@@ -3,22 +3,31 @@ package com.dzw.micro.wq.service.impl;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.application.utils.BeanUtils;
 import com.dzw.micro.wq.application.utils.DateUtils;
+import com.dzw.micro.wq.mapper.FuncPermissionMapper;
+import com.dzw.micro.wq.mapper.ResourceMapper;
 import com.dzw.micro.wq.mapper.StaffRoleMapper;
 import com.dzw.micro.wq.mapper.SysStaffMapper;
+import com.dzw.micro.wq.model.FuncPermissionEntity;
+import com.dzw.micro.wq.model.StaffRoleEntity;
 import com.dzw.micro.wq.model.SysStaffEntity;
 import com.dzw.micro.wq.req.LoginReq;
 import com.dzw.micro.wq.req.SaveStaffReq;
 import com.dzw.micro.wq.req.SelectStaffReq;
 import com.dzw.micro.wq.resp.PageableDataResp;
+import com.dzw.micro.wq.resp.ResourceResp;
 import com.dzw.micro.wq.resp.SysStaffListResp;
 import com.dzw.micro.wq.resp.UserInfoResp;
 import com.dzw.micro.wq.service.ISysStaffService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * description
@@ -32,6 +41,10 @@ public class SysStaffServiceImpl implements ISysStaffService {
 	private SysStaffMapper sysStaffMapper;
 	@Autowired
 	private StaffRoleMapper staffRoleMapper;
+	@Autowired
+	private FuncPermissionMapper funcPermissionMapper;
+	@Autowired
+	private ResourceMapper resourceMapper;
 
 	@Override
 	public Resp<PageableDataResp<SysStaffListResp>> list(SelectStaffReq req) {
@@ -52,10 +65,23 @@ public class SysStaffServiceImpl implements ISysStaffService {
 		if (!Objects.equals(req.getPassword(), sysStaffEntity.getPass())) {
 			return Resp.error("密码错误");
 		}
+		List<StaffRoleEntity> staffRoleList = staffRoleMapper.findListByStaffId(sysStaffEntity.getStaffId());
+		if (CollectionUtils.isEmpty(staffRoleList)) {
+			return Resp.error("用户还未分配权限");
+		}
+		List<Long> roleIds = staffRoleList.stream().map(StaffRoleEntity::getRoleId).collect(Collectors.toList());
+		List<FuncPermissionEntity> funcPermissionList = funcPermissionMapper.findListByRoleIds(roleIds);
+		List<ResourceResp> respList = Lists.newArrayList();
+		if (CollectionUtils.isNotEmpty(funcPermissionList)) {
+			List<Long> resourceIds = funcPermissionList.stream().map(FuncPermissionEntity::getResourceId).collect(Collectors.toList());
+			respList = resourceMapper.findListByResourceIds(resourceIds);
+		}
+
 		UserInfoResp resp = new UserInfoResp();
 		resp.setStaffId(sysStaffEntity.getStaffId());
 		resp.setName(sysStaffEntity.getName());
 		resp.setUserName(sysStaffEntity.getUserName());
+		resp.setResourceResp(respList);
 		return Resp.success(resp);
 	}
 

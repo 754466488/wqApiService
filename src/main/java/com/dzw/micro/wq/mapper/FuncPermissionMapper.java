@@ -19,6 +19,8 @@ public interface FuncPermissionMapper {
 
 	List<FuncPermissionEntity> findAllList();
 
+	List<FuncPermissionEntity> findListByRoleIds(List<Long> roleIds);
+
 	List<FuncPermissionEntity> findListByRoleId(long roleId);
 
 	int insert(FuncPermissionEntity entity);

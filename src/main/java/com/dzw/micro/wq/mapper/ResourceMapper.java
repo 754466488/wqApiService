@@ -1,6 +1,5 @@
 package com.dzw.micro.wq.mapper;
 
-import com.dzw.micro.wq.model.ResourceEntity;
 import com.dzw.micro.wq.resp.ResourceResp;
 import org.mapstruct.Mapper;
 
@@ -15,4 +14,6 @@ import java.util.List;
 @Mapper
 public interface ResourceMapper {
 	List<ResourceResp> findAllList();
+
+	List<ResourceResp> findListByResourceIds(List<Long> resourceIds);
 }

@@ -24,4 +24,14 @@
         <include refid="Base_Column_List"/>
         from t_sys_resource
     </select>
+
+    <select id="findListByResourceIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_resource
+        where resource_id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 </mapper>

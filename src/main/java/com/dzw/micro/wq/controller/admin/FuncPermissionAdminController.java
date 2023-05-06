@@ -1,6 +1,7 @@
 package com.dzw.micro.wq.controller.admin;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.req.BindResourceReq;
 import com.dzw.micro.wq.req.RoleIdReq;
 import com.dzw.micro.wq.service.IFuncPermissionService;
 import io.swagger.annotations.Api;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,11 +28,17 @@ import javax.validation.Valid;
 @Slf4j
 public class FuncPermissionAdminController {
 	@Autowired
-	private IFuncPermissionService funcPermissionServicel;
+	private IFuncPermissionService funcPermissionService;
 
 	@ApiOperation(value = "获取角色绑定菜单列表", notes = "")
 	@GetMapping(path = "/bindList")
 	public Resp bindList(@Valid RoleIdReq req, BindingResult bindingResult) {
-		return funcPermissionServicel.bindList(req.getRoleId());
+		return funcPermissionService.bindList(req.getRoleId());
+	}
+
+	@ApiOperation(value = "绑定菜单", notes = "")
+	@PostMapping(path = "/bind")
+	public Resp bind(@Valid BindResourceReq req, BindingResult bindingResult) {
+		return funcPermissionService.bind(req);
 	}
 }

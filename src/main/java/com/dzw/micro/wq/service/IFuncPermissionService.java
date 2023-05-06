@@ -1,6 +1,7 @@
 package com.dzw.micro.wq.service;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.req.BindResourceReq;
 import com.dzw.micro.wq.resp.RoleAdminListResp;
 
 import java.util.List;
@@ -13,4 +14,6 @@ import java.util.List;
  */
 public interface IFuncPermissionService {
 	Resp<List<RoleAdminListResp>> bindList(long roleId);
+
+	Resp bind(BindResourceReq req);
 }

@@ -1,6 +1,7 @@
 package com.dzw.micro.wq.service.impl;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.application.utils.StringUtils;
 import com.dzw.micro.wq.mapper.StaffRoleMapper;
 import com.dzw.micro.wq.model.StaffRoleEntity;
 import com.dzw.micro.wq.req.BindRoleReq;
@@ -37,15 +38,17 @@ public class StaffRoleServiceImpl implements IStaffRoleService {
 
 	@Override
 	public Resp bind(BindRoleReq req) {
-		staffRoleMapper.deleteByStaffId(req.getStaffId());
 		String roleIds = req.getRoleIds();
-		List<String> ListRoleId = Splitter.on(",").splitToList(roleIds);
-		for (String str : ListRoleId
-		) {
-			StaffRoleEntity entity = new StaffRoleEntity();
-			entity.setStaffId(req.getStaffId());
-			entity.setRoleId(Long.parseLong(str));
-			staffRoleMapper.insert(entity);
+		if (StringUtils.isNotBlank(roleIds)) {
+			staffRoleMapper.deleteByStaffId(req.getStaffId());
+			List<String> ListRoleId = Splitter.on(",").splitToList(roleIds);
+			for (String str : ListRoleId
+			) {
+				StaffRoleEntity entity = new StaffRoleEntity();
+				entity.setStaffId(req.getStaffId());
+				entity.setRoleId(Long.parseLong(str));
+				staffRoleMapper.insert(entity);
+			}
 		}
 		return Resp.success();
 	}

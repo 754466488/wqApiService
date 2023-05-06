@@ -3,6 +3,8 @@ package com.dzw.micro.wq.resp;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 
 /**
  * description
@@ -18,4 +20,6 @@ public class UserInfoResp {
 	private String name;
 	@ApiModelProperty(value = "用户名")
 	private String userName;
+	@ApiModelProperty(value = "用户绑定菜单")
+	private List<ResourceResp> resourceResp;
 }
