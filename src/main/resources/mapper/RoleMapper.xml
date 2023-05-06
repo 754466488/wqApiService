@@ -11,8 +11,8 @@
         <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id
-        , staff_id, role_id
+        role_id
+        ,role_name,role_desc,create_time,create_user,update_time,update_user
     </sql>
     <select id="findOneByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
