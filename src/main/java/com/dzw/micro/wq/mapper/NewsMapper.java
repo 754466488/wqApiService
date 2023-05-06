@@ -6,6 +6,7 @@ import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.NewsListResp;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
+import org.mapstruct.Mapper;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @author: lyb
  * @date: 2023/4/6 23:35
  */
+@Mapper
 public interface NewsMapper {
 	Page<NewsListResp> findList(SelectNewsReq req);
 

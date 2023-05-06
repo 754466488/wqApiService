@@ -5,7 +5,7 @@
         <id column="resource_id" jdbcType="BIGINT" property="resourceId"/>
         <result column="pid" jdbcType="BIGINT" property="pid"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="url" jdbcType="url" property="url"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="req" jdbcType="TINYINT" property="req"/>
         <result column="type" jdbcType="TINYINT" property="type"/>
