@@ -1,11 +1,20 @@
 package com.dzw.micro.wq.service.impl;
 
 import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.application.utils.BeanUtils;
+import com.dzw.micro.wq.application.utils.DateUtils;
+import com.dzw.micro.wq.mapper.StaffRoleMapper;
 import com.dzw.micro.wq.mapper.SysStaffMapper;
 import com.dzw.micro.wq.model.SysStaffEntity;
 import com.dzw.micro.wq.req.LoginReq;
+import com.dzw.micro.wq.req.SaveStaffReq;
+import com.dzw.micro.wq.req.SelectStaffReq;
+import com.dzw.micro.wq.resp.PageableDataResp;
+import com.dzw.micro.wq.resp.SysStaffListResp;
 import com.dzw.micro.wq.resp.UserInfoResp;
 import com.dzw.micro.wq.service.ISysStaffService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +30,18 @@ import java.util.Objects;
 public class SysStaffServiceImpl implements ISysStaffService {
 	@Autowired
 	private SysStaffMapper sysStaffMapper;
+	@Autowired
+	private StaffRoleMapper staffRoleMapper;
+
+	@Override
+	public Resp<PageableDataResp<SysStaffListResp>> list(SelectStaffReq req) {
+		PageableDataResp<SysStaffListResp> pageableDataResp = new PageableDataResp<>();
+		PageHelper.startPage(req.getPageNo(), req.getPageSize());
+		Page<SysStaffListResp> respPage = sysStaffMapper.findList(req);
+		pageableDataResp.setTotalSize(respPage.getTotal());
+		pageableDataResp.setDtoList(respPage.getResult());
+		return Resp.success(pageableDataResp);
+	}
 
 	@Override
 	public Resp<UserInfoResp> login(LoginReq req) {
@@ -36,5 +57,30 @@ public class SysStaffServiceImpl implements ISysStaffService {
 		resp.setName(sysStaffEntity.getName());
 		resp.setUserName(sysStaffEntity.getUserName());
 		return Resp.success(resp);
+	}
+
+	@Override
+	public Resp save(SaveStaffReq req) {
+		if (Objects.isNull(req.getStaffId())) {
+			SysStaffEntity entity = new SysStaffEntity();
+			BeanUtils.copyProperties(entity, req);
+			entity.setCreateTime(DateUtils.currentTimeSecond());
+		} else {
+			SysStaffEntity staffEntity = sysStaffMapper.findOneByStaffId(req.getStaffId());
+			if (Objects.nonNull(staffEntity)) {
+				BeanUtils.copyProperties(staffEntity, req);
+				staffEntity.setUpdateUser(req.getCreateUser());
+				staffEntity.setUpdateTime(DateUtils.currentTimeSecond());
+				sysStaffMapper.update(staffEntity);
+			}
+		}
+		return Resp.success();
+	}
+
+	@Override
+	public Resp delete(long staffId) {
+		sysStaffMapper.deleteByStaffId(staffId);
+		staffRoleMapper.deleteByStaffId(staffId);
+		return Resp.success();
 	}
 }

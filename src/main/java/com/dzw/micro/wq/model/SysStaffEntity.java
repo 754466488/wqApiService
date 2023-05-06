@@ -11,7 +11,7 @@ public class SysStaffEntity {
 	private String phone;
 	private String idCard;
 	private String positions;
-	private Byte status;
+	private int status;
 	private String createTime;
 	private String createUser;
 	private String updateTime;

@@ -24,4 +24,5 @@ public interface StaffRoleMapper {
 	int insert(StaffRoleEntity entity);
 
 	int deleteByRoleId(long roleId);
+	int deleteByStaffId(long staffId);
 }

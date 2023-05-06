@@ -1,6 +1,9 @@
 package com.dzw.micro.wq.mapper;
 
 import com.dzw.micro.wq.model.SysStaffEntity;
+import com.dzw.micro.wq.req.SelectStaffReq;
+import com.dzw.micro.wq.resp.SysStaffListResp;
+import com.github.pagehelper.Page;
 import org.mapstruct.Mapper;
 
 /**
@@ -11,5 +14,13 @@ import org.mapstruct.Mapper;
  */
 @Mapper
 public interface SysStaffMapper {
+	Page<SysStaffListResp> findList(SelectStaffReq req);
+
 	SysStaffEntity findOneByUserName(String userName);
+
+	SysStaffEntity findOneByStaffId(long staffId);
+
+	int update(SysStaffEntity entity);
+
+	int deleteByStaffId(long staffId);
 }

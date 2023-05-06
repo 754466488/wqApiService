@@ -1,6 +1,8 @@
 package com.dzw.micro.wq.mapper;
 
 import com.dzw.micro.wq.model.RoleEntity;
+import com.dzw.micro.wq.resp.RoleAdminListResp;
+import com.github.pagehelper.Page;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public interface RoleMapper {
 	 * @author: lyb
 	 * @date: 2023/4/28 2:55 PM
 	 */
-	List<RoleEntity> findAllList();
+	Page<RoleAdminListResp> findAllList(String userName);
 
 	/**
 	 * 添加数据

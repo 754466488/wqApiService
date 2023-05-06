@@ -1,20 +1,18 @@
-package com.dzw.micro.wq.model;
+package com.dzw.micro.wq.resp;
 
 import lombok.Data;
 
 /**
- * 角色表
+ * description
  *
- * @author: lyb
- * @date: 2023/4/27 20:16
+ * @author lyb
+ * @date created in 2023/5/6
  */
 @Data
-public class RoleEntity {
+public class RoleAdminListResp {
 	private long roleId;
 	private String roleName;
 	private String roleDesc;
 	private String createTime;
 	private String createUser;
-	private String updateTime;
-	private String updateUser;
 }

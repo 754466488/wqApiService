@@ -1,4 +1,4 @@
-package com.dzw.micro.wq.resp;
+package com.dzw.micro.wq.req;
 
 import com.dzw.micro.wq.application.domain.req.BaseReq;
 import lombok.Data;

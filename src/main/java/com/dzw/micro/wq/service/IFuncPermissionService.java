@@ -1,5 +1,10 @@
 package com.dzw.micro.wq.service;
 
+import com.dzw.micro.wq.application.domain.req.Resp;
+import com.dzw.micro.wq.resp.RoleAdminListResp;
+
+import java.util.List;
+
 /**
  * description
  *
@@ -7,4 +12,5 @@ package com.dzw.micro.wq.service;
  * @date created in 2023/5/6
  */
 public interface IFuncPermissionService {
+	Resp<List<RoleAdminListResp>> bindList(long roleId);
 }

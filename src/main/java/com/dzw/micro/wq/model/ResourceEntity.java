@@ -17,8 +17,8 @@ public class ResourceEntity {
 	private String icon;
 	private int req;
 	private int type;
-	private long createTime;
+	private String createTime;
 	private String createUser;
-	private long updateTime;
+	private String updateTime;
 	private String updateUser;
 }

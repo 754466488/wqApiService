@@ -48,4 +48,10 @@
         from t_sys_staff_role
         where role_id = #{roleId}
     </delete>
+
+    <delete id="deleteByStaffId" parameterType="java.lang.Long">
+        delete
+        from t_sys_staff_role
+        where staff_id = #{staffId}
+    </delete>
 </mapper>

@@ -3,6 +3,7 @@ package com.dzw.micro.wq.controller.api;
 import com.dzw.micro.wq.application.domain.req.BaseReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.enums.EnableStatusEnum;
+import com.dzw.micro.wq.req.IdReq;
 import com.dzw.micro.wq.req.SelectNewsApiReq;
 import com.dzw.micro.wq.req.SelectNewsReq;
 import com.dzw.micro.wq.resp.*;

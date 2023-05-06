@@ -20,10 +20,82 @@
         , name, user_name,pass, phone, id_card, positions, status, create_time, create_user,
     update_time, update_user
     </sql>
+    <select id="findList" parameterType="com.dzw.micro.wq.req.SelectStaffReq" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_staff
+        where 1=1
+        <if test="name != null">
+            and name = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="phone != null">
+            and phone = #{phone,jdbcType=VARCHAR}
+        </if>
+        <if test="idCard != null">
+            and id_card = #{idCard,jdbcType=VARCHAR}
+        </if>
+        <if test="positions != null">
+            and positions = #{positions,jdbcType=VARCHAR}
+        </if>
+    </select>
+
     <select id="findOneByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_sys_staff
         where user_name = #{userName}
     </select>
+
+    <select id="findOneByStaffId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sys_staff
+        where staff_id = #{staffId}
+    </select>
+
+    <update id="update" parameterType="com.dzw.micro.wq.model.SysStaffEntity">
+        update t_sys_staff
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="pass != null">
+                pass = #{pass,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="positions != null">
+                positions = #{positions,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="deleteByStaffId" parameterType="java.lang.Long">
+        delete
+        from t_sys_staff
+        where staff_id = #{staffId}
+    </delete>
 </mapper>
