@@ -24,10 +24,11 @@
     <select id="findAllList" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        <if test="roleName != null">
-            role_name = #{roleName,jdbcType=VARCHAR},
-        </if>
         from t_sys_role
+        where 1=1
+        <if test="roleName != null">
+            and role_name = #{roleName,jdbcType=VARCHAR},
+        </if>
     </select>
 
     <insert id="insert" parameterType="com.dzw.micro.wq.model.RoleEntity">
