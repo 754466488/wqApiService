@@ -50,8 +50,8 @@ public class StaticResourcesConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler(this.genStaticPathPatterns("/docs")).addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/docs/");
 		//h5静态资源相对路径
 		registry.addResourceHandler(this.genStaticPathPatterns("/h5")).addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/h5/");
-		registry.addResourceHandler("/images/**").addResourceLocations(ResourceUtils.FILE_URL_PREFIX + fileServicePath);
-		registry.addResourceHandler("/video/**").addResourceLocations(ResourceUtils.FILE_URL_PREFIX + fileServicePath);
+		//上传文件资源
+		registry.addResourceHandler("/file/**").addResourceLocations(ResourceUtils.FILE_URL_PREFIX + fileServicePath);
 		super.addResourceHandlers(registry);
 	}
 
