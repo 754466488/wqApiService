@@ -10,7 +10,7 @@ spring:
       maxRequestSize: "100MB"
   mvc:
     async:
-      request-timeout: 300000
+      request-timeout: 60000
 
 file:
   resourceLocation: /fileService
