@@ -65,23 +65,23 @@ public class SysStaffServiceImpl implements ISysStaffService {
 		if (!Objects.equals(req.getPassword(), sysStaffEntity.getPass())) {
 			return Resp.error("密码错误");
 		}
-//		List<StaffRoleEntity> staffRoleList = staffRoleMapper.findListByStaffId(sysStaffEntity.getStaffId());
-//		if (CollectionUtils.isEmpty(staffRoleList)) {
-//			return Resp.error("用户还未分配权限");
-//		}
-//		List<Long> roleIds = staffRoleList.stream().map(StaffRoleEntity::getRoleId).collect(Collectors.toList());
-//		List<FuncPermissionEntity> funcPermissionList = funcPermissionMapper.findListByRoleIds(roleIds);
-//		List<ResourceResp> respList = Lists.newArrayList();
-//		if (CollectionUtils.isNotEmpty(funcPermissionList)) {
-//			List<Long> resourceIds = funcPermissionList.stream().map(FuncPermissionEntity::getResourceId).collect(Collectors.toList());
-//			respList = resourceMapper.findListByResourceIds(resourceIds);
-//		}
+		List<StaffRoleEntity> staffRoleList = staffRoleMapper.findListByStaffId(sysStaffEntity.getStaffId());
+		if (CollectionUtils.isEmpty(staffRoleList)) {
+			return Resp.error("用户还未分配权限");
+		}
+		List<Long> roleIds = staffRoleList.stream().map(StaffRoleEntity::getRoleId).collect(Collectors.toList());
+		List<FuncPermissionEntity> funcPermissionList = funcPermissionMapper.findListByRoleIds(roleIds);
+		List<ResourceResp> respList = Lists.newArrayList();
+		if (CollectionUtils.isNotEmpty(funcPermissionList)) {
+			List<Long> resourceIds = funcPermissionList.stream().map(FuncPermissionEntity::getResourceId).collect(Collectors.toList());
+			respList = resourceMapper.findListByResourceIds(resourceIds);
+		}
 
 		UserInfoResp resp = new UserInfoResp();
 		resp.setStaffId(sysStaffEntity.getStaffId());
 		resp.setName(sysStaffEntity.getName());
 		resp.setUserName(sysStaffEntity.getUserName());
-//		resp.setResourceResp(respList);
+		resp.setResourceResp(respList);
 		return Resp.success(resp);
 	}
 
