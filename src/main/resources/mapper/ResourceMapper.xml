@@ -9,9 +9,9 @@
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="req" jdbcType="TINYINT" property="req"/>
         <result column="type" jdbcType="TINYINT" property="type"/>
-        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
         <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
-        <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
+        <result column="update_time" jdbcType="VARCHAR" property="updateTime"/>
         <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
     </resultMap>
     <sql id="Base_Column_List">

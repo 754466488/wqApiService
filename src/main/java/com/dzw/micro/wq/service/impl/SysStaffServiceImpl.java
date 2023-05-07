@@ -91,6 +91,7 @@ public class SysStaffServiceImpl implements ISysStaffService {
 			SysStaffEntity entity = new SysStaffEntity();
 			BeanUtils.copyProperties(entity, req);
 			entity.setCreateTime(DateUtils.currentTimeSecond());
+			sysStaffMapper.insert(entity);
 		} else {
 			SysStaffEntity staffEntity = sysStaffMapper.findOneByStaffId(req.getStaffId());
 			if (Objects.nonNull(staffEntity)) {

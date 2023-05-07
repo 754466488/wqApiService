@@ -9,9 +9,9 @@
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="link_url" jdbcType="VARCHAR" property="linkUrl"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
-        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
         <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
-        <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
+        <result column="update_time" jdbcType="VARCHAR" property="updateTime"/>
         <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -54,8 +54,8 @@
                               update_time, update_user)
         values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
                 #{req,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR},
-                #{type,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR},
-                #{updateTime,jdbcType=BIGINT}, #{updateUser,jdbcType=VARCHAR})
+                #{type,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR})
     </insert>
     <update id="updateById" parameterType="com.dzw.micro.wq.model.BannerEntity">
         update t_banner
@@ -79,13 +79,13 @@
                 type = #{type,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=BIGINT},
+                create_time = #{createTime,jdbcType=VARCHAR},
             </if>
             <if test="createUser != null">
                 create_user = #{createUser,jdbcType=VARCHAR},
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=BIGINT},
+                update_time = #{updateTime,jdbcType=VARCHAR},
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser,jdbcType=VARCHAR},

@@ -13,10 +13,10 @@
         <result column="is_top" jdbcType="INTEGER" property="isTop"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
-        <result column="publish_time" jdbcType="BIGINT" property="publishTime"/>
-        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <result column="publish_time" jdbcType="VARCHAR" property="publishTime"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
         <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
-        <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
+        <result column="update_time" jdbcType="VARCHAR" property="updateTime"/>
         <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -119,8 +119,8 @@
                 #{clickNum,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
                 #{coverPicUrl,jdbcType=VARCHAR},
                 #{isTop,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
-                #{publishTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR},
-                #{updateTime,jdbcType=BIGINT}, #{updateUser,jdbcType=VARCHAR})
+                #{publishTime,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR},
+                #{updateTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR})
     </insert>
     <update id="updateById" parameterType="com.dzw.micro.wq.model.NewsEntity">
         update t_news
@@ -156,16 +156,16 @@
                 status = #{status,jdbcType=INTEGER},
             </if>
             <if test="publishTime != null">
-                publish_time = #{publishTime,jdbcType=BIGINT},
+                publish_time = #{publishTime,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=BIGINT},
+                create_time = #{createTime,jdbcType=VARCHAR},
             </if>
             <if test="createUser != null">
                 create_user = #{createUser,jdbcType=VARCHAR},
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=BIGINT},
+                update_time = #{updateTime,jdbcType=VARCHAR},
             </if>
             <if test="updateUser != null">
                 update_user = #{updateUser,jdbcType=VARCHAR},

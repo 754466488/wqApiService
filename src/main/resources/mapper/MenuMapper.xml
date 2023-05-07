@@ -9,7 +9,7 @@
         <result column="req" jdbcType="INTEGER" property="req"/>
         <result column="pic_url" jdbcType="VARCHAR" property="picUrl"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
-        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
         <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -45,7 +45,7 @@
         values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT},
                 #{level,jdbcType=INTEGER}, #{req,jdbcType=INTEGER}, #{picUrl,jdbcType=VARCHAR},
                 #{status,jdbcType=INTEGER},
-                #{createTime,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR})
+                #{createTime,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR})
     </insert>
 
     <update id="updateById" parameterType="com.dzw.micro.wq.model.MenuEntity">
@@ -56,7 +56,7 @@
             req         = #{req,jdbcType=INTEGER},
             pic_url     =#{picUrl,jdbcType=VARCHAR},
             status      = #{status,jdbcType=INTEGER},
-            create_time = #{createTime,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=VARCHAR},
             create_user = #{createUser,jdbcType=VARCHAR}
         where id = #{id,jdbcType=BIGINT}
     </update>

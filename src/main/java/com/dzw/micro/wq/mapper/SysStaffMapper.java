@@ -22,5 +22,7 @@ public interface SysStaffMapper {
 
 	int update(SysStaffEntity entity);
 
+	int insert(SysStaffEntity entity);
+
 	int deleteByStaffId(long staffId);
 }
