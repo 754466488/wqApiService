@@ -13,7 +13,6 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 public class BindRoleReq {
-	@NotBlank(message = "用户id不能为空")
 	@ApiModelProperty(value = "用户id")
 	private long staffId;
 	@NotBlank(message = "角色id不能为空")
