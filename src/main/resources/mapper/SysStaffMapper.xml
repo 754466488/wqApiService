@@ -94,7 +94,7 @@
     </update>
 
     <insert id="insert" parameterType="com.dzw.micro.wq.model.SysStaffEntity">
-        insert into t_menu (staff_id, name, user_name,
+        insert into t_sys_staff (staff_id, name, user_name,
                             pass, phone, id_card, positions, status,
                             create_time, create_user, update_time, update_user)
         values (#{staffId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
