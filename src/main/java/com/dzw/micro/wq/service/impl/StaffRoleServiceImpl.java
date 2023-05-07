@@ -31,7 +31,7 @@ public class StaffRoleServiceImpl implements IStaffRoleService {
 		List<Long> longList = Lists.newArrayList();
 		List<StaffRoleEntity> list = staffRoleMapper.findListByStaffId(staffId);
 		if (CollectionUtils.isNotEmpty(list)) {
-			longList = list.stream().map(StaffRoleEntity::getStaffId).collect(Collectors.toList());
+			longList = list.stream().map(StaffRoleEntity::getRoleId).collect(Collectors.toList());
 		}
 		return Resp.success(longList);
 	}
