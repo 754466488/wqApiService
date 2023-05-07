@@ -88,6 +88,10 @@ public class SysStaffServiceImpl implements ISysStaffService {
 	@Override
 	public Resp save(SaveStaffReq req) {
 		if (Objects.isNull(req.getStaffId())) {
+			SysStaffEntity staffEntity = sysStaffMapper.findOneByUserName(req.getUserName());
+			if (Objects.nonNull(staffEntity)) {
+				return Resp.error("此用户已经存在");
+			}
 			SysStaffEntity entity = new SysStaffEntity();
 			BeanUtils.copyProperties(entity, req);
 			entity.setCreateTime(DateUtils.currentTimeSecond());
