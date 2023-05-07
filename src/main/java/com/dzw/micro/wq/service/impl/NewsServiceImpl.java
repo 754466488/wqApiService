@@ -151,10 +151,11 @@ public class NewsServiceImpl implements INewsService {
 			//记录点击次数
 			newsMapper.addClickNumById(id);
 		}
+		String publishTime = newsEntity.getPublishTime();
 		//上一篇
-		NewsEntity upOne = newsMapper.findUpOne(id, newsEntity.getMenuId());
+		NewsEntity upOne = newsMapper.findUpOne(publishTime, newsEntity.getMenuId());
 		//上一篇
-		NewsEntity downOne = newsMapper.findDownOne(id, newsEntity.getMenuId());
+		NewsEntity downOne = newsMapper.findDownOne(publishTime, newsEntity.getMenuId());
 		NewsDetailResp resp = new NewsDetailResp();
 		BeanUtils.copyProperties(resp, newsEntity);
 		if (Objects.nonNull(upOne)) {

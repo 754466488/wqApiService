@@ -24,9 +24,9 @@ public interface NewsMapper {
 
 	NewsEntity findOneById(Long id);
 
-	NewsEntity findUpOne(@Param("id") Long id, @Param("menuId") Long menuId);
+	NewsEntity findUpOne(@Param("publishTime") String publishTime, @Param("menuId") Long menuId);
 
-	NewsEntity findDownOne(@Param("id") Long id, @Param("menuId") Long menuId);
+	NewsEntity findDownOne(@Param("publishTime") String publishTime, @Param("menuId") Long menuId);
 
 	int insert(NewsEntity record);
 
