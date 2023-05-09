@@ -58,8 +58,6 @@ public class NewsServiceImpl implements INewsService {
 
 	@Override
 	public Resp<PageableDataResp<NewsListResp>> findAdminPageList(SelectNewsReq req) {
-		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();
-		PageHelper.startPage(req.getPageNo(), req.getPageSize());
 		List<MenuEntity> menuList = menuMapper.findListByStaffId(req.getStaffId());
 		List<Long> menuIds = menuList.stream().map(MenuEntity::getId).collect(Collectors.toList());
 		List<MenuEntity> menuList2 = menuMapper.findListByPids(menuIds);
@@ -67,6 +65,8 @@ public class NewsServiceImpl implements INewsService {
 			menuIds.addAll(menuList2.stream().map(MenuEntity::getId).collect(Collectors.toList()));
 		}
 		req.setMenuIds(menuIds);
+		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();
+		PageHelper.startPage(req.getPageNo(), req.getPageSize());
 		Page<NewsListResp> respPage = newsMapper.findList(req);
 		pageableDataResp.setTotalSize(respPage.getTotal());
 		pageableDataResp.setDtoList(respPage.getResult());
