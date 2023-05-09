@@ -14,8 +14,8 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 public class BindRoleReq extends BaseAdminReq {
-	@ApiModelProperty(value = "用户id")
-	private long staffId;
+	@ApiModelProperty(value = "绑定用户id")
+	private long bindStaffId;
 	@NotBlank(message = "角色id不能为空")
 	@ApiModelProperty(value = "角色id，多个逗号隔开")
 	private String roleIds;
