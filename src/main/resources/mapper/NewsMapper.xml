@@ -53,7 +53,7 @@
         </if>
         <if test="menuIds != null">
             and menu_id in
-            <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            <foreach collection="menuIds" index="index" item="item" open="(" separator="," close=")">
                 #{item}
             </foreach>
         </if>
