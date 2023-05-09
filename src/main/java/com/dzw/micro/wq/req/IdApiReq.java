@@ -1,6 +1,6 @@
 package com.dzw.micro.wq.req;
 
-import com.dzw.micro.wq.application.domain.req.BaseReq;
+import com.dzw.micro.wq.application.domain.req.BaseApiReq;
 import lombok.Data;
 
 /**
@@ -10,6 +10,6 @@ import lombok.Data;
  * @date created in 2023/4/8
  */
 @Data
-public class IdReq extends BaseReq {
+public class IdApiReq extends BaseApiReq {
 	private Long id;
 }

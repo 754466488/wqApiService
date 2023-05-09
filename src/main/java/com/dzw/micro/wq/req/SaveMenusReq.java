@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.req;
 
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.models.auth.In;
 import lombok.Data;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @date created in 2023/4/6
  */
 @Data
-public class SaveMenusReq {
+public class SaveMenusReq extends BaseAdminReq {
 	@ApiModelProperty(value = "id")
 	private Long id;
 	@NotNull(message = "父级id不能为空")
@@ -26,9 +27,6 @@ public class SaveMenusReq {
 	@NotBlank(message = "名称不能为空")
 	@ApiModelProperty(value = "名称")
 	private String name;
-	@NotBlank(message = "用户名不能为空")
-	@ApiModelProperty(value = "用户名")
-	private String userName;
 	@ApiModelProperty(value = "图片地址")
 	private String picUrl;
 }

@@ -10,7 +10,7 @@ import lombok.Data;
  * @date created in 2023/4/4
  */
 @Data
-public class SelectBannerReq extends PageReq {
+public class SelectBannerReq extends AdminPageReq {
 	@ApiModelProperty(value = "状态0：启用 1：停用")
 	private Integer status;
 	@ApiModelProperty(value = "类型")

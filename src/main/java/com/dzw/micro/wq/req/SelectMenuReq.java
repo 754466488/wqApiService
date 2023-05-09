@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @date created in 2023/4/6
  */
 @Data
-public class SelectMenuReq extends PageReq {
+public class SelectMenuReq extends AdminPageReq {
 	@NotNull(message = "父级id不能为空")
 	@ApiModelProperty(value = "父级id")
 	private Long pid;

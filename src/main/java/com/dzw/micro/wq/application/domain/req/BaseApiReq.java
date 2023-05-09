@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel
-public class BaseReq implements Req {
+public class BaseApiReq implements Req {
 	@ApiModelProperty(value = "token|公共参数")
 	private String sign;
 	@ApiModelProperty(value = "Unix时间戳如:1610421482|公共参数")

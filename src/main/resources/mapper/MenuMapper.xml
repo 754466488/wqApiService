@@ -60,4 +60,23 @@
             create_user = #{createUser,jdbcType=VARCHAR}
         where id = #{id,jdbcType=BIGINT}
     </update>
+
+    <select id="findListByStaffId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select e.id, e.name
+        from t_sys_staff a
+                 join t_sys_staff_role b on a.staff_id = b.staff_id
+                 join t_sys_func_permission c on b.role_id = c.role_id
+                 join t_sys_resource d on c.resource_id = d.resource_id
+                 join t_menu e on d.menu_id = e.id
+        where a.staff_id = #{staffId}
+          and d.type = 2
+    </select>
+
+    <select id="findListByPids" resultMap="BaseResultMap">
+        select id,name
+        from t_menu where pid in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
 </mapper>

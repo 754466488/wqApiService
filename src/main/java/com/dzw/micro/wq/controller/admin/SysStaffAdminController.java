@@ -1,6 +1,7 @@
 package com.dzw.micro.wq.controller.admin;
 
 
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.LoginReq;
 import com.dzw.micro.wq.req.SaveStaffReq;
@@ -57,7 +58,7 @@ public class SysStaffAdminController {
 
 	@ApiOperation(value = "删除用户", notes = "")
 	@PostMapping(path = "/delete")
-	public Resp delete(@Valid StaffIdReq req, BindingResult bindingResult) {
+	public Resp delete(@Valid BaseAdminReq req, BindingResult bindingResult) {
 		return sysStaffService.delete(req.getStaffId());
 	}
 }

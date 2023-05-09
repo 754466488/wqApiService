@@ -9,6 +9,7 @@
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="req" jdbcType="TINYINT" property="req"/>
         <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="menu_id" jdbcType="BIGINT" property="menuId"/>
         <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
         <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
         <result column="update_time" jdbcType="VARCHAR" property="updateTime"/>
@@ -16,9 +17,10 @@
     </resultMap>
     <sql id="Base_Column_List">
         resource_id
-        , pid, name,url, icon, req, type, create_user,create_time,
+        , pid, name,url, icon, req, type,menu_id create_user,create_time,
     update_time, update_user
     </sql>
+
     <select id="findAllList" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

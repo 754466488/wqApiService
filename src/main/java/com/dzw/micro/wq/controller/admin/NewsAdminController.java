@@ -37,7 +37,7 @@ public class NewsAdminController {
 	@ApiOperation(value = "新闻文章列表", notes = "")
 	@GetMapping(path = "/list")
 	public Resp<PageableDataResp<NewsListResp>> list(@Valid SelectNewsReq req, BindingResult bindingResult) {
-		return newsAdminService.findPageList(req);
+		return newsAdminService.findAdminPageList(req);
 	}
 
 	@ApiOperation(value = "保存新闻文章", notes = "")

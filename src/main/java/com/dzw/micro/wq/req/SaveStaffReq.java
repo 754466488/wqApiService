@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.req;
 
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -12,15 +13,12 @@ import javax.validation.constraints.NotBlank;
  * @date created in 2023/5/6
  */
 @Data
-public class SaveStaffReq {
+public class SaveStaffReq extends BaseAdminReq {
 	@ApiModelProperty(value = "id")
 	private Long staffId;
 	@NotBlank(message = "用户名称不能为空")
 	@ApiModelProperty(value = "用户名称")
 	private String name;
-	@NotBlank(message = "用户名不能为空")
-	@ApiModelProperty(value = "用户名")
-	private String userName;
 	@NotBlank(message = "密码不能为空")
 	@ApiModelProperty(value = "密码")
 	private String pass;

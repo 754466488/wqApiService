@@ -5,7 +5,8 @@ import com.dzw.micro.wq.application.aspect.handler.AspectHandler;
 import com.dzw.micro.wq.application.aspect.internal.AspectInfo;
 import com.dzw.micro.wq.application.aspect.internal.AspectTypeEnum;
 import com.dzw.micro.wq.application.domain.constant.ErrorCode;
-import com.dzw.micro.wq.application.domain.req.BaseReq;
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
+import com.dzw.micro.wq.application.domain.req.BaseApiReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.application.domain.utils.WebUtils;
 import com.dzw.micro.wq.application.utils.MD5Utils;
@@ -43,16 +44,32 @@ public class ApiSignHandler implements AspectHandler {
 			return Resp.success();
 		}
 
+		if (StringUtils.startsWithAny(requestURI, "/admin/sysStaff/login")) {
+			return Resp.success();
+		}
+
+//		if (StringUtils.startsWithAny(requestURI, "/admin/")) {
+//			BaseAdminReq baseApiReq = getBaseAdminReqFromParams(methodParam);
+//			if (Objects.isNull(baseApiReq)) {
+//				return Resp.error(ErrorCode.AUTHORITY);
+//			}
+//
+//			if (Objects.isNull(baseApiReq.getStaffId())) {
+//				return Resp.error("用户id不能为空");
+//			}
+//			return Resp.success();
+//		}
+
 		/**
 		 * 校验api下接口
 		 */
 		if (StringUtils.startsWithAny(requestURI, "/api/")) {
-			BaseReq baseReq = getBaseReqFromApiParams(methodParam);
-			if (Objects.isNull(baseReq)) {
+			BaseApiReq baseApiReq = getBaseApiReqFromParams(methodParam);
+			if (Objects.isNull(baseApiReq)) {
 				return Resp.error(ErrorCode.SIGN);
 			}
-			String timestamp = baseReq.getTimestamp();
-			String sign = baseReq.getSign().toLowerCase();
+			String timestamp = baseApiReq.getTimestamp();
+			String sign = baseApiReq.getSign().toLowerCase();
 			String signNew = MD5Utils.md5(APP_ID + timestamp).toLowerCase();
 			if (!Objects.equals(sign, signNew)) {
 				return Resp.error(ErrorCode.SIGN);
@@ -62,12 +79,24 @@ public class ApiSignHandler implements AspectHandler {
 		return Resp.success();
 	}
 
-	public static final BaseReq getBaseReqFromApiParams(Object[] params) {
+	public static final BaseApiReq getBaseApiReqFromParams(Object[] params) {
 		if (ArrayUtils.isNotEmpty(params)) {
 			for (Object param : params) {
-				if (param instanceof BaseReq) {
-					BaseReq baseReq = (BaseReq) param;
-					return baseReq;
+				if (param instanceof BaseApiReq) {
+					BaseApiReq baseApiReq = (BaseApiReq) param;
+					return baseApiReq;
+				}
+			}
+		}
+		return null;
+	}
+
+	public static final BaseAdminReq getBaseAdminReqFromParams(Object[] params) {
+		if (ArrayUtils.isNotEmpty(params)) {
+			for (Object param : params) {
+				if (param instanceof BaseAdminReq) {
+					BaseAdminReq baseAdminReq = (BaseAdminReq) param;
+					return baseAdminReq;
 				}
 			}
 		}

@@ -1,11 +1,9 @@
 package com.dzw.micro.wq.controller.api;
 
 
-import com.dzw.micro.wq.application.domain.req.BaseReq;
+import com.dzw.micro.wq.application.domain.req.BaseApiReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
-import com.dzw.micro.wq.req.SelectBannerReq;
 import com.dzw.micro.wq.resp.BannerApiListResp;
-import com.dzw.micro.wq.resp.BannerListResp;
 import com.dzw.micro.wq.service.IBannerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,7 +33,7 @@ public class BannerApiController {
 
 	@ApiOperation(value = "轮播图列表", notes = "")
 	@GetMapping(path = "/list")
-	public Resp<List<BannerApiListResp>> list(@Valid BaseReq req, BindingResult bindingResult) {
+	public Resp<List<BannerApiListResp>> list(@Valid BaseApiReq req, BindingResult bindingResult) {
 		return bannerService.findPageHomeList();
 	}
 }

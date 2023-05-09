@@ -85,9 +85,17 @@ public class MenuServiceImpl implements IMenuService {
 	}
 
 	@Override
-	public Resp<List<MenuTreeResp>> treeList() {
+	public Resp<List<MenuTreeResp>> treeList(Long staffId) {
+		List<Long> menuIds = Lists.newArrayList();
+		if (Objects.nonNull(staffId)) {
+			List<MenuEntity> list = menuMapper.findListByStaffId(staffId);
+			if (CollectionUtils.isNotEmpty(list)) {
+				menuIds = list.stream().map(MenuEntity::getId).collect(Collectors.toList());
+			}
+		}
+		List<Long> menuIds2 = menuIds;
 		List<MenuEntity> list = menuMapper.findAll();
-		List<MenuEntity> oneList = list.stream().filter(x -> x.getPid() == 0).collect(Collectors.toList());
+		List<MenuEntity> oneList = list.stream().filter(x -> menuIds2.contains(x.getPid())).collect(Collectors.toList());
 		List<MenuTreeResp> respList = Lists.newArrayList();
 		for (MenuEntity entity : oneList
 		) {

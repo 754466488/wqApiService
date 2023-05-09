@@ -10,7 +10,7 @@ import lombok.Data;
  * @date created in 2023/5/6
  */
 @Data
-public class SelectRoleReq extends PageReq{
+public class SelectRoleReq extends AdminPageReq{
 	@ApiModelProperty(value = "角色名称")
 	private String roleName;
 }

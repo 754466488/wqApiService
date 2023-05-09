@@ -3,6 +3,8 @@ package com.dzw.micro.wq.req;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * description
  *
@@ -10,7 +12,7 @@ import lombok.Data;
  * @date created in 2023/4/5
  */
 @Data
-public class SelectNewsReq extends PageReq {
+public class SelectNewsReq extends AdminPageReq {
 	@ApiModelProperty(value = "状态 0：启用 1：停用  2：待发布")
 	private Integer status;
 	@ApiModelProperty(value = "开始时间")
@@ -22,4 +24,5 @@ public class SelectNewsReq extends PageReq {
 	@ApiModelProperty(value = "是否设置为头条 0:否 1:是")
 	private Integer isTop;
 	private Integer isGw;
+	private List<Long> menuIds;
 }

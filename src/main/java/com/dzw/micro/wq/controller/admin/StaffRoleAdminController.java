@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.controller.admin;
 
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.BindRoleReq;
 import com.dzw.micro.wq.req.SelectRoleReq;
@@ -36,7 +37,7 @@ public class StaffRoleAdminController {
 
 	@ApiOperation(value = "获取用户已绑定角色列表", notes = "")
 	@GetMapping(path = "/bindList")
-	public Resp bindList(@Valid StaffIdReq req, BindingResult bindingResult) {
+	public Resp bindList(@Valid BaseAdminReq req, BindingResult bindingResult) {
 		return staffRoleService.getBindList(req.getStaffId());
 	}
 

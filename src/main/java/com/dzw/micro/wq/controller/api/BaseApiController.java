@@ -1,6 +1,6 @@
 package com.dzw.micro.wq.controller.api;
 
-import com.dzw.micro.wq.application.domain.req.BaseReq;
+import com.dzw.micro.wq.application.domain.req.BaseApiReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
@@ -30,7 +30,7 @@ public class BaseApiController {
 
 	@ApiOperation(value = "文件上传", notes = "")
 	@PostMapping("/file/uploadFile")
-	public Resp<UploadImgResp> uploadFile(@Valid UploadApiReq req, @ApiIgnore BindingResult bindingResult) {
+	public Resp<UploadImgResp> uploadFile(@Valid BaseApiController.UploadApiApiReq req, @ApiIgnore BindingResult bindingResult) {
 		UploadReq req2 = new UploadReq();
 		req2.setFile(req.getFile());
 		req2.setFileType(req.getFileType());
@@ -38,7 +38,7 @@ public class BaseApiController {
 	}
 
 	@Data
-	public class UploadApiReq extends BaseReq {
+	public class UploadApiApiReq extends BaseApiReq {
 		@ApiModelProperty(value = "文件")
 		private MultipartFile file;
 		@ApiModelProperty(value = "1:图片 2：视频", required = true)

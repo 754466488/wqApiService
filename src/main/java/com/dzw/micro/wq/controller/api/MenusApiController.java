@@ -1,6 +1,6 @@
 package com.dzw.micro.wq.controller.api;
 
-import com.dzw.micro.wq.application.domain.req.BaseReq;
+import com.dzw.micro.wq.application.domain.req.BaseApiReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.resp.LeftMenuTreeResp;
 import com.dzw.micro.wq.resp.MenuTreeResp;
@@ -34,18 +34,18 @@ public class MenusApiController {
 
 	@ApiOperation(value = "获取菜单tree结构", notes = "")
 	@GetMapping(path = "/treeList")
-	public Resp<List<MenuTreeResp>> treeList(@Valid BaseReq req, BindingResult bindingResult) {
-		return menuService.treeList();
+	public Resp<List<MenuTreeResp>> treeList(@Valid BaseApiReq req, BindingResult bindingResult) {
+		return menuService.treeList(null);
 	}
 
 	@ApiOperation(value = "获取左侧菜单tree结构", notes = "")
 	@GetMapping(path = "/leftTreeList")
-	public Resp<List<LeftMenuTreeResp>> leftTreeList(@Valid MenuIdReq req, BindingResult bindingResult) {
+	public Resp<List<LeftMenuTreeResp>> leftTreeList(@Valid MenusApiController.MenuIdApiReq req, BindingResult bindingResult) {
 		return menuService.leftTreeList(req.getMenuId());
 	}
 
 	@Data
-	public class MenuIdReq extends BaseReq {
+	public class MenuIdApiReq extends BaseApiReq {
 		private Long menuId;
 	}
 }

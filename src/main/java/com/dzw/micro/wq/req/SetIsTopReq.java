@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.req;
 
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,14 +14,11 @@ import javax.validation.constraints.NotNull;
  * @date created in 2023/4/5
  */
 @Data
-public class SetIsTopReq {
+public class SetIsTopReq extends BaseAdminReq {
 	@NotNull(message = "id不能为空")
 	@ApiModelProperty(value = "id")
 	private Long id;
 	@NotNull(message = "状态不能为空")
 	@ApiModelProperty(value = "是否设置为头条 0:否 1:是")
 	private Integer isTop;
-	@NotBlank(message = "用户名不能为空")
-	@ApiModelProperty(value = "用户名")
-	private String userName;
 }

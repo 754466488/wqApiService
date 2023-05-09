@@ -8,7 +8,10 @@ import com.dzw.micro.wq.mapper.MenuMapper;
 import com.dzw.micro.wq.mapper.NewsMapper;
 import com.dzw.micro.wq.model.MenuEntity;
 import com.dzw.micro.wq.model.NewsEntity;
-import com.dzw.micro.wq.req.*;
+import com.dzw.micro.wq.req.SaveNewsReq;
+import com.dzw.micro.wq.req.SelectNewsReq;
+import com.dzw.micro.wq.req.SetIsTopReq;
+import com.dzw.micro.wq.req.UpdateStatusReq;
 import com.dzw.micro.wq.resp.NewsApiListResp;
 import com.dzw.micro.wq.resp.NewsDetailResp;
 import com.dzw.micro.wq.resp.NewsListResp;
@@ -16,11 +19,13 @@ import com.dzw.micro.wq.resp.PageableDataResp;
 import com.dzw.micro.wq.service.INewsService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * description
@@ -45,6 +50,23 @@ public class NewsServiceImpl implements INewsService {
 	public Resp<PageableDataResp<NewsListResp>> findPageList(SelectNewsReq req) {
 		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();
 		PageHelper.startPage(req.getPageNo(), req.getPageSize());
+		Page<NewsListResp> respPage = newsMapper.findList(req);
+		pageableDataResp.setTotalSize(respPage.getTotal());
+		pageableDataResp.setDtoList(respPage.getResult());
+		return Resp.success(pageableDataResp);
+	}
+
+	@Override
+	public Resp<PageableDataResp<NewsListResp>> findAdminPageList(SelectNewsReq req) {
+		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();
+		PageHelper.startPage(req.getPageNo(), req.getPageSize());
+		List<MenuEntity> menuList = menuMapper.findListByStaffId(req.getStaffId());
+		List<Long> menuIds = menuList.stream().map(MenuEntity::getId).collect(Collectors.toList());
+		List<MenuEntity> menuList2 = menuMapper.findListByPids(menuIds);
+		if (CollectionUtils.isNotEmpty(menuList2)) {
+			menuIds.addAll(menuList2.stream().map(MenuEntity::getId).collect(Collectors.toList()));
+		}
+		req.setMenuIds(menuIds);
 		Page<NewsListResp> respPage = newsMapper.findList(req);
 		pageableDataResp.setTotalSize(respPage.getTotal());
 		pageableDataResp.setDtoList(respPage.getResult());

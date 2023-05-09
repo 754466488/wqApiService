@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.req;
 
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -12,13 +13,10 @@ import javax.validation.constraints.NotBlank;
  * @date created in 2023/5/6
  */
 @Data
-public class BindRoleReq {
+public class BindRoleReq extends BaseAdminReq {
 	@ApiModelProperty(value = "用户id")
 	private long staffId;
 	@NotBlank(message = "角色id不能为空")
 	@ApiModelProperty(value = "角色id，多个逗号隔开")
 	private String roleIds;
-	@NotBlank(message = "用户名不能为空")
-	@ApiModelProperty(value = "用户名")
-	private String userName;
 }

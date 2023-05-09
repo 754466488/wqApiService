@@ -10,7 +10,7 @@ import lombok.Data;
  * @date created in 2023/5/6
  */
 @Data
-public class SelectStaffReq extends PageReq {
+public class SelectStaffReq extends AdminPageReq {
 	@ApiModelProperty(value = "员工姓名")
 	private String name;
 	@ApiModelProperty(value = "手机号")

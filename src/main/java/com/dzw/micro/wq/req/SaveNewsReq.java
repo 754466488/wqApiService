@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.req;
 
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * @date created in 2023/4/5
  */
 @Data
-public class SaveNewsReq {
+public class SaveNewsReq extends BaseAdminReq {
 	@ApiModelProperty(value = "id")
 	private Long id;
 	@NotBlank(message = "标题不能为空")
@@ -28,7 +29,4 @@ public class SaveNewsReq {
 	@NotBlank(message = "文章内容不能为空")
 	@ApiModelProperty(value = "文章内容")
 	private String content;
-	@NotBlank(message = "用户名不能为空")
-	@ApiModelProperty(value = "用户名")
-	private String userName;
 }

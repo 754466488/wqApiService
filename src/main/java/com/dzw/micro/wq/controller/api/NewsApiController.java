@@ -1,9 +1,9 @@
 package com.dzw.micro.wq.controller.api;
 
-import com.dzw.micro.wq.application.domain.req.BaseReq;
+import com.dzw.micro.wq.application.domain.req.BaseApiReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.enums.EnableStatusEnum;
-import com.dzw.micro.wq.req.IdReq;
+import com.dzw.micro.wq.req.IdApiReq;
 import com.dzw.micro.wq.req.SelectNewsApiReq;
 import com.dzw.micro.wq.req.SelectNewsReq;
 import com.dzw.micro.wq.resp.*;
@@ -37,7 +37,7 @@ public class NewsApiController {
 
 	@ApiOperation(value = "首页新闻文章列表", notes = "")
 	@GetMapping(path = "/pageHomeList")
-	public Resp<List<NewsApiListResp>> findPageHomeNewsList(@Valid BaseReq req, BindingResult bindingResult) {
+	public Resp<List<NewsApiListResp>> findPageHomeNewsList(@Valid BaseApiReq req, BindingResult bindingResult) {
 		return newsService.findPageHomeNewsList();
 	}
 
@@ -66,7 +66,7 @@ public class NewsApiController {
 
 	@ApiOperation(value = "获取文章详情", notes = "")
 	@PostMapping(path = "/detail")
-	public Resp<NewsDetailResp> detail(@Valid IdReq req, BindingResult bindingResult) {
+	public Resp<NewsDetailResp> detail(@Valid IdApiReq req, BindingResult bindingResult) {
 		return newsService.detail(req.getId(), true);
 	}
 }

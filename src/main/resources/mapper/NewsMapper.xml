@@ -51,6 +51,12 @@
         <if test="isTop != null">
             and is_top=#{isTop}
         </if>
+        <if test="menuIds != null">
+            and menu_id in
+            <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
         <if test="isGw != null">
             order by publish_time desc
         </if>

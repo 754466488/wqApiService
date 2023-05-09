@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.controller.admin;
 
+import com.dzw.micro.wq.application.domain.req.BaseAdminReq;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.*;
 import com.dzw.micro.wq.resp.MenuTreeResp;
@@ -53,8 +54,8 @@ public class MenusAdminController {
 
 	@ApiOperation(value = "获取菜单tree结构", notes = "")
 	@GetMapping(path = "/treeList")
-	public Resp<List<MenuTreeResp>> treeList() {
-		return menuService.treeList();
+	public Resp<List<MenuTreeResp>> treeList(BaseAdminReq req) {
+		return menuService.treeList(req.getStaffId());
 	}
 
 }

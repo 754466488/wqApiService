@@ -22,7 +22,7 @@ public interface IMenuService {
 
 	Resp updateStatus(UpdateStatusReq req);
 
-	Resp<List<MenuTreeResp>> treeList();
+	Resp<List<MenuTreeResp>> treeList(Long staffId);
 
 	Resp<List<LeftMenuTreeResp>> leftTreeList(Long menuId);
 }

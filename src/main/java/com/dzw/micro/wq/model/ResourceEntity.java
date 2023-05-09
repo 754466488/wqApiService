@@ -1,5 +1,6 @@
 package com.dzw.micro.wq.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -17,6 +18,7 @@ public class ResourceEntity {
 	private String icon;
 	private int req;
 	private int type;
+	private long menuId;
 	private String createTime;
 	private String createUser;
 	private String updateTime;

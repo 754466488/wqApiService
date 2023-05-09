@@ -54,4 +54,20 @@ public interface MenuMapper {
 	 * @date: 2023/4/6 23:34
 	 */
 	int updateById(MenuEntity record);
+
+	/**
+	 * 获取用户权限下所有菜单
+	 *
+	 * @author: lyb
+	 * @date: 2023/4/6 23:34
+	 */
+	List<MenuEntity> findListByStaffId(long staffId);
+
+	/**
+	 * 获取所有二级菜单
+	 *
+	 * @author: lyb
+	 * @date: 2023/4/6 23:34
+	 */
+	List<MenuEntity> findListByPids(List<Long> pids);
 }
