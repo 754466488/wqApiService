@@ -95,7 +95,10 @@ public class MenuServiceImpl implements IMenuService {
 		}
 		List<Long> menuIds2 = menuIds;
 		List<MenuEntity> list = menuMapper.findAll();
-		List<MenuEntity> oneList = list.stream().filter(x -> menuIds2.contains(x.getPid())).collect(Collectors.toList());
+		List<MenuEntity> oneList = list.stream().filter(x -> x.getPid() == 0).collect(Collectors.toList());
+		if (CollectionUtils.isNotEmpty(menuIds2)) {
+			oneList = list.stream().filter(x -> menuIds2.contains(x.getId())).collect(Collectors.toList());
+		}
 		List<MenuTreeResp> respList = Lists.newArrayList();
 		for (MenuEntity entity : oneList
 		) {
