@@ -16,6 +16,8 @@ import javax.validation.constraints.NotBlank;
 public class SaveStaffReq extends BaseAdminReq {
 	@ApiModelProperty(value = "id")
 	private Long staffId;
+	@ApiModelProperty(value = "用户id")
+	private Long userId;
 	@NotBlank(message = "用户名称不能为空")
 	@ApiModelProperty(value = "用户名称")
 	private String name;
