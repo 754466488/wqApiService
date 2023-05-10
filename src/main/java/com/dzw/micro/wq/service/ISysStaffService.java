@@ -22,5 +22,5 @@ public interface ISysStaffService {
 
 	Resp save(SaveStaffReq req);
 
-	Resp delete(long staffId);
+	Resp delete(Long staffId);
 }

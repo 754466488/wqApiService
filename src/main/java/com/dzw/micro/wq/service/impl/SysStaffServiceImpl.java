@@ -118,7 +118,10 @@ public class SysStaffServiceImpl implements ISysStaffService {
 	}
 
 	@Override
-	public Resp delete(long staffId) {
+	public Resp delete(Long staffId) {
+		if (Objects.isNull(staffId)) {
+			return Resp.error("该用户不存在");
+		}
 		sysStaffMapper.deleteByStaffId(staffId);
 		staffRoleMapper.deleteByStaffId(staffId);
 		return Resp.success();
