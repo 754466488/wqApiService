@@ -13,4 +13,6 @@ import lombok.Data;
 public class SelectRoleReq extends AdminPageReq{
 	@ApiModelProperty(value = "角色名称")
 	private String roleName;
+	@ApiModelProperty(value = "创建人")
+	private String createUser;
 }

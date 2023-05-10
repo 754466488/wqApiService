@@ -34,7 +34,7 @@ public class RoleServiceImpl implements IRoleService {
 	public Resp<PageableDataResp<RoleAdminListResp>> list(SelectRoleReq req) {
 		PageableDataResp<RoleAdminListResp> pageableDataResp = new PageableDataResp<>();
 		PageHelper.startPage(req.getPageNo(), req.getPageSize());
-		Page<RoleAdminListResp> respPage = roleMapper.findAllList(req.getRoleName());
+		Page<RoleAdminListResp> respPage = roleMapper.findAllList(req);
 		pageableDataResp.setTotalSize(respPage.getTotal());
 		pageableDataResp.setDtoList(respPage.getResult());
 		return Resp.success(pageableDataResp);

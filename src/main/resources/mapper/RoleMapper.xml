@@ -21,13 +21,16 @@
         where role_id = #{roleId}
     </select>
 
-    <select id="findAllList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="findAllList" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_sys_role
         where 1=1
         <if test="roleName != null">
             and role_name = #{roleName,jdbcType=VARCHAR}
+        </if>
+        <if test="roleName != null">
+            and create_user = #{createUser,jdbcType=VARCHAR}
         </if>
     </select>
 
