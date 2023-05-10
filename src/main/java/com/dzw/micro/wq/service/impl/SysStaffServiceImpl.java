@@ -94,6 +94,7 @@ public class SysStaffServiceImpl implements ISysStaffService {
 			}
 			SysStaffEntity entity = new SysStaffEntity();
 			BeanUtils.copyProperties(entity, req);
+			entity.setStaffId(0L);
 			entity.setUserName(req.getRegisterUserName());
 			entity.setCreateTime(DateUtils.currentTimeSecond());
 			entity.setCreateUser(req.getUserName());
@@ -102,6 +103,7 @@ public class SysStaffServiceImpl implements ISysStaffService {
 			SysStaffEntity staffEntity = sysStaffMapper.findOneByStaffId(req.getUserId());
 			if (Objects.nonNull(staffEntity)) {
 				BeanUtils.copyProperties(staffEntity, req);
+				staffEntity.setStaffId(req.getUserId());
 				staffEntity.setUserName(req.getRegisterUserName());
 				staffEntity.setUpdateUser(req.getUserName());
 				staffEntity.setUpdateTime(DateUtils.currentTimeSecond());
