@@ -18,8 +18,10 @@ public class SaveStaffReq extends BaseAdminReq {
 	private Long staffId;
 	@ApiModelProperty(value = "用户id")
 	private Long userId;
-	@NotBlank(message = "用户名称不能为空")
-	@ApiModelProperty(value = "用户名称")
+	@NotBlank(message = "注册用户名不能为空")
+	@ApiModelProperty(value = "注册用户名")
+	private String registerUserName;
+	@ApiModelProperty(value = "用户姓名")
 	private String name;
 	@NotBlank(message = "密码不能为空")
 	@ApiModelProperty(value = "密码")
@@ -32,7 +34,4 @@ public class SaveStaffReq extends BaseAdminReq {
 	private String positions;
 	@ApiModelProperty(value = "状态 0启用1停用")
 	private int status;
-	@NotBlank(message = "操作人不能为空")
-	@ApiModelProperty(value = "操作人")
-	private String createUser;
 }
