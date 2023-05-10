@@ -15,7 +15,7 @@ import lombok.Data;
 @ApiModel
 public class BaseAdminReq implements Req {
 	@ApiModelProperty(value = "用户id")
-	private Long staffId = 1L;
+	private Long staffId;
 	@ApiModelProperty(value = "用户名")
 	private String userName;
 }
