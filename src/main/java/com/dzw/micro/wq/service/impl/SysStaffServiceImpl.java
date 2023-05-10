@@ -3,6 +3,7 @@ package com.dzw.micro.wq.service.impl;
 import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.application.utils.BeanUtils;
 import com.dzw.micro.wq.application.utils.DateUtils;
+import com.dzw.micro.wq.application.utils.StringUtils;
 import com.dzw.micro.wq.mapper.FuncPermissionMapper;
 import com.dzw.micro.wq.mapper.ResourceMapper;
 import com.dzw.micro.wq.mapper.StaffRoleMapper;
@@ -87,6 +88,9 @@ public class SysStaffServiceImpl implements ISysStaffService {
 
 	@Override
 	public Resp save(SaveStaffReq req) {
+		if (StringUtils.isBlank(req.getRegisterUserName())) {
+			return Resp.error("用户名不能为空");
+		}
 		if (Objects.isNull(req.getUserId())) {
 			SysStaffEntity staffEntity = sysStaffMapper.findOneByUserName(req.getName());
 			if (Objects.nonNull(staffEntity)) {
