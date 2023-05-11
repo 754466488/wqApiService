@@ -4,7 +4,6 @@ import com.dzw.micro.wq.application.domain.req.Resp;
 import com.dzw.micro.wq.req.UploadReq;
 import com.dzw.micro.wq.resp.UploadImgResp;
 import com.dzw.micro.wq.service.IFileService;
-import com.dzw.micro.wq.service.base.UploadFileService;
 import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
