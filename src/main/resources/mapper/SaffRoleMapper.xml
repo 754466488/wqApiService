@@ -40,7 +40,7 @@
 
     <insert id="insert" parameterType="com.dzw.micro.wq.model.StaffRoleEntity">
         insert into t_sys_staff_role (id, staff_id, role_id)
-        values (#{id,jdbcType=BIGINT}, #{staffId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT})
+        values (#{id,jdbcType=BIGINT}, #{bindStaffId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT})
     </insert>
 
     <delete id="deleteByRoleId" parameterType="java.lang.Long">

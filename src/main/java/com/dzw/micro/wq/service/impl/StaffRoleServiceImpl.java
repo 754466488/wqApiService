@@ -40,12 +40,12 @@ public class StaffRoleServiceImpl implements IStaffRoleService {
 	public Resp bind(BindRoleReq req) {
 		String roleIds = req.getRoleIds();
 		if (StringUtils.isNotBlank(roleIds)) {
-			staffRoleMapper.deleteByStaffId(req.getStaffId());
+			staffRoleMapper.deleteByStaffId(req.getBindStaffId());
 			List<String> ListRoleId = Splitter.on(",").splitToList(roleIds);
 			for (String str : ListRoleId
 			) {
 				StaffRoleEntity entity = new StaffRoleEntity();
-				entity.setStaffId(req.getStaffId());
+				entity.setStaffId(req.getBindStaffId());
 				entity.setRoleId(Long.parseLong(str));
 				staffRoleMapper.insert(entity);
 			}
