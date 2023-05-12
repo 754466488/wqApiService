@@ -62,7 +62,13 @@ public class NewsServiceImpl implements INewsService {
 		List<Long> menuIds = menuList.stream().map(MenuEntity::getId).collect(Collectors.toList());
 		List<MenuEntity> menuList2 = menuMapper.findListByPids(menuIds);
 		if (CollectionUtils.isNotEmpty(menuList2)) {
-			menuIds.addAll(menuList2.stream().map(MenuEntity::getId).collect(Collectors.toList()));
+			List<Long> twoMenuIds = menuList2.stream().map(MenuEntity::getId).collect(Collectors.toList());
+			menuIds.addAll(twoMenuIds);
+			List<MenuEntity> menuList3 = menuMapper.findListByPids(twoMenuIds);
+			if (CollectionUtils.isNotEmpty(menuList3)) {
+				menuIds.addAll(menuList3.stream().map(MenuEntity::getId).collect(Collectors.toList()));
+			}
+
 		}
 		req.setMenuIds(menuIds);
 		PageableDataResp<NewsListResp> pageableDataResp = new PageableDataResp<>();

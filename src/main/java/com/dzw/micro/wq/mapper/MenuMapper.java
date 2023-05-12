@@ -64,7 +64,7 @@ public interface MenuMapper {
 	List<MenuEntity> findListByStaffId(long staffId);
 
 	/**
-	 * 获取所有二级菜单
+	 * 获取所有子菜单
 	 *
 	 * @author: lyb
 	 * @date: 2023/4/6 23:34
