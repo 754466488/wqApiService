@@ -193,6 +193,7 @@
              , menu_name     as menuName
              , click_num     as clickNum
              , link_url      as linkUrl
+             , content
              , cover_pic_url as coverPicUrl
              , publish_time  as publishTime
              , is_top        as isTop
