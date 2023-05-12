@@ -112,7 +112,7 @@
         select
         <include refid="Base_Column_List"/>
         from t_news
-        where menu_id=#{menuId} and status=0 and publish_time &lt; #{publishTime} order by publish_time limit 1
+        where menu_id=#{menuId} and status=0 and publish_time &lt; #{publishTime} order by publish_time desc limit 1
     </select>
     <insert id="insert" parameterType="com.dzw.micro.wq.model.NewsEntity">
         insert into t_news (id, title, menu_id, menu_name,
