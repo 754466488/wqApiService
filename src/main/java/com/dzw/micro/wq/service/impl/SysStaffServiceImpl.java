@@ -88,10 +88,10 @@ public class SysStaffServiceImpl implements ISysStaffService {
 
 	@Override
 	public Resp save(SaveStaffReq req) {
-		if (StringUtils.isBlank(req.getRegisterUserName())) {
-			return Resp.error("用户名不能为空");
-		}
 		if (Objects.isNull(req.getUserId())) {
+			if (StringUtils.isBlank(req.getRegisterUserName())) {
+				return Resp.error("用户名不能为空");
+			}
 			SysStaffEntity staffEntity = sysStaffMapper.findOneByUserName(req.getName());
 			if (Objects.nonNull(staffEntity)) {
 				return Resp.error("此用户已经存在");
