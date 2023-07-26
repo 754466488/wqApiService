@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Data
 @ApiModel
-@ToString(callSuper = true, exclude = {"file"})
 public class UploadReq extends BaseAdminReq {
 	@ApiModelProperty(value = "文件")
 	private MultipartFile file;
